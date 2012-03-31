@@ -27,12 +27,12 @@ $sql = "SELECT
 		FROM
 				touren
 		WHERE
-				WEEKOFYEAR(date)=WEEKOFYEAR(CURDATE()) AND YEAR(date)=YEAR(curdate()) AND UserID ='".$_SESSION['UserID']."'
+				MONTH(date)=MONTH(CURDATE()) AND YEAR(date)=YEAR(curdate()) AND UserID ='".$_SESSION['UserID']."'
 		";
 $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
 $row = mysql_fetch_assoc($result);
-$tpl->assign('tooltip_weekkilometer', round($row['distance_week'],2));
+$tpl->assign('tooltip_monthkilometer', round($row['distance_week'],2));
 
 
 
@@ -75,7 +75,8 @@ $sql = "SELECT
 		FROM
 				touren
 		WHERE
-				UserID ='".$_SESSION['UserID']."'
+				UserID ='".$_SESSION['UserID']."' AND
+				year(date) = year(curdate())
 		GROUP BY
 				UserID
 		";

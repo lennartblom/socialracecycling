@@ -79,7 +79,7 @@ while($dsatz = mysql_fetch_assoc($sql)){
 	$tours[$i].="		<td class=\"$libackground\"><input type=\"radio\" name=\"tour-choice\" value=\"".$dsatz["TourID"]."\" /></td>\n";
     $tours[$i].="		<td class=\"$libackground\">".mysqlDatetoNormal($dsatz["date"])."</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["distance"]." Km</td>\n";
-    $tours[$i].="		<td class=\"$libackground\">".($dsatz["duration"]*60)." Minuten</td>\n";
+    $tours[$i].="		<td class=\"$libackground\">".($time=date("H:i:s",mktime(0,60*$dsatz['duration'],0,0,0,0)))."</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-speed"]."km/h</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-cadence"]." U/Minute.</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["elevator-difference"]." Meter</td>\n";

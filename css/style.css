@@ -434,10 +434,10 @@ a.delete{
 
 h2#hovercard {
 	font-family:Arial;
-	font-size:18px;
+	font-size:17px;
 	color:#0865c4;
 	margin-top:35px;
-	margin-left:50px;
+	margin-left:0px;
 }
 
 table#information{
@@ -545,6 +545,33 @@ td.additional-information{
 
 input.addtour-normalinput{
 	width:215px;
+}
+
+td.profil-column{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-align:right;
+	padding-right:25px;
+	color:#10375c;
+}
+
+h2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#10375c;
+	text-align:center;
+	margin-top:10px;
+}
+
+input.profile-normalinput{
+	width:250px;
+	height:30px;
+	border:thin #39C dashed;
+	background-color:#f8fcff;
+	padding-left:5px;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#10375c;
 }
 
 td#addform{

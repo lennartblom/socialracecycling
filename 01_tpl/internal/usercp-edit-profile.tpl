@@ -16,7 +16,7 @@
 
 
 <form method="post" action="usercp-edit-profile.php">
-                    <table style="margin-left:45px;">
+                    <table style="margin-left:-60px;">
                         <tr>
                             <td>
 							
@@ -24,15 +24,15 @@
 							<table>
 								<tr>
 									<td class="profil-column">eMail:</td>
-									<td><input name="profile_email" class="addtour-normalinput" value="{$email}" /></td>
+									<td><input name="profile_email" class="profile-normalinput" value="{$email}" /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Passwort ändern:</td>
-									<td><input type="password" name="profile_password"  class="addtour-normalinput"  /></td>
+									<td><input type="password" name="profile_password"  class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Passwort wiederholen:</td>
-									<td><input type="password" name="profile_password_confirm"  class="addtour-normalinput"  /></td>
+									<td><input type="password" name="profile_password_confirm"  class="profile-normalinput"  /></td>
 								</tr>
 							</table>
 							
@@ -48,28 +48,28 @@
 							<table>
 								<tr>
 									<td class="profil-column">Vorname:</td>
-									<td><input name="profile_name" class="addtour-normalinput"  value="{$vorname}" /></td>
+									<td><input name="profile_name" class="profile-normalinput"  value="{$vorname}" /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Nachname:</td>
-									<td><input name="profile_lastname"  class="addtour-normalinput"  value="{$nachname}" /></td>
+									<td><input name="profile_lastname"  class="profile-normalinput"  value="{$nachname}" /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Straße:</td>
-									<td><input name="profile_street" value="{$strasse}" class="addtour-normalinput"  /></td>
+									<td><input name="profile_street" value="{$strasse}" class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">PLZ:</td>
-									<td><input name="profile_plz" value="{$plz}" style="width:100px;" /></td>
+									<td><input name="profile_plz" value="{$plz}" class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Stadt:</td>
-									<td><input name="profile_city" value="{$stadt}" class="addtour-normalinput" /></td>
+									<td><input name="profile_city" value="{$stadt}" class="profile-normalinput" /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Land</td>
 									<td>
-										<select name="profile_country" style="width:220px;" name="country">
+										<select name="profile_country" style="width:258px; background-color:#f8fcff;" name="country">
 													{if isset($land)}
 														 <option value="{$land}" selected="selected">{$land}</option>
 													{else}
@@ -97,7 +97,7 @@
 								<tr>
 									<td class="profil-column">Geschlecht:</td>
 									<td>
-										<select name="profile_gender"  style="width:220px;" name="gender">
+										<select name="profile_gender" style="width:258px; background-color:#f8fcff;" name="gender">
 												{if isset($geschlecht)}
 													 <option value="{$geschlecht}" selected="selected">{$geschlecht}</option>
 												{else}
@@ -111,7 +111,7 @@
 								<tr>
 									<td  class="profil-column">Geburtstag:</td>
 									<td>
-							                    <select name="birth_Day">
+							                    <select style="width:70px; background-color:#f8fcff;" name="birth_Day">
                                                 {if isset($tag) AND $tag != ''} 
                                                     <option value="{$tag}" selected>{$tag}</option>
                                                 {else}
@@ -121,7 +121,7 @@
                                                     <option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
                                                 {/section}									
                                                     </select>
-							                   <select name="birth_Month">
+							                   <select style="width:90px; background-color:#f8fcff;" name="birth_Month">
                                                {if isset($monat) AND $monat != ''} 
                                                     <option value="{$monat}" selected>{$monat}</option>
                                                 {else}
@@ -140,7 +140,7 @@
 							                        <option value="11">November</option>
 							                        <option value="12" >Dezember</option>
 							                    </select>
-							                    <select name="birth_Year">
+							                    <select style="width:90px; background-color:#f8fcff;" name="birth_Year">
                                                 {if isset($jahr) AND $jahr != ''} 
                                                     <option value="{$jahr}" selected>{$jahr}</option>
                                                 {else}
@@ -154,15 +154,15 @@
 								</tr>
 								<tr>
 									<td class="profil-column">Interessen:</td>
-									<td><input name="profile_interests" value="{$interessen}" class="addtour-normalinput"  /></td>
+									<td><input name="profile_interests" value="{$interessen}" class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Beruf:</td>
-									<td><input name="profile_job" value="{$beruf}" class="addtour-normalinput"  /></td>
+									<td><input name="profile_job" value="{$beruf}" class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Rennradmodell:</td>
-									<td><input name="profile_bike" value="{$fahrrad}" class="addtour-normalinput"  /></td>
+									<td><input name="profile_bike" value="{$fahrrad}" class="profile-normalinput"  /></td>
 								</tr>
 							</table>
 							

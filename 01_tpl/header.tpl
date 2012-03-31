@@ -61,7 +61,7 @@
            </li>
            <li>
                <a name="Touren" href="tour-menu.php" id="button-touren">
-		       	Touren
+		       	Aktivitäten
 		       </a>
 		   </li>
 		   <li>
@@ -71,7 +71,7 @@
 		   </li>
 			<li>
 				<a name="Strecken" href="tracks.php" id="button-tracks">
-					Strecken
+					Freunde
 				</a>
 			</li>
 			<li>
@@ -94,10 +94,14 @@
             <div id="usercp-background-sidebar">
                 <ul id="usercp-navigation">
                     <li class="usercp-navigation-headline">Soziales</li>
+                    
                         <li><a href="usercp-edit-profile.php" class="usercp-navigation-button{if $title eq 'Profil bearbeiten'}-active{/if}">Profil bearbeiten</a></li>		
                         <li><a href="usercp-profile_self.php" class="usercp-navigation-button{if $title eq 'Profildaten'}-active{/if}">Profil anzeigen</a></li>
                         <li><a href="usercp-mitgliederliste.php" class="usercp-navigation-button{if $title eq 'Mitgliederliste' OR $title eq 'Profil-Information'}-active{/if}">Mitgliederliste</a></li>
-                        <li><a href="usercp-facebook.php" class="usercp-navigation-button{if $title eq 'Facebook'}-active{/if}">Facebook</a></li>
+                        
+                    <li class="usercp-navigation-headline">Einstellungen</li>
+                    
+                    	<li><a href="usercp-facebook.php" class="usercp-navigation-button{if $title eq 'Facebook'}-active{/if}">Facebook</a></li>
                 </ul>
             </div>
             <div id="usercp-background-content">

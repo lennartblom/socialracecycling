@@ -5,7 +5,7 @@
 		<input type="hidden" name="month_change" value="{$month_change}">
 		<input type="hidden" name="year_change" value="{$year_change}">
 		
-			<h3>Willkommen {$name} | Trainings-&Uuml;bersicht</h3>
+			<h3>Willkommen {$name} | Deine Trainings&uuml;bersicht</h3>
             <br />
 				<table style="margin-left:auto;margin-right:auto;">
 					<tr>

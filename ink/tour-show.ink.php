@@ -5,7 +5,7 @@ if(isset($_POST['tour-choice'])){
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		
 		$sql = "SELECT
-						DATE_FORMAT(date, '%W, %d. %M %Y') AS datum,
+						DATE_FORMAT(date, '%d.%m.%y') AS datum,
 						distance,
 						duration,
 						`average-speed`,
@@ -40,9 +40,15 @@ if(isset($_POST['tour-choice'])){
 			$row['elevator-difference']="---";
 		}	
 		
+		if(!isset($row['other-information']) or $row['other-information']==''){
+			$row['other-information']="leider keine Angaben angegeben";
+		}
+		
+		$time=date("H:i:s",mktime(0,60*$row['duration'],0,0,0,0));
+		
 		$tpl->assign('datum', $row['datum']);
 		$tpl->assign('distanz', $row['distance']);
-		$tpl->assign('dauer', $row['duration']);
+		$tpl->assign('dauer', $time);
 		$tpl->assign('trittfrequenz', $row['average-cadence']);
 		$tpl->assign('durchschnitt', $row['average-speed']);
 		$tpl->assign('hoehenmeter', $row['elevator-difference']);

@@ -51,33 +51,32 @@
                         {$lastname}
                         
                         <div class="toolTipContent">        
-                            <h2 id="hovercard">{$name} {$lastname}</h2>   
-                              <table cellpadding="0" cellspacing="0" border="1" id="information">
+                            <h2 id="hovercard">{$name} {$lastname}: <span style="color:#F00;font-weight:bold;">3 Benachrichtigungen</span></h2>   
+                              <table cellpadding="0" cellspacing="0" id="information">
                                 <tr>
-                                    <td class="title">
-                                        <p class="title-text">gesamt Kilometer:</p>
+                                    <td style="border:thin dashed #10365b;" class="title">
+                                        <p class="title-text">Kilometer in diesem Jahr:</p>
                                     </td>
-                                    <td class="numbers">
+                                    <td style="border:thin dashed #10365b;" class="numbers">
                                             <p class="gesamtkm-text">{$tooltip_kilometertotal}km</p>
                                     </td>
                                 </tr>
-                                
                                 <tr>
-                                    <td class="title">
-                                        <p class="title-text">letzte Tour war am:</p>
+                                    <td style="border:thin dashed #10365b;" class="title">
+                                        <p class="title-text">Kilometer in diesem Monat:</p>
                                     </td>
-                                    <td valign="top" style="padding-top:4px;" class="numbers">
-                                        <p class="otherinformation">{$tooltip_lasttour}</p>
-                                    </td> 
+                                    <td style="border:thin dashed #10365b;" class="numbers">
+                                        <p class="otherinformation">{$tooltip_monthkilometer} km</p>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
-                                    <td class="title">
-                                        <p class="title-text">Kilometer in dieser Woche:</p>
+                                    <td style="border:thin dashed #10365b;" class="title">
+                                        <p class="title-text">Deine letzte Aktivität war am:</p>
                                     </td>
-                                    <td class="numbers">
-                                        <p class="otherinformation">{$tooltip_weekkilometer} km</p>
-                                    </td>
+                                    <td style="border:thin dashed #10365b;padding-top:4px;" valign="top" class="numbers">
+                                        <p class="otherinformation">{$tooltip_lasttour}</p>
+                                    </td> 
                                 </tr>
                               </table> 
                         </div>
