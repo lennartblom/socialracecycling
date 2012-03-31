@@ -56,8 +56,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 	}
 	else{
 						$_POST['distance']=str_replace(",", ".", $_POST['distance']);
-						$duration = round($_POST['Time_Hours']+($_POST['Time_Minutes']/60)+($_POST['Time_Minutes']/3600),2);
-						$avgspeed = round($_POST['distance']/$duration,2);
+						
 						
 						if($_POST['Date_Day']<=9){
 							$_POST['Date_Day']="0".$_POST['Date_Day']."";
@@ -65,6 +64,11 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 						
 						
 						$date = "".$_POST['Date_Year']."-".$_POST['Date_Month']."-".$_POST['Date_Day']."";
+						$duration = mktime($_POST['Time_Hours'],$_POST['Time_Minutes'],$_POST['Time_Seconds'],1,1,1970);
+						
+											
+												
+						$avgspeed = round(($_POST['distance']*60)/($duration/60),1);
 							
 						$sql = "INSERT INTO
 									   touren
@@ -98,7 +102,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 						  $tpl->assign('monat', $_POST['Date_Month']);
 						  $tpl->assign('jahr', $_POST['Date_Year']);
 						  
-						  $tpl->assign('zeit', $duration);
+						  $tpl->assign('zeit', date("H:i:s",$duration));
 						  $tpl->assign('durchschnitt', $avgspeed);
 						  $tpl->assign('distanz', $_POST['distance']);
 						  

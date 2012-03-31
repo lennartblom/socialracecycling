@@ -1,5 +1,5 @@
 {include file="01_tpl/header.tpl"}
-<h3>bearbeiten, löschen, anzeigen | Touren</h3>
+<h3>Übersicht deiner Aktivitäten | anzeigen, bearbeiten oder löschen</h3>
 				
 				<form name="tour-menu" method="post" action="tours.php">
 				
@@ -7,15 +7,21 @@
                     
                     <p>{$error}</p>
                     
+                    <p style="text-align:center;">
+                            <input type="submit" name="change_selection" value="&larr;" />
+                            <input type="submit" name="change_selection" value="&rarr;" /> 
+                    </p>
                     <table border="1" id="edittour-tabelle">
                         <tr>
                             <td class="edittour-showtour-headline">Auswahl</td>
                             <td class="edittour-showtour-headline">Datum</td>
-                            <td class="edittour-showtour-headline">gesamte Distanz</td>
-                            <td class="edittour-showtour-headline">Zeit(in Minuten)</td>
-                            <td class="edittour-showtour-headline">durchsch. Geschwindig.</td>
-                            <td class="edittour-showtour-headline">durchsch. Trittfrequ.</td>
-                            <td class="edittour-showtour-headline">Höhendifferenz</td>
+                            <td class="edittour-showtour-headline">Typ</td>
+                            <td class="edittour-showtour-headline">Distanz</td>
+                            <td class="edittour-showtour-headline">Zeit</td>
+                            <td class="edittour-showtour-headline">&Oslash; Geschwindigkeit</td>
+                            <td class="edittour-showtour-headline">&Oslash; Trittfrequenz</td>
+                            <td class="edittour-showtour-headline">&Oslash; Herzfrequenz</td>
+                            <td class="edittour-showtour-headline">Höhenmeter</td>
                         </tr>
                             
                     {foreach from=$touren item=touritem}
@@ -25,13 +31,11 @@
                     {/foreach}
                     </table>
 						
-						
-                
-                		<input style="margin-left:50px;margin-top:25px;" type="submit" name="submit" value="Tourdaten löschen" />
-                        <input type="submit" name="submit" value="Tourdaten anzeigen" />
-                        <input type="submit" name="submit" value="Tourdaten bearbeiten" />
-                        <input type="submit" name="change_selection" value="&larr;" />
-                        <input type="submit" name="change_selection" value="&rarr;" /> 
+                		<p style="text-align:center;">
+                            <input type="submit" name="submit" value="Tourdaten anzeigen" />
+                            <input type="submit" name="submit" value="Tourdaten bearbeiten" />
+                            <input type="submit" name="submit" value="Tourdaten löschen" />
+                        </p>
     
                 </form>
                 

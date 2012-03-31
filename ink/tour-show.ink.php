@@ -44,7 +44,7 @@ if(isset($_POST['tour-choice'])){
 			$row['other-information']="leider keine Angaben angegeben";
 		}
 		
-		$time=date("H:i:s",mktime(0,60*$row['duration'],0,0,0,0));
+		$time=date("H:i:s",$row['duration']);
 		
 		$tpl->assign('datum', $row['datum']);
 		$tpl->assign('distanz', $row['distance']);

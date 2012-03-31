@@ -1,8 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-@background-color: #383838;
-
 a img {
 border : 0 none;
 }
@@ -529,7 +527,8 @@ table#inputarea {
 td.label-input-addtrack {
 	text-align:right;
 	font-family:Arial;
-	font-size:14px;
+	font-size:12px;
+	color:#10375C;
 }
 
 table#addform{
@@ -1026,13 +1025,15 @@ input.tour-input{
 	font-size:18px;
 }
 
-input.tour-edit-input{
+.tour-edit-input{
+	width:273px;
 	height:30px;
-	width:190px;
-	border:#a5aeb8 1px inset;
-	color:#949495;
-	font-family:Arial;
-	font-size:18px;
+	border:thin #39C dashed;
+	background-color:#f8fcff;
+	padding-left:5px;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#10375c;
 }
 
 .reg_submit {

@@ -2,7 +2,9 @@
 $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		
 $sql = "SELECT
-				date AS datum,
+				YEAR(date) AS jahr,
+				MONTH(date) AS monat,
+				DAY(date) AS tag,
 				distance,
 				duration,
 				`average-speed`,
@@ -38,14 +40,22 @@ if (!isset($row["elevator-difference"]) 	OR
 	$row["elevator-difference"]="--- ";
 }
 
-$tpl->assign('datum', $row['datum']);
-$tpl->assign('distanz', $row['distance']);
-$tpl->assign('dauer', $row['duration']);
-$tpl->assign('trittfrequenz', $row['average-cadence']);
-$tpl->assign('durchschnitt', $row['average-speed']);
-$tpl->assign('hoehenmeter', $row['elevator-difference']);
-$tpl->assign('info', $row['other-information']);
-$tpl->assign('id', $row['tourID']);		
+$tpl->assign('tag', 	$row['tag']);
+$tpl->assign('monat', 	$row['monat']);
+$tpl->assign('jahr', 	$row['jahr']);
+
+$tpl->assign('stunden', 	date("H",$row['duration']));
+$tpl->assign('minuten', 	date("i",$row['duration']));
+$tpl->assign('sekunden', 	date("s",$row['duration']));
+
+$tpl->assign('datum', 			$row['datum']);
+$tpl->assign('distanz', 		$row['distance']);
+$tpl->assign('dauer', 			$row['duration']);
+$tpl->assign('trittfrequenz', 	$row['average-cadence']);
+$tpl->assign('durchschnitt', 	$row['average-speed']);
+$tpl->assign('hoehenmeter', 	$row['elevator-difference']);
+$tpl->assign('info', 			$row['other-information']);
+$tpl->assign('id', 				$row['tourID']);		
 					
 						
 						
@@ -56,10 +66,17 @@ if(isset($_POST['submit']) AND $_POST['submit']=='Tourdaten aktualisieren'){
 		$_POST['average-cadence']="---";
 	}
 	
+	$_POST['distance']=str_replace(",", ".", $_POST['distance']);
+	
+	
+	$date 		= "".$_POST['Date_Year']."-".$_POST['Date_Month']."-".$_POST['Date_Day']."";
+	$duration 	= mktime($_POST['Time_Hours'],$_POST['Time_Minutes'],$_POST['Time_Seconds'],1,1,1970);
+	
+	
 	$sqlab = "update touren set"
-	.	"	date 					= '" .$_POST['date'] . "',"
+	.	"	date 					= '$date',"
 	.	"	distance				= '" .$_POST['distance'] . "',"
-	.	"	duration				= '" .$_POST['duration'] . "',"
+	.	"	duration				= '$duration',"
 	.	"	`average-speed` 		= '" .$_POST['average-speed'] . "',"
 	.	"	`average-cadence`		= '" .$_POST['average-cadence'] . "',"
 	.	"	`elevator-difference`	= '" .$_POST['elevator-difference'] . "',"

@@ -11,11 +11,51 @@
 {else}
 
 <form action="edit-tour.php" method="post" name="edit-tour">
-<table style="margin-left:50px;">
+<table style="margin:auto;">
     <tr>
         <td class="label">Datum:</td>
-        <td><input  class="tour-edit-input" name="date" value="{$datum}" type="text" maxlength="70"  /></td>
-        <td class="label-tour-edit">Jahr-Monat-Tag</td>
+        <td>
+       		<select style="width:90px; background-color:#f8fcff;"" name="Date_Day">                                 
+                {if isset($tag) AND $tag != ''} 
+                    <option value="{$tag}" selected>{$tag}</option>
+                {else}
+                            <option value="" selected>Tag</option>
+                {/if}
+                {section name=i loop=31}
+                    <option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
+                {/section}						                    
+            </select>
+            <select style="width:90px; background-color:#f8fcff;"" name="Date_Month">
+                {if isset($monat) AND $monat != ''} 
+                            <option value="{$monat}" selected>{$monat}</option>
+                {else}
+                            <option value="" selected>Monat</option>
+                {/if}
+                <option value="01">Januar</option>
+                <option value="02">Februar</option>
+                <option value="03">März</option>
+                <option value="04">April</option>
+                <option value="05">Mai</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12" >Dezember</option>
+            </select>
+            <select style="width:90px; background-color:#f8fcff;"" name="Date_Year">
+                
+                {if isset($jahr) AND $jahr != ''} 
+                            <option value="{$jahr}" selected>{$jahr}</option>
+                {else}
+                            <option value="" selected>Jahr</option>
+                {/if}	
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+                <option value="2010">2010</option>
+            </select>
+                                        </td>
     </tr>
     <tr>
         <td class="label">Distanz:</td>
@@ -24,8 +64,42 @@
     </tr>
     <tr>
         <td class="label">Fahrzeit:</td>
-        <td><input  class="tour-edit-input" name="duration" value="{$dauer}" type="text" maxlength="70"  /></td>
-        <td class="label-tour-edit">Stunden</td>
+        <td>
+        <select style="width:90px; background-color:#f8fcff;"" class="addtour-timeinput-hours" name="Time_Hours">                  
+                {if isset($stunden) AND $stunden != ''} 
+                        <option value="{$stunden}" selected>{$stunden}</option>
+                {else}
+                        <option value="" selected>Stunden</option>	
+                {/if}                                                  
+                {section name=i loop=12}
+                     <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
+                {/section}		
+        </select>     
+        <select style="width:90px; background-color:#f8fcff;"" class="addtour-timeinput-minutes" name="Time_Minutes"> 
+                
+                
+                {if isset($minuten) AND $minuten != ''} 
+                        <option value="{$minuten}" selected>{$minuten}</option>
+                {else}
+                        <option value="" selected>Minuten</option>
+                {/if}	
+                {section name=i loop=60}{
+                     <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
+                {/section}	
+        </select> 
+         <select style="width:90px; background-color:#f8fcff;"" class="addtour-timeinput-minutes" name="Time_Seconds"> 
+            
+            
+                {if isset($sekunden) AND $sekunden != ''} 
+                        <option value="{$sekunden}" selected>{$sekunden}</option>
+                {else}
+                        <option value="" selected>Sekunden</option>
+                {/if}	
+                {section name=i loop=60}{
+                     <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
+                {/section}	
+        </select> 
+        </td>
     </tr>
     <tr>
         <td class="label">Durschnittsgeschwindigkeit:</td>
@@ -44,13 +118,13 @@
     </tr>
     <tr>
         <td class="label">zusätzliche Tourinformationen:</td>
-        <td><textarea class="tour-input" style="margin-left:-1px;" name="other-information" type="text" rows="10" cols="26" >{$info}</textarea></td>
+        <td><textarea class="tour-edit-input" name="other-information" style="margin-left:-1px;height:100px;" type="text" rows="10" cols="35" >{$info}</textarea></td>
     </tr>
 </table>
-
-<input style="margin-left:50px;" type="submit" name="submit" value="Tourdaten aktualisieren" />
-
-<p class="text-content"><a href="tours.php">Hier</a> gelangen Sie wieder zurück zur Tourenübersicht.</p>
+<br /><br />
+<input style="margin-left:500px;" type="submit" name="submit" value="Tourdaten aktualisieren" />
+<br /><br />
+<p class="text-content" style="text-align:center;"><a href="tours.php">Hier</a> gelangen Sie wieder zurück zur Tourenübersicht.</p>
 
 <input type="hidden" name="tourID" value="{$id}" />
 

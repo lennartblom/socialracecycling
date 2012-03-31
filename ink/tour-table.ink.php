@@ -39,14 +39,18 @@ $i = 0;
 
 $change_selection_var = $_POST['change_selection_var'] + 0;
 
-$sql = mysql_query("SELECT 
+$sql = mysql_query("SELECT
 							* 
 					from 
 							`touren` 
 					where 
 							(UserID ='".$_SESSION['UserID']."')
-					LIMIT 
-							$change_selection_var, 10
+					ORDER BY
+							date
+					DESC	
+							LIMIT 
+					$change_selection_var, 10
+					
 					");
 
 $result = mysql_num_rows($sql)  or die ("MySQL-Fehler: " . mysql_error());  
@@ -61,28 +65,30 @@ while($dsatz = mysql_fetch_assoc($sql)){
     }  
     
     if (!isset($dsatz["average-cadence"])){
-        $dsatz["average-cadence"]="--- ";
+        $dsatz["average-cadence"]="- - -";
     }
     
     if (!isset($dsatz["elevator-difference"])){
-        $dsatz["elevator-difference"]="--- ";
+        $dsatz["elevator-difference"]="- - -";
     }
     
     if($dsatz['average-cadence']=='-0' OR $dsatz['average-cadence']=='' OR $dsatz['average-cadence']=='0' ){
-        $dsatz['average-cadence']="---";
+        $dsatz['average-cadence']="- - -";
     }	
     
     if($dsatz['elevator-difference']=='-0' OR $dsatz['elevator-difference']=='' OR $dsatz['elevator-difference']=='0' ){
-        $dsatz['elevator-difference']="---";
+        $dsatz['elevator-difference']="- - -";
     }	
     
 	$tours[$i].="		<td class=\"$libackground\"><input type=\"radio\" name=\"tour-choice\" value=\"".$dsatz["TourID"]."\" /></td>\n";
     $tours[$i].="		<td class=\"$libackground\">".mysqlDatetoNormal($dsatz["date"])."</td>\n";
-    $tours[$i].="		<td class=\"$libackground\">".$dsatz["distance"]." Km</td>\n";
-    $tours[$i].="		<td class=\"$libackground\">".($time=date("H:i:s",mktime(0,60*$dsatz['duration'],0,0,0,0)))."</td>\n";
+	$tours[$i].="		<td class=\"$libackground\"><img src=\"images/icon-radfahren.png\"></img></td>\n";
+    $tours[$i].="		<td class=\"$libackground\">".$dsatz["distance"]." km</td>\n";
+    $tours[$i].="		<td class=\"$libackground\">".(date("H:i:s",$dsatz['duration']))."</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-speed"]."km/h</td>\n";
-    $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-cadence"]." U/Minute.</td>\n";
-    $tours[$i].="		<td class=\"$libackground\">".$dsatz["elevator-difference"]." Meter</td>\n";
+    $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-cadence"]." rpm</td>\n";
+	$tours[$i].="		<td class=\"$libackground\">- - - bpm</td>\n";
+    $tours[$i].="		<td class=\"$libackground\">".$dsatz["elevator-difference"]." m</td>\n";
 }
 
 $tpl->assign('touren',$tours);
