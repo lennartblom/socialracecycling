@@ -1,0 +1,1086 @@
+@charset "utf-8";
+/* CSS Document */
+
+@background-color: #383838;
+
+a img {
+border : 0 none;
+}
+
+.clearing {
+	height: 0px;
+	clear: both;
+}
+
+.toolTipContent{
+	display: none;
+	height: 0px;
+	width: 0px;
+}
+#tooltipContainer{
+	width: 0px;
+	height: 0px;
+	display: none;
+	position: absolute;
+	background-image:url(../images/hovercard-background.png);
+	background-repeat:no-repeat;
+	margin-left:-210px;
+}
+
+h4#control-panel{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#144371;
+	text-decoration:underline;
+	font-size:20px;
+	padding-top:10px;
+	margin-left:30px;
+	margin-top:0px;
+	margin-bottom:-8px;
+}
+
+ul#usercp-navigation{
+	display:block;	
+	list-style:none;
+	margin-left:-25px;
+	margin-top:0px;
+}
+
+
+a.usercp-navigation-button{
+	display:block;
+	width:146px;
+	height:26px;
+	padding-top:11px;
+	background-image:url(../images/control-panel/button-normal.png);
+	text-align:center;
+	text-decoration:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#ffffff;
+}
+
+a.usercp-navigation-button-active{
+	display:block;
+	width:146px;
+	height:26px;
+	padding-top:11px;
+	background-image:url(../images/control-panel/button-active.png);
+	text-align:center;
+	text-decoration:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#4e4e4e;
+	font-weight:bold;
+}
+
+a.usercp-navigation-button:hover{
+	background-image:url(../images/control-panel/button-active.png);
+	color:#4e4e4e;
+	font-weight:bold;
+	background-color:transparent;
+}
+
+li.usercp-navigation-headline{
+	display:block;
+	width:146px;
+	height:15px;
+	padding-top:9px;
+	text-align:center;
+	text-decoration:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-decoration:underline;
+	background-image:url(../images/control-panel/button-active.png);
+	background-repeat:no-repeat;
+	color:#4e4e4e;
+	font-weight:bold;
+}
+
+ul#usercp-navigation li{
+	display:block;
+	width:146px;
+	height:37px;
+}
+
+
+div#usercp-content-box{
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:40px;
+	width:650px;
+	height:500px;
+	overflow:auto;
+}
+
+/*
+scrollbar-arrow-color{#58;E76959;}
+scrollbar-base-color{#58;F7D0C1;}
+scrollbar-darkshadow-color{#58;E76959;}
+scrollbar-face-color{#58;F7D0C1;}
+scrollbar-highlight-color{#58;E76959;}
+scrollbar-shadow-color{#58;F7D0C1;&#125;}
+*/
+
+div#usercp-background-top{
+	width:900px;
+	height:57px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/control-panel/background-top.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+div#usercp-background-sidebar{
+	width:161px;
+	height:500px;
+	background-image:url(../images/control-panel/sidebar-background.png);
+	background-repeat:repeat-y;
+	background-position:right;
+	margin-top:30px;
+	padding-left:20px;
+	float:left;
+}
+
+div#usercp-background-content{
+	width:700px;
+	height:500px;
+	margin-right:19px;
+	margin-top:30px;
+	background-image:url(../images/control-panel/background-middle.png);
+	background-repeat:repeat-y;
+	background-position:right;
+	float:right;
+}
+div#usercp-background-bottom{
+	height:30px;
+	width:900px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/control-panel/background-bottom.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+td#tourmenu-uprow{
+	background-color:#565656;
+	height: 22px;
+	width: 100%;
+	text-align:center;
+	color:#fff;
+	font-family:Arial;
+	font-weight:bold;
+}
+
+div#profile-background-top{
+	width:450px;
+	height:14px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/profile/profile-bg-top.png);
+	background-repeat:no-repeat;
+}
+
+div#profile-background-middle{
+	width:450px;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/profile/profile-bg-middle.png);
+	background-repeat:repeat-y;
+}
+
+div#profile-background-bottom{	
+	width:450px;
+	height:11px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/profile/profile-bg-bottom.png);
+}
+
+
+table#profile-table{
+	width:400px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+table.profile-information {
+	background-color:#fff;
+	padding:5px;
+	border:thin dotted #333333;
+}
+
+h2{
+	margin-top:0px;
+	font-family:Arial;
+	font-size:15px;
+}
+
+p.text-content{
+	display:block;
+	text-align:justify;
+	margin-top:0px;
+	margin-left:50px;
+	margin-bottom:0px;
+	font-family:Arial;
+	color:#000000;
+	font-size:13px;
+}
+
+table#edittour-tabelle{
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	border:thin dotted #333333;
+}
+
+tr.profile-showtour-light{
+	text-align:center;
+	padding:1px;
+	border:thin dotted #333333;
+	background-color:#CCCCCC;
+	color:#666;
+	font-family:Arial;
+	font-weight:normal;
+	font-size:15px;
+}
+
+tr.profile-showtour-dark{
+	text-align:center;
+	padding:1px;
+	border:thin dotted #333333;
+	background-color:#666;
+	color:#CCCCCC;
+	font-family:Arial;
+	font-weight:normal;
+	font-size:15px;
+}
+
+td.edittour-showtour-light{
+	text-align:center;
+	padding:5px;
+	border:thin #333333;
+	background-color:#e4e4e4;
+	color:#8f8f8f;
+	font-family:Arial;
+	font-weight:normal;
+	font-size:13px;
+	
+}
+
+td.edittour-showtour-dark{
+	text-align:center;
+	padding:5px;
+	border:thin #333333;
+	background-color:#a0a0a0;
+	color:#e4e4e4;
+	font-family:Arial;
+	font-weight:normal;
+	font-size:13px;
+}
+
+td.edittour-showtour-headline{
+	text-align:center;
+	padding:8px;
+	border:thin dotted #333333;
+	background-color:#747474;
+	color:#fff;
+	font-family:Arial;
+	font-weight:bold;
+	font-size:14px;
+}
+
+table#menu-touren{
+	width:812px;
+	height:253px;
+	border:none;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	padding:0px;
+}
+
+a.link-tourmenu{
+	display:block;
+	height:253px;
+	width:404px;
+	color:#b7b7b7;
+	text-decoration:none;
+	padding-top:30px;
+}
+
+p.text-tourmenu{
+	display:block;
+	text-align:justify;
+	font-family:Arial;
+	font-size:12px;
+	color:#464646;
+	height:119px;
+	width:250px;	
+	padding:60px 40px 40px 40px;
+	background-image:url(../images/tourmenu-textbg.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+a.link-tourmenu:hover{
+	color:#060;
+	
+}
+
+td#column-add{
+	height:253px;
+	width:404px;
+	background-color:#f5f5f5;
+	background-image:url(../images/add-tour-normal.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	color:#b7b7b7;
+	font-family:Arial;
+	font-size:14px;
+	text-align:center;
+}
+td#column-add:hover{
+	background-image:url(../images/add-tour-hover.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#f2ffee;
+	color:#060;
+	font-weight:bold;	
+}
+
+td#column-edit{
+	height:253px;
+	width:404px;
+	background-color:#f5f5f5;
+	background-image:url(../images/edit-tour-normal.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	color:#b7b7b7;
+	font-family:Arial;
+	font-size:14px;
+	text-align:center;
+}
+
+td#column-edit:hover{
+	background-image:url(../images/edit-tour-hover.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#f2ffee;
+	color:#060;
+	font-weight:bold;
+}
+
+p.about-long{
+	height:100%;
+	width:555px;
+	text-align:justify;
+	font-family:Arial;
+	font-size:13px;
+}
+
+p.about-verylong{
+	width:850px;
+	text-align:justify;
+	font-family:Arial;
+	font-size:13px;
+}
+
+p.about-short{
+	width:350px;
+	height:100%;
+	text-align:justify;
+	font-family:Arial;
+	font-size:13px;
+	float:right;
+}
+
+table#text-table-about{
+	margin-left:50px;
+	margin-top:-20px;
+}
+
+td.about-text{
+	width:555px;
+}
+
+td.about-image{
+	width:300px;
+}
+
+a.add{
+	display:block;
+	height:32px;
+	width:32px;
+	background-image:url(../images/homepage-backgrounds/plus-zeichen.png);
+	background-repeat:no-repeat;
+}
+
+a.delete{
+	display:block;
+	height:32px;
+	width:32px;
+	background-image:url(../images/homepage-backgrounds/minus-zeichen.png);
+	background-repeat:no-repeat;
+	margin-top:-5px;
+}
+
+	
+
+h2#hovercard {
+	font-family:Arial;
+	font-size:18px;
+	color:#0865c4;
+	margin-top:35px;
+	margin-left:50px;
+}
+
+table#information{
+	width:304px;
+	height:80px;
+	border:thin #e7e7e7;
+	margin-left:38px;
+	margin-top:-8px;
+}
+
+td.title{
+	width:189px;
+	height:29px;
+}
+
+p.title-text {
+	margin-top:-1px;
+	margin-right:7px;
+	text-align:right;
+	font-family:Arial;
+	color:#434343;
+	font-size:12px;
+	font-weight:bold;
+	height:0px;
+}
+
+p.gesamtkm-text{
+	margin-top:-1px;
+	margin-right:7px;
+	text-align:center;
+	font-family:Arial;
+	color:#177d03;
+	font-size:12px;
+	font-weight:bold;
+	height:0px;
+}
+
+p.otherinformation{
+	margin-top:-1px;
+	margin-right:7px;
+	text-align:center;
+	font-family:Arial;
+	color:#000000;
+	font-size:10px;
+	font-weight:bold;
+	height:0px;
+}
+
+td.numbers{
+	width:113px;
+	height:29px;
+	
+}
+
+hr#logout-trenner{
+	background-color:#3378c5;
+	width:117px;
+	height:2px;
+	margin-top:-7px;
+	margin-bottom:-1px;
+}
+
+
+/* ................... */
+
+h3 {
+	size:22px;
+	font-weight:bold;
+	font-family:Arial;
+	color:#3378c5;
+	margin-top:0px;
+	margin-bottom:10px;
+	margin-left:50px;
+}
+
+select.addtour-timeinput{
+	width:107px;
+}
+
+.clearing {
+	height: 0px;
+	clear: both;
+}
+	
+table#inputarea {
+	margin-left:80px;
+}
+
+td.label-input-addtrack {
+	text-align:right;
+	font-family:Arial;
+	font-size:14px;
+}
+
+table#addform{
+	margin-left:133px;
+}
+
+td.additional-information{
+	font-family:Arial;
+	font-weight:normal;
+	color:#939393;
+	font-size:12px;
+}
+
+input.addtour-normalinput{
+	width:215px;
+}
+
+td#addform{
+	font-family:Arial;
+	font-weight:normal;
+	color:#939393;
+	font-size:12px;
+}
+
+html{
+	background-color:#383838;
+	
+}
+
+input.input { 
+		border: #fff 0px solid;	 
+}
+
+div#wrapper {
+	height:100%;
+	width:980px;
+	margin-left:auto;
+	margin-right:auto;	
+}
+
+div#content-headerpart{
+	height:212px;
+	width:980px;
+	background-image:url(../images/content-header.png);
+}
+
+div#content-headerpart-short{
+	height:180px;
+	width:980px;
+	background-image:url(../images/content-header.png);
+}
+
+div#middlepart {
+	height:500px;
+	width:980px;
+}
+
+div#content-toppart{
+	width:912px;
+	height:24px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/content-toppart.png);
+	background-repeat:no-repeat;
+	background-position:1px;
+}
+
+ul#navigation {
+	height:125px;
+	width:434px;
+	list-style:none;
+	float:right;
+	margin-top:48px;
+	margin-right:60px;
+}
+
+ul#navigation li {
+	float:left;
+}
+
+a#button-contact{
+	display:block;
+	height:30px;
+	width:85px;
+	padding-top:95px;
+	margin-right:1px;
+	background-image:url(../images/navigation/normal/kontakt.png);
+	text-decoration:none;
+	color:#ffffff;
+	text-align:center;
+	vertical-align:bottom;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a#button-touren{
+	display:block;
+	height:30px;
+	width:85px;
+	padding-top:95px;
+	margin-right:1px;
+	background-image:url(../images/navigation/normal/touren.png);
+	text-decoration:none;
+	color:#ffffff;
+	text-align:center;
+	vertical-align:bottom;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a#button-calendar{
+	display:block;
+	height:30px;
+	width:85px;
+	padding-top:95px;
+	margin-right:1px;
+	background-image:url(../images/navigation/normal/kalender.png);
+	text-decoration:none;
+	color:#ffffff;
+	text-align:center;
+	vertical-align:bottom;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a#button-home{
+	display:block;
+	height:30px;
+	width:85px;
+	padding-top:95px;
+	margin-right:1px;
+	background-image:url(../images/navigation/normal/startseite.png);
+	text-decoration:none;
+	color:#ffffff;
+	text-align:center;
+	vertical-align:bottom;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a#button-tracks{
+	display:block;
+	height:30px;
+	width:85px;
+	padding-top:95px;
+	margin-right:1px;
+	background-image:url(../images/navigation/normal/strecken.png);
+	text-decoration:none;
+	color:#ffffff;
+	text-align:center;
+	vertical-align:bottom;
+	font-family:Arial;
+	font-size:12px;
+}
+
+a#button-home:hover{
+	background-image:url(../images/navigation/hover/startseite-hover.png);
+}
+
+a#button-touren:hover{
+	background-image:url(../images/navigation/hover/touren-hover.png);
+}
+
+a#button-calendar:hover{
+	background-image:url(../images/navigation/hover/kalender-hover.png);
+}
+
+a#button-tracks:hover{
+	background-image:url(../images/navigation/hover/strecken-hover.png);
+}
+
+a#button-contact:hover{
+	background-image:url(../images/navigation/hover/kontakt-hover.png);
+}
+
+div#content-middlepart{
+	min-height:220px;
+	height:100%;
+	width:980px;
+	background-image:url(../images/content-middlepart.png);
+	background-repeat:repeat-y;
+	padding-bottom:50px;
+}
+
+div#content-bottompart{
+	height:13px;
+	width:980px;
+	background-image:url(../images/content-bottompart.png);
+}
+
+a#programing-by {
+	display:block;
+	height:89px;
+	width:260px;
+	margin-left:20px;
+	margin-top:3px;
+}
+
+a.followme-facebook {
+	display:block;
+	width:176px;
+	height:66px;
+	margin-top:0px;
+	margin-left:15px;
+	float:left;
+}
+
+a#followme-twitter {
+	display:block;
+	width:176px;
+	height:66px;
+	margin-top:0px;
+	margin-right:15px;
+	float:right;
+}
+
+div#container-toppart {
+	width:980px;
+	height:25px;
+	background-image:url(../images/homepage-backgrounds/container-toppart.png);
+	background-repeat:no-repeat;
+	background-position:top;
+}
+
+div#container-middlepart {
+	width:980px;
+	height:100%;
+	background-image:url(../images/homepage-backgrounds/container-middlepart.png);
+	background-repeat:repeat-y;
+}
+
+div#container-bottompart {
+	width:980px;
+	height:60px;
+	background-image:url(../images/homepage-backgrounds/container-bottompart.png);
+	background-repeat:no-repeat;
+}
+
+div#text-box {
+	height:100%;
+	width:470px;
+	margin-top:0px;
+	padding-top:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	margin-left:40px;
+}
+
+div#text-box hr {
+	width:335px;
+	height:1px;
+	color:#5a5a5a;
+	margin-left:-5px;
+}
+
+div#text-box h1 {
+	font-size:28px;
+	margin-bottom:0px;
+	color:#4e4e4e;
+}
+
+div#text-box p {
+	margin-top:0px;
+	font-size:14px;
+	color:#5a5a5a;
+}
+
+ul#informationen li {
+	margin-top:0px;
+	font-size:14px;
+	color:#5a5a5a;
+	list-style-image:url(../images/list-hacken.png);
+}
+
+div#content {
+	height:480px;
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/homepage-backgrounds/homepage-image.png);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+table#footer-area {
+	margin-left:25px;
+}
+
+td.trenner {
+	height:165px;
+	width:10px;
+}
+
+td#lennart-blom {
+	height:165px;
+	width:306px;
+	background-image:url(../images/lennart-blom-no.png);
+	background-repeat:no-repeat;
+	background-position:20px 50px;
+	color:#6c6c6c;
+}
+
+td.tour-information{
+	background-color:#CCCCCC;
+}
+
+div#errorbox-red {
+	background-color:#ffeeee;
+	border:thin dashed #FF0000;
+	width:400px;
+	padding:10px 5px 10px 5px;
+	font-family:Arial;
+}
+
+div#errorbox-green {
+	background-color:#e2fde7;
+	border:thin dashed #00690e;
+	width:400px;
+	padding-left:15px;
+	padding-right:15px;
+	padding-top:5px;
+	padding-bottom:5px;
+	font-family:Arial;
+}
+
+td.profil-column{
+	width:200px;
+}
+
+td#lennart-blom:hover {
+	background-image:url(../images/lennart-blom.png);
+	color:#3378c5;
+}
+
+td#follow {
+	height:165px;
+	width:445px;
+	color:#6c6c6c;
+	background-image:url(../images/follow-us-nohover.png);
+	background-repeat:no-repeat;
+	background-position:15px 60px;
+}
+
+td#follow:hover {
+	height:165px;
+	width:445px;
+	color:#3378c5;
+	background-image:url(../images/follow-us-hover.png);
+}
+
+td.label {
+	height:32px;
+	width:120px;
+	color:#4e4e4e;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-align:right;
+}
+
+td.label-tour-edit {
+	height:32px;
+	width:60px;
+	color:#4e4e4e;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-align:left;
+}
+
+td#login {
+	height:165px;
+	width:140px;
+	color:#6c6c6c;
+}
+
+td#login:hover {
+	height:165px;
+	width:140px;
+	color:#3378c5;
+}
+
+input.login-input {
+	height:25px;
+	width:103px;
+	background-image:url(../images/login-input-background.png);
+	background-repeat:no-repeat;
+	background-color:#e7e7e7;
+	text-align:left;
+	padding-left:10px;
+	padding-right:5px;
+	margin-left:6px;
+	margin-top:0px;
+	border:0;
+	font-family:Arial;
+	color:#666666;
+	font-size:12px;
+	border-width:2px;
+}
+
+h1.footer-headline {
+	margin-left:15px;
+	margin-top:0px;
+	font-weight:bold;
+	font-size:14px;
+	font-family:Arial;
+}
+
+a.tooltipLink {
+	margin-top:0px;
+	font-weight:bold;
+	font-size:14px;
+	font-family:Arial;
+	color:#3378c5;
+	text-decoration:none;
+	display:block;
+	width:122px;
+	height:50px;
+}
+
+a.logout-link {
+	margin-top:0px;
+	font-weight:normal;
+	font-size:12px;
+	font-family:Arial;
+	color:#3378c5;
+	text-decoration:none;
+	display:block;
+	width:103px;
+	height:21px;
+	margin-left:10px;
+	padding-left:15px;
+	padding-top:7px;
+	text-align:left;
+	vertical-align:central;
+}
+
+a.logout-link:hover{
+	background-color:#8dafd6;
+}
+
+p#follow-us {
+	font-weight:bold;
+	font-size:12px;
+	font-family:Arial;
+	margin-left:210px;
+	margin-top:50px;
+}
+
+input#login-button {
+	margin-left:15px;
+}
+
+input.registration-input {
+	height:30px;
+	width:200px;
+	border:#a5aeb8 1px inset;
+	color:#949495;
+	font-family:Arial;
+	font-size:18px;
+}
+
+input.tour-input{
+	height:30px;
+	width:250px;
+	border:#a5aeb8 1px inset;
+	color:#949495;
+	font-family:Arial;
+	font-size:18px;
+}
+
+input.tour-edit-input{
+	height:30px;
+	width:190px;
+	border:#a5aeb8 1px inset;
+	color:#949495;
+	font-family:Arial;
+	font-size:18px;
+}
+
+.reg_submit {
+	display:block;
+	height:37px;
+	width:180px;
+	background-image:url(../images/reg_submit-normal.png);
+	background-repeat:no-repeat;
+	border:none;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+	font-size:12px;
+	margin-left:128px;
+	text-decoration:none;
+	text-align:center;
+	overflow:hidden;
+	
+}
+
+.reg_submit:hover {
+	background-image:url(../images/reg_submit-hover.png);
+}
+
+a.homepage {
+	display:block;
+	padding-top:10px;
+	height:27px;
+	width:180px;
+	background-image:url(../images/reg_submit-normal.png);
+	background-repeat:no-repeat;
+	border:none;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+	font-size:12px;
+	text-decoration:none;
+	text-align:center;
+	overflow:hidden;
+	float:left;
+}
+
+a.homepage:hover {
+	background-image:url(../images/reg_submit-hover.png);
+}
+
+div#footer {
+	height:169px;
+	width:960px;
+	background-image:url(../images/footer-background.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+a#impressum {
+	float:right;
+	display:block;
+	margin-right:103px;
+	margin-top:7px;
+	font-family:Arial;
+	font-size:14px;
+	color:#FFFFFF;
+}
+
+a#impressum:hover {
+	text-decoration:none;
+}
+
+ul#homepage_gallery{
+	list-style:none;
+}
+
+li.gallery{
+	float:left;	
+	padding:5px;
+}
