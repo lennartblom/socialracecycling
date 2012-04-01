@@ -6,8 +6,10 @@ if(isset($_POST['tour-choice'])){
 		
 		$sql = "SELECT
 						DATE_FORMAT(date, '%d.%m.%y') AS datum,
+						typ,
 						distance,
 						duration,
+						herzfrequenz,
 						`average-speed`,
 						`average-cadence`,
 						`elevator-difference`,
@@ -24,9 +26,8 @@ if(isset($_POST['tour-choice'])){
 
 		$num = mysql_affected_rows();
 		
-		if ($row["average-cadence"]=='0'){
+		if ($row["average-cadence"]=='0')
 			$row["average-cadence"]="---";
-		}
 		
 		if (!isset($row["elevator-difference"])){
 			$row["elevator-difference"]="---";
@@ -46,6 +47,15 @@ if(isset($_POST['tour-choice'])){
 		
 		$time=date("H:i:s",$row['duration']);
 		
+		if($row['typ']=='laufen')
+			$row['typ']="Laufen";
+			
+		if($row['typ']=='radfahren')
+			$row['typ']="Radfahren";
+			
+		if(!isset($row['herzfrequenz']) OR $row['herzfrequenz']=0 )
+			$row['herzfrequenz']="---";
+		
 		$tpl->assign('datum', $row['datum']);
 		$tpl->assign('distanz', $row['distance']);
 		$tpl->assign('dauer', $time);
@@ -53,6 +63,8 @@ if(isset($_POST['tour-choice'])){
 		$tpl->assign('durchschnitt', $row['average-speed']);
 		$tpl->assign('hoehenmeter', $row['elevator-difference']);
 		$tpl->assign('info', $row['other-information']);							
+		$tpl->assign('typ',$row['typ']);
+		$tpl->assign('herzfrequenz',$row['herzfrequenz']);
 
 } 
 if(!isset($_POST['tour-choice'])){

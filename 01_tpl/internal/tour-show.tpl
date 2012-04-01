@@ -12,7 +12,7 @@
                                     <h3>Aktivität von Lennart Blom am {$datum}</h3>
                                             
                                             
-                                    <table style="margin:auto;width:870px;min-height:500px;background-position:center center;background-image:url(images/activity-racecycling-bg.png);background-repeat:no-repeat;">
+                                    <table style="margin:auto;width:870px;min-height:500px;background-position:center center;background-image:url(images/activity-{$typ}-bg.png);background-repeat:no-repeat;">
                                     	<tr>
                                         	<td colspan="3" style="font-family:Arial;font-weight:bold;font-size:17px;color:#7e7e7e;">
                                             	Distanz
@@ -56,7 +56,8 @@
                                                     &Oslash; Herzfrequenz
                                                 </td>
                                                 <td rowspan="2">
-                                            		<h3 style="margin-left:0px;">Aktivität von {$name} {$lastname}</h3>
+                                            		<h3 style="margin-left:0px;">Von {$name} {$lastname}</h3>
+                                                    <p style="font-family:Arial;font-weight:bold;font-size:14px;color:#272727;">Aktivitätstyp: {$typ}</p>
                                             	</td>
                                         </tr>
                                         <tr>
@@ -67,7 +68,7 @@
                                                     {$hoehenmeter} m
                                                 </td>
                                                 <td style="color:#272727;font-family:Arial;font-weight:bold;font-size:37px;">
-                                                    156 bpm
+                                                    {$herzfrequenz} bpm
                                                 </td>
                                                 
                                         </tr>

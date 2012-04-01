@@ -82,7 +82,7 @@ while($dsatz = mysql_fetch_assoc($sql)){
     
 	$tours[$i].="		<td class=\"$libackground\"><input type=\"radio\" name=\"tour-choice\" value=\"".$dsatz["TourID"]."\" /></td>\n";
     $tours[$i].="		<td class=\"$libackground\">".mysqlDatetoNormal($dsatz["date"])."</td>\n";
-	$tours[$i].="		<td class=\"$libackground\"><img src=\"images/icon-radfahren.png\"></img></td>\n";
+	$tours[$i].="		<td class=\"$libackground\"><img src=\"images/icon-".$dsatz['typ'].".png\"></img></td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["distance"]." km</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".(date("H:i:s",$dsatz['duration']))."</td>\n";
     $tours[$i].="		<td class=\"$libackground\">".$dsatz["average-speed"]."km/h</td>\n";

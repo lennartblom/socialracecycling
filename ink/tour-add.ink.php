@@ -73,6 +73,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 						$sql = "INSERT INTO
 									   touren
 										 (UserID,
+										 typ,
 										 date,
 										 distance,
 										 duration,
@@ -83,6 +84,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 										 )
 								VALUES
 										  ('".mysql_real_escape_string(trim($_SESSION['UserID']))."',
+										  '".mysql_real_escape_string(trim($_POST['activity_type']))."',
 										  '".mysql_real_escape_string(trim($date)) ."',
 										  '".mysql_real_escape_string(trim($_POST['distance']))."',
 										  '".mysql_real_escape_string(trim($duration))."',
