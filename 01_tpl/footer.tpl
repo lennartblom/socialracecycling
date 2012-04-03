@@ -51,7 +51,7 @@
                         {$lastname}
                         
                         <div class="toolTipContent">        
-                            <h2 id="hovercard">{$name} {$lastname}: <span style="color:#F00;font-weight:bold;">3 Benachrichtigungen</span></h2>   
+                            <h2 id="hovercard">{$name} {$lastname}</h2>   
                               <table cellpadding="0" cellspacing="0" border="1" id="information">
                                 <tr>
                                     <td class="title">

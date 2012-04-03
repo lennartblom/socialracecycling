@@ -102,24 +102,34 @@
         </td>
     </tr>
     <tr>
-        <td class="label">Durschnittsgeschwindigkeit:</td>
-        <td><input class="tour-edit-input" name="average-speed" value="{$durchschnitt}" type="text" maxlength="70"  /></td>
-        <td class="label-tour-edit">km/h</td>
-    </tr>
-    <tr>
         <td class="label">Durchschnittliche Trittfrequenz:</td>
         <td><input class="tour-edit-input" name="average-cadence" value="{$trittfrequenz}" type="text" maxlength="70"  /></td>
-        <td class="label-tour-edit">U/min.</td>
+        <td class="label-tour-edit">rpm</td>
+    </tr>
+    <tr>
+        <td class="label">Durchschnittliche Herzfrequenz:</td>
+        <td><input class="tour-edit-input" name="herzfrequenz" value="{$herzfrequenz}" type="text" maxlength="70"  /></td>
+        <td class="label-tour-edit">bpm</td>
     </tr>
     <tr>
         <td class="label">Höhenunterschied:</td>
         <td><input  class="tour-edit-input" name="elevator-difference" value="{$hoehenmeter}" type="text" maxlength="70"  /></td>
-        <td class="label-tour-edit">Meter</td>
+        <td class="label-tour-edit">m</td>
     </tr>
     <tr>
         <td class="label">zusätzliche Tourinformationen:</td>
         <td><textarea class="tour-edit-input" name="other-information" style="margin-left:-1px;height:100px;" type="text" rows="10" cols="35" >{$info}</textarea></td>
     </tr>
+    <tr>
+        <td class="label-input-addtrack">Aktivitätstyp:</td>
+        <td>
+            <select style="width:280px;height:40px;background-color:#f8fcff;" name="activity_type">
+            	<option style="padding:11px 33px;" value="{$typ}">{$typ}</option>
+                <option style="padding:11px 33px;background-image:images/icon-radfahren.png;" value="radfahren">Radfahren</option>
+                <option style="padding:11px 33px;background-image:images/icon-laufen.png;" value="laufen">Laufen</option>
+            </select>
+        </td>
+   </tr>
 </table>
 <br /><br />
 <input style="margin-left:500px;" type="submit" name="submit" value="Tourdaten aktualisieren" />

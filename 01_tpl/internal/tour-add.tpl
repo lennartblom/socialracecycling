@@ -111,6 +111,11 @@
 					                <td valign="top" class="label-input-addtrack"><label>Weitere Angaben:</label></td>
 					                <td colspan="4"><textarea class="tour-edit-input" style="height:100px;" name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
 					            </tr>
+                                <tr>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
+					                <td><input class="tour-edit-input" name="herzfrequenz" value="{$herzfrequenz}" class="addtour-normalinput" /></td>
+					                <td class="additional-information">U/min</td>
+					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="cadence" value="{$kadenz}" class="addtour-normalinput" /></td>

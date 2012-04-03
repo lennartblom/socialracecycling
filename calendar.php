@@ -14,12 +14,15 @@
 		$tpl->assign('online',true);
 		
 		require_once('ink/footer_data.ink.php');
+		require_once('ink/calendar.ink.php');
 		
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
 		
         
-		$tpl->display('01_tpl/internal/calendar.tpl');
+		$tpl->display('01_tpl/header.tpl');
+		
+		$tpl->display('01_tpl/footer.tpl');
                    
 	}
 	else{

@@ -48,6 +48,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 			$tpl->assign('infos', $_POST['moreinformation']);
 			$tpl->assign('kandenz', $_POST['cadence']);
 			$tpl->assign('hoehenmeter', $_POST['heights']);	
+			$tpl->assign('herzfrequenz', $_POST['herzfrequenz']);	
 	}
 	
 	if(count($errors)){
@@ -78,6 +79,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 										 distance,
 										 duration,
 										 `average-speed`,
+										 herzfrequenz,
 										 `average-cadence`,
 										 `elevator-difference`,
 										 `other-information`
@@ -89,6 +91,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 										  '".mysql_real_escape_string(trim($_POST['distance']))."',
 										  '".mysql_real_escape_string(trim($duration))."',
 										  '".mysql_real_escape_string(trim($avgspeed))."',
+										  '".mysql_real_escape_string(trim($_POST['herzfrequenz']))."',
 										  '".mysql_real_escape_string(trim($_POST['cadence']))."',
 										  '".mysql_real_escape_string(trim($_POST['heights']))."',
 										  '".mysql_real_escape_string(trim($_POST['moreinformation']))."'

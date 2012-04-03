@@ -5,6 +5,8 @@ $sql = "SELECT
 				YEAR(date) AS jahr,
 				MONTH(date) AS monat,
 				DAY(date) AS tag,
+				herzfrequenz,
+				typ,
 				distance,
 				duration,
 				`average-speed`,
@@ -40,6 +42,14 @@ if (!isset($row["elevator-difference"]) 	OR
 	$row["elevator-difference"]="--- ";
 }
 
+if($row['typ']=='laufen')
+	$row['typ']="Laufen";
+	
+if($row['typ']=='radfahren')
+	$row['typ']="Radfahren";
+	
+$tpl->assign('typ',		$row['typ']);
+
 $tpl->assign('tag', 	$row['tag']);
 $tpl->assign('monat', 	$row['monat']);
 $tpl->assign('jahr', 	$row['jahr']);
@@ -52,6 +62,7 @@ $tpl->assign('datum', 			$row['datum']);
 $tpl->assign('distanz', 		$row['distance']);
 $tpl->assign('dauer', 			$row['duration']);
 $tpl->assign('trittfrequenz', 	$row['average-cadence']);
+$tpl->assign('herzfrequenz', 	$row['herzfrequenz']);
 $tpl->assign('durchschnitt', 	$row['average-speed']);
 $tpl->assign('hoehenmeter', 	$row['elevator-difference']);
 $tpl->assign('info', 			$row['other-information']);
@@ -62,22 +73,30 @@ $tpl->assign('id', 				$row['tourID']);
 if(isset($_POST['submit']) AND $_POST['submit']=='Tourdaten aktualisieren'){
 	
 	
+	if($_POST['herzfrequenz']=='-0' OR $_POST['herzfrequenz']=='' OR $_POST['herzfrequenz']=='0' ){
+		$_POST['herzfrequenz']="---";
+	}
+	
 	if($_POST['average-cadence']=='-0' OR $_POST['average-cadence']=='' OR $_POST['average-cadence']=='0' ){
 		$_POST['average-cadence']="---";
 	}
 	
 	$_POST['distance']=str_replace(",", ".", $_POST['distance']);
 	
-	
 	$date 		= "".$_POST['Date_Year']."-".$_POST['Date_Month']."-".$_POST['Date_Day']."";
 	$duration 	= mktime($_POST['Time_Hours'],$_POST['Time_Minutes'],$_POST['Time_Seconds'],1,1,1970);
+				
+	$avgspeed = round(($_POST['distance']*60)/($duration/60),1);
 	
+	if($_POST['herzfrequenz']=='0' OR $_POST['herzfrequenz']=='')
+		$_POST['herzfrequenz']="NULL";
 	
 	$sqlab = "update touren set"
 	.	"	date 					= '$date',"
 	.	"	distance				= '" .$_POST['distance'] . "',"
 	.	"	duration				= '$duration',"
-	.	"	`average-speed` 		= '" .$_POST['average-speed'] . "',"
+	.	"	`average-speed` 		= '$avgspeed',"
+	.	"	herzfrequenz			= '" .$_POST['herzfrequenz'] . "',"
 	.	"	`average-cadence`		= '" .$_POST['average-cadence'] . "',"
 	.	"	`elevator-difference`	= '" .$_POST['elevator-difference'] . "',"
 	.	"	`other-information`		= '" .$_POST['other-information'] . "'"
@@ -92,6 +111,8 @@ if(isset($_POST['submit']) AND $_POST['submit']=='Tourdaten aktualisieren'){
 	}
 	else{
 		$error = "Deine Tour wurde nicht geändert";
+		
+		$tpl->assign('error',$error);
 	}
 }
 

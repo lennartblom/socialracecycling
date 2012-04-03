@@ -1,5 +1,24 @@
 <?php
 
+$arrMonth = array (
+				"January" 	=>	"Januar",
+				"February" 	=>	"Februar",
+				"March"		=>	"M&auml;rz",
+				"April"		=>	"April",
+				"May"		=>	"Mai",
+				"June"		=>	"Juni",
+				"July"		=>	"Juli",
+				"August"	=>	"August",
+				"September"	=>	"September",
+				"October"	=>	"Oktober",
+				"November"	=>	"November",
+				"December"	=>	"Dezember"
+);
+
+$headline = array('Mo','Di','Mi','Do','Fr','Sa','So');
+
+$tpl->assign('monate',$arrMonth);
+$tpl->assign('wochentage',$headline);
 
 function monthBack( $timestamp ){
     return mktime(0,0,0, date("m",$timestamp)-1,date("d",$timestamp),date("Y",$timestamp) );
@@ -18,9 +37,9 @@ function getCalender($date,$headline = array('Mo','Di','Mi','Do','Fr','Sa','So')
     $sum_days = date('t',$date);
     $LastMonthSum = date('t',mktime(0,0,0,(date('m',$date)-1),0,date('Y',$date)));
     
-    foreach( $headline as $key => $value ) {
-        echo "<div class=\"day headline\">".$value."</div>\n";
-    }
+	$tpl->assign('headline',$headline);
+	
+   
     
     for( $i = 1; $i <= $sum_days; $i++ ) {
         $day_name = date('D',mktime(0,0,0,date('m',$date),$i,date('Y',$date)));
@@ -56,6 +75,8 @@ function getCalender($date,$headline = array('Mo','Di','Mi','Do','Fr','Sa','So')
         }
     }
 }
+
+$tpl->assign('date',$date);
 
 
 ?>

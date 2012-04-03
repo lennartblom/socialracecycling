@@ -6,6 +6,10 @@
     </title>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 	
+    {if $title eq 'Kalender'}
+    	{include file="01_tpl/internal/calendar-style.tpl"}
+    {/if}
+    
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 {if $online eq false}    
