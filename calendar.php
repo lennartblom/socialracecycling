@@ -17,7 +17,9 @@
 		
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
-		
+		ob_start();
+		include('show_calendar.php');
+		$tpl->assign("calendarsource", ob_get_clean());
         
 		$tpl->display('01_tpl/internal/calendar.tpl');
                    
