@@ -1,5 +1,5 @@
 {include file="01_tpl/header.tpl"}
-					    <h3>Rennradtour hinzufügen</h3>
+					    <h3>Aktivität hinzufügen</h3>
                         
                         {if count($errors)}
                         <img style="float:right;margin-right:100px;" src="images/fehler.jpg" alt="Fehler Benachrichtigung" width="200" height="200">	
@@ -13,11 +13,11 @@
 
 						{/if}
 					    <form method="post" action="add-tour.php">    
-					        <table id="inputarea">
+					        <table style="margin:auto;" id="inputarea">
 					            <tr>
 					                <td class="label-input-addtrack"><label>Datum:</label></td>
 					                <td>                          
-					                    <select style="width:90px;" name="Date_Day">
+					                    <select style="width:90px;background-color:#f8fcff;" name="Date_Day">
                                         	
                                             {if isset($tag) AND $tag != ''} 
                                                 <option value="{$tag}" selected>{$tag}</option>
@@ -25,10 +25,10 @@
                                                 		<option value="" selected>Tag</option>
                                             {/if}
                                             {section name=i loop=31}
-                                                <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
+                                                <option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
                                             {/section}						                    
 										</select>
-					                   	<select style="width:90px;" name="Date_Month">
+					                   	<select style="width:90px;background-color:#f8fcff;" name="Date_Month">
                                         	{if isset($monat) AND $monat != ''} 
                                                     	<option value="{$monat}" selected>{$monat}</option>
                                             {else}
@@ -47,7 +47,7 @@
 					                        <option value="11">November</option>
 					                        <option value="12" >Dezember</option>
 					                    </select>
-					                    <select style="width:90px;" name="Date_Year">
+					                    <select style="width:90px;background-color:#f8fcff;" name="Date_Year">
                                         	
                                             {if isset($jahr) AND $jahr != ''} 
                                                     	<option value="{$jahr}" selected>{$jahr}</option>
@@ -63,7 +63,7 @@
 					            <tr>
 					                <td class="label-input-addtrack"><label >Zeit:</label></td>
 					                <td>
-					                	<select style="width:90px;" class="addtour-timeinput-hours" name="Time_Hours">
+					                	<select style="width:90px;background-color:#f8fcff;" class="addtour-timeinput-hours" name="Time_Hours">
                                     			
                                                 
                                                 {if isset($stunden) AND $stunden != ''} 
@@ -75,7 +75,7 @@
                                                      <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
                                                 {/section}		
                                         </select>     
-                                        <select style="width:90px;" class="addtour-timeinput-minutes" name="Time_Minutes"> 
+                                        <select style="width:90px;background-color:#f8fcff;" class="addtour-timeinput-minutes" name="Time_Minutes"> 
                                         		
                                                 
                                             	{if isset($minuten) AND $minuten != ''} 
@@ -83,11 +83,11 @@
                                             	{else}
                                                 		<option value="" selected>Minuten</option>
                                                 {/if}	
-                                                {section name=i loop=61}{
+                                                {section name=i loop=60}{
                                                      <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
                                                 {/section}	
                                         </select> 
-                                         <select style="width:90px;" class="addtour-timeinput-minutes" name="Time_Seconds"> 
+                                         <select style="width:90px;background-color:#f8fcff;" class="addtour-timeinput-minutes" name="Time_Seconds"> 
                                          	
                                             
                                             	{if isset($sekunden) AND $sekunden != ''} 
@@ -95,7 +95,7 @@
                                             	{else}
                                                 		<option value="" selected>Sekunden</option>
                                                 {/if}	
-                                                {section name=i loop=61}{
+                                                {section name=i loop=60}{
                                                      <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
                                                 {/section}	
                                         </select>     
@@ -104,23 +104,37 @@
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><label>gesamt Distanz:</label></td>
-					                <td><input style="width:270px;" value="{$distanz}" name="distance" class="addtour-normalinput" /></td> 
+					                <td><input class="tour-edit-input" value="{$distanz}" name="distance" class="addtour-normalinput" /></td> 
 					                <td class="additional-information">Kilometer</td>
 					            </tr>
 					            <tr>
 					                <td valign="top" class="label-input-addtrack"><label>Weitere Angaben:</label></td>
-					                <td colspan="4"><textarea name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
+					                <td colspan="4"><textarea class="tour-edit-input" style="height:100px;" name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
+					            </tr>
+                                <tr>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
+					                <td><input class="tour-edit-input" name="herzfrequenz" value="{$herzfrequenz}" class="addtour-normalinput" /></td>
+					                <td class="additional-information">U/min</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
-					                <td><input style="width:270px;" name="cadence" value="{$kadenz}" class="addtour-normalinput" /></td>
+					                <td><input class="tour-edit-input" name="cadence" value="{$kadenz}" class="addtour-normalinput" /></td>
 					                <td class="additional-information">U/min</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="hoehenmeter"><option>Höhenmeter</option></select></td>
-					                <td><input style="width:270px;" name="heights" value="{$hoehenmeter}" class="addtour-normalinput" /></td>
+					                <td><input class="tour-edit-input" name="heights" value="{$hoehenmeter}" class="addtour-normalinput" /></td>
 					                <td class="additional-information">Meter</td>
 					            </tr>
+                                <tr>
+                                	<td class="label-input-addtrack">Aktivitätstyp:</td>
+                                    <td>
+                                     	<select style="width:280px;height:40px;background-color:#f8fcff;" name="activity_type">
+                                        	<option style="padding:11px 33px;background-image:images/icon-radfahren.png;" value="radfahren">Radfahren</option>
+                                            <option style="padding:11px 33px;background-image:images/icon-laufen.png;" value="laufen">Laufen</option>
+                                        </select>
+                                    </td>
+                               </tr>
 					        </table> 
 					      <p style="margin-left:250px;font-weight:bold;color:#F00;font-family:arial;font-size:12px;">Einheiten bitte weglassen!<br />Diese werden automatisch von dem System eingestellt...</p>
 					      <p style="margin-left:350px;"><input name="abschicken" type="submit" value="Tourdaten abschicken" /></p>         

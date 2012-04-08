@@ -5,7 +5,7 @@
 <div style="margin-left:110px;margin-bottom:50px;" id="errorbox-green">
 <p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Deine Tour wurde erfolgreich bearbeitet</p>
 </div>
-<a href="tour-menu.php" style="margin-left:50px;">Zurück zu Tourübersicht</a>
+<a href="tours.php" style="margin-left:50px;">Zurück zu Tourübersicht</a>
 
 
 

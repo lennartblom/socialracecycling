@@ -6,12 +6,14 @@ if(isset($_POST['tour-choice'])){
 		
 		$sql = "SELECT
 						DATE_FORMAT(date, '%d.%m.%y') AS datum,
+						typ,
 						distance,
 						duration,
 						`average-speed`,
 						`average-cadence`,
 						`elevator-difference`,
-						`other-information`
+						`other-information`,
+						herzfrequenz
 				FROM
 						touren
 				WHERE
@@ -24,15 +26,14 @@ if(isset($_POST['tour-choice'])){
 
 		$num = mysql_affected_rows();
 		
-		if ($row["average-cadence"]=='0'){
+		if ($row["average-cadence"]=='0')
 			$row["average-cadence"]="---";
-		}
 		
 		if (!isset($row["elevator-difference"])){
 			$row["elevator-difference"]="---";
 		}
 		
-		if($row['average-cadence']=='-0' OR $row['average-cadence']=='' OR $row['average-cadence']=='0' ){
+		if($row['average-cadence']=='-0' OR $row['average-cadence']=='' OR $row['average-cadence']==0 ){
 			$row['average-cadence']="---";
 		}	
 		
@@ -44,15 +45,26 @@ if(isset($_POST['tour-choice'])){
 			$row['other-information']="leider keine Angaben angegeben";
 		}
 		
-		$time=date("H:i:s",mktime(0,60*$row['duration'],0,0,0,0));
+		$time=date("H:i:s",$row['duration']);
 		
-		$tpl->assign('datum', $row['datum']);
-		$tpl->assign('distanz', $row['distance']);
-		$tpl->assign('dauer', $time);
-		$tpl->assign('trittfrequenz', $row['average-cadence']);
-		$tpl->assign('durchschnitt', $row['average-speed']);
-		$tpl->assign('hoehenmeter', $row['elevator-difference']);
-		$tpl->assign('info', $row['other-information']);							
+		if($row['typ']=='laufen')
+			$row['typ']="Laufen";
+			
+		if($row['typ']=='radfahren')
+			$row['typ']="Radfahren";
+			
+		if(!isset($row['herzfrequenz']) OR $row['herzfrequenz']=='0' )
+			$row['herzfrequenz']="---";
+		
+		$tpl->assign('datum', 				$row['datum']				);
+		$tpl->assign('distanz', 			$row['distance']			);
+		$tpl->assign('dauer', 				$time						);
+		$tpl->assign('trittfrequenz', 		$row['average-cadence']		);
+		$tpl->assign('durchschnitt', 		$row['average-speed']		);
+		$tpl->assign('hoehenmeter', 		$row['elevator-difference']	);
+		$tpl->assign('info', 				$row['other-information']	);							
+		$tpl->assign('typ',					$row['typ']					);
+		$tpl->assign('herzfrequenz',		$row['herzfrequenz']		);
 
 } 
 if(!isset($_POST['tour-choice'])){

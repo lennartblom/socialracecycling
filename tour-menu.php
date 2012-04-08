@@ -22,7 +22,7 @@
                    
 	}
 	else{
-		$tpl->assign('online','false');
+		$tpl->assign('online',false);
 		$tpl->assign('title','Nicht eingeloggt');
 		$tpl->display('01_tpl/frontpage/attempt.tpl');
 	}

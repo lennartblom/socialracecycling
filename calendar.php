@@ -14,6 +14,7 @@
 		$tpl->assign('online',true);
 		
 		require_once('ink/footer_data.ink.php');
+		require_once('ink/calendar.ink.php');
 		
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
@@ -21,11 +22,13 @@
 		include('show_calendar.php');
 		$tpl->assign("calendarsource", ob_get_clean());
         
-		$tpl->display('01_tpl/internal/calendar.tpl');
+		$tpl->display('01_tpl/header.tpl');
+		
+		$tpl->display('01_tpl/footer.tpl');
                    
 	}
 	else{
-		$tpl->assign('online','false');
+		$tpl->assign('online',false);
 		$tpl->assign('title','Nicht eingeloggt');
 		$tpl->display('01_tpl/frontpage/attempt.tpl');
 	}
