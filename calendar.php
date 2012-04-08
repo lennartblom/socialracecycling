@@ -22,10 +22,7 @@
 		include('show_calendar.php');
 		$tpl->assign("calendarsource", ob_get_clean());
         
-		$tpl->display('01_tpl/header.tpl');
-		
-		$tpl->display('01_tpl/footer.tpl');
-                   
+		$tpl->display('01_tpl/internal/calendar.tpl');                   
 	}
 	else{
 		$tpl->assign('online',false);
