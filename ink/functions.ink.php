@@ -77,11 +77,19 @@ function doLogin($ID, $Autologin=false)
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		
 		$row = mysql_fetch_assoc($result);
+
 		
 		$_SESSION['UserID'] = $ID;
 		$_SESSION['Vorname'] = $row['Name'];
 		$_SESSION['Nachname'] = $row['Lastname'];
 		
+		if(($_SESSION['UserID'] <> 22) AND ($_SESSION['UserID'] <> 25)AND ($_SESSION['UserID'] <> 70)){
+		$mail 	    = 'admin@lennart-blom.de';
+	    $prefix 	= 'Login auf Social Race Cycling';
+	    $text		= "Hi Lennart, auf deiner Seite \"Social Race Cycling\" hat sich nun ".$_SESSION['Vorname']." ".$_SESSION['Nachname']." eingelogt!";
+		
+	    $result = mail($mail, $prefix, $text, 'From: ' . $mail);
+		}
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------//	

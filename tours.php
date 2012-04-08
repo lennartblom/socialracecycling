@@ -10,6 +10,20 @@
 	$tpl->assign('usercp', false);
 	
 	if(isset($_SESSION['UserID'])){
+		if(isset($_GET['tourID'])){
+				$tpl->assign('online',true);
+		
+				require_once('ink/footer_data.ink.php');
+				require_once('ink/tour-table.ink.php');
+				
+				$tpl->assign('name',$_SESSION['Vorname']);
+				$tpl->assign('lastname',$_SESSION['Nachname']);
+				
+				require_once('ink/tour-show.ink.php');
+				$tpl->assign('title', 'Tour anzeigen');
+				$tpl->display('01_tpl/internal/tour-show.tpl');	
+		}
+		
 		if (isset($_POST['submit'])) { 	
 		    switch ($_POST['submit']) {
 				
@@ -71,6 +85,8 @@
 					$tpl->display('01_tpl/internal/tours-overview.tpl');
 			
 		} 
+		
+		
 		
 
 				

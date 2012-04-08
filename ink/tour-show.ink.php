@@ -1,4 +1,10 @@
 <?php
+if(isset($_GET['tourID'])){
+	$_POST['tour-choice']=$_GET['tourID'];
+	$calendar=true;
+	$tpl->assign('calendar',$calendar);
+}
+
 if(isset($_POST['tour-choice'])){
 		$sql = "SET lc_time_names = 'de_DE'";
 										
