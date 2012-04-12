@@ -5,6 +5,7 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 	$tpl->assign('sekunden','none');
 	$tpl->assign('minuten','none');
 	
+	
 	if(!isset($_POST['Date_Day'],
 			  $_POST['Date_Month'],
 			  $_POST['Date_Year'],
@@ -135,3 +136,11 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 	}
 							
 }
+
+$cur_day   = date("d");
+$cur_month = date("m");
+$cur_year  = date("Y");
+
+$tpl->assign('heute_tag',   $cur_day);
+$tpl->assign('heute_monat', $cur_month);
+$tpl->assign('heute_jahr', 	$cur_year);

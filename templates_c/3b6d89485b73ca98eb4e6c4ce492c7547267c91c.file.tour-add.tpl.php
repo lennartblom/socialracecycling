@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 13:28:14
+<?php /* Smarty version Smarty-3.1.8, created on 2012-04-12 11:14:56
          compiled from "01_tpl/internal/tour-add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:347392594f81926e534f22-61879260%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3b6d89485b73ca98eb4e6c4ce492c7547267c91c' => 
     array (
       0 => '01_tpl/internal/tour-add.tpl',
-      1 => 1333450371,
+      1 => 1334229295,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f81926e7305d3_54260898',
   'variables' => 
   array (
     'errors' => 0,
     'error' => 0,
     'tag' => 0,
+    'heute_tag' => 0,
     'monat' => 0,
+    'heute_monat' => 0,
     'jahr' => 0,
+    'heute_jahr' => 0,
     'stunden' => 0,
     'minuten' => 0,
     'sekunden' => 0,
@@ -32,8 +37,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'hoehenmeter' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f81926e7305d3_54260898',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f81926e7305d3_54260898')) {function content_4f81926e7305d3_54260898($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -67,7 +70,9 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 " selected><?php echo $_smarty_tpl->tpl_vars['tag']->value;?>
 </option>
                                             <?php }else{ ?>
-                                                		<option value="" selected>Tag</option>
+                                                		<option value="<?php echo $_smarty_tpl->tpl_vars['heute_tag']->value;?>
+" selected><?php echo $_smarty_tpl->tpl_vars['heute_tag']->value;?>
+ (heute)</option>
                                             <?php }?>
                                             <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
@@ -104,7 +109,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 " selected><?php echo $_smarty_tpl->tpl_vars['monat']->value;?>
 </option>
                                             <?php }else{ ?>
-                                                		<option value="" selected>Monat</option>
+                                                		<option value="<?php echo $_smarty_tpl->tpl_vars['heute_monat']->value;?>
+" selected><?php echo $_smarty_tpl->tpl_vars['heute_monat']->value;?>
+ (heute)</option>
                                             <?php }?>
 					                        <option value="01">Januar</option>
 					                        <option value="02">Februar</option>
@@ -126,7 +133,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 " selected><?php echo $_smarty_tpl->tpl_vars['jahr']->value;?>
 </option>
                                             <?php }else{ ?>
-                                                		<option value="" selected>Jahr</option>
+                                                		<option value="<?php echo $_smarty_tpl->tpl_vars['heute_jahr']->value;?>
+" selected><?php echo $_smarty_tpl->tpl_vars['heute_jahr']->value;?>
+ (heute)</option>
                                             <?php }?>	
 					                      	<option value="2012">2012</option>
 					                      	<option value="2011">2011</option>
@@ -272,13 +281,13 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="herzfrequenz" value="<?php echo $_smarty_tpl->tpl_vars['herzfrequenz']->value;?>
 " class="addtour-normalinput" /></td>
-					                <td class="additional-information">U/min</td>
+					                <td class="additional-information">bpm</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="cadence" value="<?php echo $_smarty_tpl->tpl_vars['kadenz']->value;?>
 " class="addtour-normalinput" /></td>
-					                <td class="additional-information">U/min</td>
+					                <td class="additional-information">rpm</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="hoehenmeter"><option>Höhenmeter</option></select></td>
