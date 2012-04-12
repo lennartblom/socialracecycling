@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 14:46:40
+<?php /* Smarty version Smarty-3.1.8, created on 2012-04-12 12:33:32
          compiled from "01_tpl/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11035082704f8186b4a37c91-23099780%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8824737072be950e282dc42f505aa12ec4250e55' => 
     array (
       0 => '01_tpl/footer.tpl',
-      1 => 1333896396,
+      1 => 1334233962,
       2 => 'file',
     ),
   ),
@@ -134,6 +134,7 @@ km</p>
                     <input maxlength="32" name="log_password" type="password" value="password" class="login-input" onFocus="if(this.value=='password') this.value=''"    />
                     <input id="login-button" name="log_submit" value="Login" type="submit"  /><br />
                     <a href="forgot-password.php" style="font-size:12px;margin-top:0px;margin-left:8px;">Passwort vergessen?</a>
+                    <a href="images/testaccount.jpg" title="Testaccount für Social Race Cycling" rel="lightbox" style="font-size:12px;margin-top:0px;margin-left:8px;">Testaccount benötigt?</a>
                     <br />
                  
                   <?php }?>

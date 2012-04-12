@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 12:38:12
+<?php /* Smarty version Smarty-3.1.8, created on 2012-04-12 12:24:44
          compiled from "01_tpl/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3289826974f8186b48f4bd8-74494191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c12a49841c809fb1b1f476a138dd4ab83133e4f8' => 
     array (
       0 => '01_tpl/header.tpl',
-      1 => 1333445857,
+      1 => 1334233480,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f8186b4a0ec29_42723008',
   'variables' => 
   array (
     'title' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'online' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f8186b4a0ec29_42723008',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f8186b4a0ec29_42723008')) {function content_4f8186b4a0ec29_42723008($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -42,10 +42,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 <?php if ($_smarty_tpl->tpl_vars['online']->value==false){?>    
-    <?php if ($_smarty_tpl->tpl_vars['title']->value=='Startseite'){?>
+    
         <?php echo $_smarty_tpl->getSubTemplate ("01_tpl/frontpage/lightbox.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-    <?php }?>
+    
     
     </head>
     <body>

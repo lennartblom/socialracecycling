@@ -20,21 +20,25 @@
                         <tr>
                             <td>
 							
-							<h2>Mein Profil</h2>
-							<table>
-								<tr>
-									<td class="profil-column">eMail:</td>
-									<td><input name="profile_email" class="profile-normalinput" value="{$email}" /></td>
-								</tr>
-								<tr>
-									<td class="profil-column">Passwort ändern:</td>
-									<td><input type="password" name="profile_password"  class="profile-normalinput"  /></td>
-								</tr>
-								<tr>
-									<td class="profil-column">Passwort wiederholen:</td>
-									<td><input type="password" name="profile_password_confirm"  class="profile-normalinput"  /></td>
-								</tr>
-							</table>
+							
+                            {if $id != 29}
+                            
+                            <h2>Mein Profil</h2>
+                                <table>
+                                    <tr>
+                                        <td class="profil-column">eMail:</td>
+                                        <td><input name="profile_email" class="profile-normalinput" value="{$email}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="profil-column">Passwort ändern:</td>
+                                        <td><input type="password" name="profile_password"  class="profile-normalinput"  /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="profil-column">Passwort wiederholen:</td>
+                                        <td><input type="password" name="profile_password_confirm"  class="profile-normalinput"  /></td>
+                                    </tr>
+                                </table>
+                            {/if}
 							
 							
 									</td>
