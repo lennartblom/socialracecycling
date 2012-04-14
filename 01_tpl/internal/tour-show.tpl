@@ -9,7 +9,7 @@
                                             <p style="font-family:arial;font-size:14px;color:red;font-weight:bold;"><a href="tours.php">Hier</a> geht es wieder zurück zur der Tourenübersicht.</p>
 									</div>
                                     {else}
-                                    <h3>Aktivität von Lennart Blom am {$datum}</h3>
+                                    <h3>Aktivität von {$name} {$lastname} am {$datum}</h3>
                                             
                                             
                                     <table style="margin:auto;width:870px;min-height:500px;background-position:center center;background-image:url(images/activity-{$typ}-bg.png);background-repeat:no-repeat;">
