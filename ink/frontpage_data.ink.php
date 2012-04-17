@@ -16,6 +16,49 @@ if(!isset($_SESSION['year_change'])){
 }
 
 
+
+//------------------------------------------------------------------------------------------------------------------------------//
+//-------------------------------------{ ≈≈≈≈≈≈ Programm für die Anderungsvariablen ≈≈≈≈≈≈ }----------------------------------//
+//-----------------------------------------------------------------------------------------------------------------------------//	
+
+if(isset($_POST['plot_change'])){
+	if($_POST['plot_change']=='Woche vor →'){
+		$_SESSION['week_change']=$_POST['week_change']+1;
+	}
+	if($_POST['plot_change']=='aktuelle Woche ↓'){
+		$_SESSION['week_change']=0;
+	}
+	if($_POST['plot_change']=='← Woche zurück'){
+		$_SESSION['week_change']=$_POST['week_change']-1;
+	}
+	
+	
+	if($_POST['plot_change']=='Monat vor →'){
+		$_SESSION['month_change']=$_POST['month_change']+1;
+	}
+	if($_POST['plot_change']=='aktueller Monat ↓'){
+		$_SESSION['month_change']=0;
+	}
+	if($_POST['plot_change']=='← Monat zurück'){
+		$_SESSION['month_change']=$_POST['month_change']-1;
+	}
+	
+	
+	if($_POST['plot_change']=='Jahr vor →'){
+		$_SESSION['year_change']=$_POST['year_change']+1;
+	}
+	if($_POST['plot_change']=='aktuelles Jahr ↓'){
+		$_SESSION['year_change']=0;
+	}
+	if($_POST['plot_change']=='← Jahr zurück'){
+		$_SESSION['year_change']=$_POST['year_change']-1;
+	}
+}	 
+
+$tpl->assign('week_change', $_SESSION['week_change']); 
+$tpl->assign('month_change', $_SESSION['month_change']); 
+$tpl->assign('year_change', $_SESSION['year_change']); 
+
 //------------------------------------------------------------------------------------------------------------------------------//
 //------------------------------{ ≈≈≈≈≈≈ Übergabe der Wochenkilometer des Diagramms ≈≈≈≈≈≈ }----------------------------------//
 //-----------------------------------------------------------------------------------------------------------------------------//	
@@ -72,48 +115,6 @@ $row = mysql_fetch_assoc($result);
 $tpl->assign('charts_yearkilometer', round($row['charts_distance_year'],2));
 
 
-
-//------------------------------------------------------------------------------------------------------------------------------//
-//-------------------------------------{ ≈≈≈≈≈≈ Programm für die Anderungsvariablen ≈≈≈≈≈≈ }----------------------------------//
-//-----------------------------------------------------------------------------------------------------------------------------//	
-
-if(isset($_POST['plot_change'])){
-	if($_POST['plot_change']=='Woche vor →'){
-		$_SESSION['week_change']=$_POST['week_change']+1;
-	}
-	if($_POST['plot_change']=='aktuelle Woche ↓'){
-		$_SESSION['week_change']=0;
-	}
-	if($_POST['plot_change']=='← Woche zurück'){
-		$_SESSION['week_change']=$_POST['week_change']-1;
-	}
-	
-	
-	if($_POST['plot_change']=='Monat vor →'){
-		$_SESSION['month_change']=$_POST['month_change']+1;
-	}
-	if($_POST['plot_change']=='aktueller Monat ↓'){
-		$_SESSION['month_change']=0;
-	}
-	if($_POST['plot_change']=='← Monat zurück'){
-		$_SESSION['month_change']=$_POST['month_change']-1;
-	}
-	
-	
-	if($_POST['plot_change']=='Jahr vor →'){
-		$_SESSION['year_change']=$_POST['year_change']+1;
-	}
-	if($_POST['plot_change']=='aktuelles Jahr ↓'){
-		$_SESSION['year_change']=0;
-	}
-	if($_POST['plot_change']=='← Jahr zurück'){
-		$_SESSION['year_change']=$_POST['year_change']-1;
-	}
-}	 
-
-$tpl->assign('week_change', $_SESSION['week_change']); 
-$tpl->assign('month_change', $_SESSION['month_change']); 
-$tpl->assign('year_change', $_SESSION['year_change']); 
 
 
 //------------------------------------------------------------------------------------------------------------------------------//

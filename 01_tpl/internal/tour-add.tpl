@@ -22,7 +22,7 @@
                                             {if isset($tag) AND $tag != ''} 
                                                 <option value="{$tag}" selected>{$tag}</option>
                                             {else}
-                                                		<option value="" selected>Tag</option>
+                                                		<option value="{$heute_tag}" selected>{$heute_tag} (heute)</option>
                                             {/if}
                                             {section name=i loop=31}
                                                 <option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
@@ -32,7 +32,7 @@
                                         	{if isset($monat) AND $monat != ''} 
                                                     	<option value="{$monat}" selected>{$monat}</option>
                                             {else}
-                                                		<option value="" selected>Monat</option>
+                                                		<option value="{$heute_monat}" selected>{$heute_monat} (heute)</option>
                                             {/if}
 					                        <option value="01">Januar</option>
 					                        <option value="02">Februar</option>
@@ -52,7 +52,7 @@
                                             {if isset($jahr) AND $jahr != ''} 
                                                     	<option value="{$jahr}" selected>{$jahr}</option>
                                             {else}
-                                                		<option value="" selected>Jahr</option>
+                                                		<option value="{$heute_jahr}" selected>{$heute_jahr} (heute)</option>
                                             {/if}	
 					                      	<option value="2012">2012</option>
 					                      	<option value="2011">2011</option>
@@ -114,12 +114,12 @@
                                 <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="herzfrequenz" value="{$herzfrequenz}" class="addtour-normalinput" /></td>
-					                <td class="additional-information">U/min</td>
+					                <td class="additional-information">bpm</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="cadence" value="{$kadenz}" class="addtour-normalinput" /></td>
-					                <td class="additional-information">U/min</td>
+					                <td class="additional-information">rpm</td>
 					            </tr>
 					            <tr>
 					                <td class="label-input-addtrack"><select name="hoehenmeter"><option>Höhenmeter</option></select></td>

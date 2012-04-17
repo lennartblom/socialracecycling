@@ -5,4 +5,4 @@
 	<p style="color:#00690e;font-weight:bold;">Zurück zur <a href="index.php">Startseite</a></p>
 </div> 
 
-{include file="01_tpl/header.tpl"}
+{include file="01_tpl/footer.tpl"}

@@ -1,14 +1,6 @@
 <?php
 	require_once('ink/calendar.ink.php');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>PHP-Kalendar</title>
-</head>
-<body>
 <div class="calender">
 <?php
 if(isset($_REQUEST['timestamp'])) $date = $_REQUEST['timestamp'];
@@ -31,9 +23,13 @@ $arrMonth = array (
 
 $headline = array('Mo','Di','Mi','Do','Fr','Sa','So');
 ?>
+<div class="pagination">
+        <a class="calendar" href="?timestamp=<?php echo yearBack($date); ?>" class="last">|&laquo;</a> 
+        <a class="calendar" href="?timestamp=<?php echo monthBack($date); ?>" class="last">&laquo;</a> 
+        <span><?php echo $arrMonth[date('F',$date)];?> <?php echo date('Y',$date); ?></span>
+        <a class="calendar" href="?timestamp=<?php echo monthForward($date); ?>" class="next">&raquo;</a>
+        <a class="calendar" href="?timestamp=<?php echo yearForward($date); ?>" class="next">&raquo;|</a>  
+    </div>
     <?php getCalender($date,$headline); ?>
     <div class="clear"></div>
 </div>
-
-</body>
-</html>

@@ -24,7 +24,8 @@
 	$tpl->assign('reg_password', 		$_POST['reg_password']);
 
 	error_reporting(E_ALL & ~E_DEPRECATED);
-
+	
+	$success	=	false;	
 	
 	if(isset($_POST['reg_submit']) && $_POST['reg_submit']== 'Registrierung abschicken') {
 			// Fehlerarray anlegen
@@ -83,7 +84,7 @@
 						
 					$tpl->assign('errors',$errors);
 					
-					
+				
 					
 			}
 			
@@ -118,7 +119,7 @@
 					$prefix 	= 'Neuer Benutzer bei Social Race Cycling';
 					$text		= "Hi Lennart, auf deiner Seite \"Social Race Cycling\" hat sich nun ".$_POST['reg_name']." ".$_POST['reg_lastname']." registriert!";
 					
-					$tpl->display('01_tpl/frontpage/successreg.tpl');	
+					$success	=	true;	
 						
 					$result = mail($mail, $prefix, $text, 'From: ' . $mail);
 							
@@ -126,7 +127,11 @@
 								
 			}
 			
-		$tpl->display('01_tpl/frontpage/registration-script.tpl');
+		if($success == true){
+			$tpl->display('01_tpl/frontpage/successreg.tpl');
+		} else { 
+			$tpl->display('01_tpl/frontpage/registration-script.tpl');
+		}
 	}
 	
 	

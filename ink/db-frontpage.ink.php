@@ -8,5 +8,7 @@
 	
 	mysql_select_db($MYSQL_DATA) OR die ("Error: ".mysql_error());
 	
+	mysql_query("SET NAMES `utf8`") OR die("Error: ".mysql_error());
+	
 	
 ?>

@@ -13,9 +13,9 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 {if $online eq false}    
-    {if $title == Startseite}
+    
         {include file="01_tpl/frontpage/lightbox.tpl"}
-    {/if}
+    
     
     </head>
     <body>
