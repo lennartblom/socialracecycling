@@ -37,16 +37,32 @@ abstract class BaseModel extends BaseDatabase {
 	const FETCH_ONDEMAND = 2;
 
 	private static $_cache = array();
-
-
+	/**
+	 * @return Database name
+	 */
 	abstract static protected function _getStoreName();
+	/**
+	 * @return list of alll fields
+	 */
 	abstract static protected function _getFields();
+	/**
+	 * Name of the unique col
+	 */
 	abstract static protected function _getUniqueKey();
+	/**
+	 * All indices
+	 */
 	abstract static protected function _getSearchableKeys();
+	/**
+	 * see const FETCH_*
+	 */
 	abstract static protected function _getPrefferedFetchStyle();
-	abstract static protected function _getClassName();
 
-
+	/**
+	 * New Model
+	 * @param mixed $ID
+	 * @throws BadFunctionCallException
+	 */
 	private function __construct($ID){
 		parent::__construct();
 		$this->_prefferedFetchStyle = $this->_getPrefferedFetchStyle();
@@ -58,6 +74,11 @@ abstract class BaseModel extends BaseDatabase {
 		$this->_fetchData(self::_getUniqueKey());
 	}
 
+	/**
+	 * Fetch one column (might load further data if set to)
+	 * @param String $key
+	 * @throws Exception
+	 */
 	private function _fetchData($key){
 		if(!in_array($key, $this->_fields))
 			throw new Exception($key . " is not within the field list for this model");
@@ -93,10 +114,16 @@ abstract class BaseModel extends BaseDatabase {
 		}
 	}
 
+	/**
+	 * Write data before construction
+	 */
 	public function __destruct(){
 		$this->commit();
 	}
 
+	/**
+	 * Write data
+	 */
 	public function commit(){
 		if($this->_changed == false)
 			return true;
@@ -124,6 +151,14 @@ abstract class BaseModel extends BaseDatabase {
 		return new $class($item[0]);
 	}
 
+	/**
+	 * Fetches n objects from database
+	 * @param String $key search for this key
+	 * @param mixed $value search for this value
+	 * @param int $start pagination
+	 * @param int $n limit to load
+	 * @throws Exception
+	 */
 	public static function getObjects($key, $value, $start = 0, $n = 0){
 		$db = $this->getDB();
 		$statement = "SELECT `ID` FROM `".$this->_getStoreName()."` WHERE `".$key."` = ?";
@@ -150,10 +185,21 @@ abstract class BaseModel extends BaseDatabase {
 		return $return;
 	}
 
+	/**
+	 * Returns data from model
+	 * @param String $key
+	 * @return mixed
+	 */
 	public final function __get($key){
 		return $this->_fetchData($key);
 	}
 
+	/**
+	 * Stores data to model and checks if in value range
+	 * @param String $key
+	 * @param mixed $value
+	 * @throws Exception
+	 */
 	public final function __set($key, $value){
 		if(!in_array($key, $this->_fields))
 			throw new Exception($key . " is not within the field list for this model");
