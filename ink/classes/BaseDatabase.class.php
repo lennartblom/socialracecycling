@@ -1,8 +1,10 @@
 <?php
+require_once('Base.class.php');
+require_once('../const.ink.php');
 abstract class BaseDatabase extends Base{
 	private static $_db = null;
 	
-	public function __construct(){
+	protected function __construct(){
 		$this->_db = $this->getDB();
 	}
 

@@ -1,7 +1,7 @@
 <?php
 define('MYSQL_HOST', 'localhost');
-define('MYSQL_USER', 'root');
+define('MYSQL_USER', 'socialracecyclin');
 define('MYSQL_PASS', '');
-define('MYSQL_DATA', 'racecycling');
+define('MYSQL_DATA', 'socialracecycling');
 
 define('SRC_ROOT', dirname(dirname(__FILE__)));

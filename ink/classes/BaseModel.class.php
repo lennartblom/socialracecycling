@@ -1,5 +1,7 @@
 <?php
+require_once('BaseDatabase.class.php');
 abstract class BaseModel extends BaseDatabase {
+	protected static $_allowedVars = array('_db');
 	/**
 	 * Has any value changed?
 	 * @var bool
@@ -58,12 +60,13 @@ abstract class BaseModel extends BaseDatabase {
 	 */
 	abstract static protected function _getPrefferedFetchStyle();
 
+	abstract static protected function _getClass();
 	/**
 	 * New Model
 	 * @param mixed $ID
 	 * @throws BadFunctionCallException
 	 */
-	private function __construct($ID){
+	protected function __construct($ID){
 		parent::__construct();
 		$this->_prefferedFetchStyle = $this->_getPrefferedFetchStyle();
 		$this->_fields = $this->_getFields();
@@ -71,7 +74,7 @@ abstract class BaseModel extends BaseDatabase {
 			throw new BadFunctionCallException("ID must have an integer value");
 
 		$this->_ID = $ID;
-		$this->_fetchData(self::_getUniqueKey());
+		$this->_fetchData(static::_getUniqueKey());
 	}
 
 	/**
@@ -89,7 +92,7 @@ abstract class BaseModel extends BaseDatabase {
 		$statement = null;
 		switch ($this->_prefferedFetchStyle){
 			case self::FETCH_CACHED:
-				$statement = $db->prepare("SELECT * FROM `" . $this->_getStoreName() . "` WHERE `".self::_getUniqueKey()."` = ?");
+				$statement = $db->prepare("SELECT * FROM `" . $this->_getStoreName() . "` WHERE `".static::_getUniqueKey()."` = ?");
 				break;
 			case self::FETCH_ONDEMAND:
 				$statement = $db->prepare("SELECT `".$key."` FROM `" . $this->_getStoreName() . "` WHERE `ID` = ?");
@@ -137,17 +140,17 @@ abstract class BaseModel extends BaseDatabase {
 	 * @param String $value Value (will be escaped)
 	 */
 	public static function getObject($key, $value){
-		$db = $this->getDB();
-		$data = $db->prepare("SELECT `ID` FROM `".$this->_getStoreName()."` WHERE `$key` = ? LIMIT 1");
+		$db = self::getDB();
+		$data = $db->prepare("SELECT `ID` FROM `".static::_getStoreName()."` WHERE `$key` = ? LIMIT 1");
 		$result = $data->execute(array($value));
 		if(!$result){
 			$error = $data->errorInfo();
 			throw new Exception("Error in fetch action: " .$error[2]);
 		}
-		$class = self::_getClassName();
+		$class = static::_getClass();
 		$item = $data->fetch();
-		if(isset(self::$_cache[$item[0]]))
-			return self::$_cache[$item[0]];
+		if(isset(static::$_cache[$item[0]]))
+			return static::$_cache[$item[0]];
 		return new $class($item[0]);
 	}
 
@@ -174,7 +177,7 @@ abstract class BaseModel extends BaseDatabase {
 			$error = $data->errorInfo();
 			throw new Exception("Error in fetch action: " .$error[2]);
 		}
-		$class = self::_getClassName();
+		$class = get_class($this);
 		$return = array();
 		foreach($data as $item){
 			if(isset(self::$_cache[$item[0]]))
@@ -191,6 +194,9 @@ abstract class BaseModel extends BaseDatabase {
 	 * @return mixed
 	 */
 	public final function __get($key){
+		if(in_array($key, self::$_allowedVars)){
+			return $this->$key;
+		}
 		return $this->_fetchData($key);
 	}
 
@@ -201,13 +207,17 @@ abstract class BaseModel extends BaseDatabase {
 	 * @throws Exception
 	 */
 	public final function __set($key, $value){
+		if(in_array($key, self::$_allowedVars)){
+			$this->$key = $value;
+			return;
+		}
 		if(!in_array($key, $this->_fields))
 			throw new Exception($key . " is not within the field list for this model");
 		if($this->$key == $value)
 			return;
-		if(!method_exists($this, '__set_' . $key))
+		if(!method_exists($this, '_set_' . $key))
 			throw new Exception($key . " has no set function");
-		if(!call_user_method('__set_' . $key, $this, $value))
+		if(!call_user_method('_set_' . $key, $this, $value))
 			throw new Exception($key . ' => ' . $value . ' value range check failed');
 		$this->_data[$key] = $value;
 		$this->_changed = true;
