@@ -93,7 +93,7 @@
                                             	{if isset($sekunden) AND $sekunden != ''} 
                                                     	<option value="{$sekunden}" selected>{$sekunden}</option>
                                             	{else}
-                                                		<option value="" selected>Sekunden</option>
+                                                		<option value="0" selected>Sekunden</option>
                                                 {/if}	
                                                 {section name=i loop=60}{
                                                      <option value="{$smarty.section.i.index}">{$smarty.section.i.index}</option>
@@ -112,12 +112,12 @@
 					                <td colspan="4"><textarea class="tour-edit-input" style="height:100px;" name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
 					            </tr>
                                 <tr>
-					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>&oslash; Herzfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="herzfrequenz" value="{$herzfrequenz}" class="addtour-normalinput" /></td>
 					                <td class="additional-information">bpm</td>
 					            </tr>
 					            <tr>
-					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>&oslash; Trittfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="cadence" value="{$kadenz}" class="addtour-normalinput" /></td>
 					                <td class="additional-information">rpm</td>
 					            </tr>

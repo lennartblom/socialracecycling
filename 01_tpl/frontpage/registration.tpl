@@ -1,10 +1,10 @@
 {include file="01_tpl/header.tpl"}
  <h1>Registrierung</h1>
-                  <p>Deine Informationen vertraulich behandelt!<br />
+                  <p>Deine Informationen werden vertraulich  behandelt!<br />
                     Falls du erst einmal ausprobieren möchtest wie die Seite funktioniert, <br />
                     ohne dich zu registrieren, kannst du das gerne tuen!</p>
-                  <p>Testmail: <em>testmail@domain.de</em> Passwort: <em>test</em><br />
-                  </p>
+                  <p>Den Testaccount gibt es <a href="http://www.socialracecycling.de/images/testaccount.jpg" rel="lightbox" title="Der Testaccount für Social Race Cycling">hier</a>.<br />
+</p>
                   <form action="registration.php" name="registration" method="post" accept-charset="ISO-8859-1">					
 <table>
 					       <tr>

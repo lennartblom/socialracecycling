@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 12:51:15
+<?php /* Smarty version Smarty-3.1.8, created on 2012-04-17 11:30:33
          compiled from "01_tpl/internal/tour-show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17734786854f8188cbac17b2-40938969%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1ce383e7f33d8829505dc4a5be655a3063cd9dbc' => 
     array (
       0 => '01_tpl/internal/tour-show.tpl',
-      1 => 1333889471,
+      1 => 1334429745,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'error' => 0,
+    'name' => 0,
+    'lastname' => 0,
     'datum' => 0,
     'typ' => 0,
     'distanz' => 0,
     'dauer' => 0,
     'durchschnitt' => 0,
-    'name' => 0,
-    'lastname' => 0,
     'trittfrequenz' => 0,
     'hoehenmeter' => 0,
     'herzfrequenz' => 0,
@@ -48,7 +48,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                             <p style="font-family:arial;font-size:14px;color:red;font-weight:bold;"><a href="tours.php">Hier</a> geht es wieder zurück zur der Tourenübersicht.</p>
 									</div>
                                     <?php }else{ ?>
-                                    <h3>Aktivität von Lennart Blom am <?php echo $_smarty_tpl->tpl_vars['datum']->value;?>
+                                    <h3>Aktivität von <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['lastname']->value;?>
+ am <?php echo $_smarty_tpl->tpl_vars['datum']->value;?>
 </h3>
                                             
                                             

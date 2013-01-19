@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-12 11:14:56
+<?php /* Smarty version Smarty-3.1.8, created on 2012-11-07 12:26:01
          compiled from "01_tpl/internal/tour-add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:347392594f81926e534f22-61879260%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3b6d89485b73ca98eb4e6c4ce492c7547267c91c' => 
     array (
       0 => '01_tpl/internal/tour-add.tpl',
-      1 => 1334229295,
+      1 => 1334948279,
       2 => 'file',
     ),
   ),
@@ -232,7 +232,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 " selected><?php echo $_smarty_tpl->tpl_vars['sekunden']->value;?>
 </option>
                                             	<?php }else{ ?>
-                                                		<option value="" selected>Sekunden</option>
+                                                		<option value="0" selected>Sekunden</option>
                                                 <?php }?>	
                                                 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
@@ -278,13 +278,13 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 </textarea></td>
 					            </tr>
                                 <tr>
-					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Herzfrequenz</option></select></td>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>&oslash; Herzfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="herzfrequenz" value="<?php echo $_smarty_tpl->tpl_vars['herzfrequenz']->value;?>
 " class="addtour-normalinput" /></td>
 					                <td class="additional-information">bpm</td>
 					            </tr>
 					            <tr>
-					                <td class="label-input-addtrack"><select name="weiteres feld"><option>Trittfrequenz</option></select></td>
+					                <td class="label-input-addtrack"><select name="weiteres feld"><option>&oslash; Trittfrequenz</option></select></td>
 					                <td><input class="tour-edit-input" name="cadence" value="<?php echo $_smarty_tpl->tpl_vars['kadenz']->value;?>
 " class="addtour-normalinput" /></td>
 					                <td class="additional-information">rpm</td>
