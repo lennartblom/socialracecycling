@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-12 12:24:44
+<?php /* Smarty version Smarty-3.1.8, created on 2013-05-03 11:52:40
          compiled from "01_tpl/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3289826974f8186b48f4bd8-74494191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c12a49841c809fb1b1f476a138dd4ab83133e4f8' => 
     array (
       0 => '01_tpl/header.tpl',
-      1 => 1334233480,
+      1 => 1367581959,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'title' => 0,
     'usercp' => 0,
     'online' => 0,
+    'activities' => 0,
+    'km' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -61,6 +63,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div id="container-toppart"></div>
         <div id="container-middlepart">
         <div id="content">
+        		<div style="float:right;margin-right:40px;padding:10px;margin-top:275px;width:398px;color:#282828;font-size:12px;font-weight:bold;font-family:Arial, Helvetica, sans-serif;height:159px;background-image:url(http://www.socialracecycling.de/images/counter/counter-bg.png);" id="counter">
+                	<p style="margin:2px;">Es wurden schon insgesamt</p>
+                    <p style="margin:2px;height:50px;overflow:hidden;"><?php echo $_smarty_tpl->tpl_vars['activities']->value;?>
+<img style="margin-bottom:15px;" src="http://www.socialracecycling.de/images/counter/aktivitaeten.png" /></p>
+                    <p style="margin:0px;margin-top:-5px;">mit insgesamt</p>
+                	<p style="margin:2px;height:50px;overflow:hidden;"><?php echo $_smarty_tpl->tpl_vars['km']->value;?>
+</p>
+                    <p style="margin:2px;font-size:14px;">in die Datenbank von Social Race Cycling <img src="http://socialracecycling.de/images/favicon.jpg" height="18"style="margin-top:2px;" /> eingetragen</p>
+                </div>
             <div id="text-box">  
     <?php }?>
 

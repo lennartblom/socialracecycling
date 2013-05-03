@@ -1,5 +1,5 @@
 {include file="01_tpl/header.tpl"}
-
+			
 
                     <h1>Herzlich Willkommen!</h1>
             <img src="images/Logo.png" alt="logo" style="float:left;padding:5px;" width="139" height="59" />
@@ -29,7 +29,7 @@
           	<li class="gallery"><a href="about.php" class="homepage">mehr Informationen</a></li>
             <li class="gallery"><a href="registration-screen.php" class="homepage">zur Registrierung</a></li>
          </ul>
-         
+        
          
          
 {include file="01_tpl/footer.tpl"}

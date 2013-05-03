@@ -31,6 +31,13 @@
         <div id="container-toppart"></div>
         <div id="container-middlepart">
         <div id="content">
+        		<div style="float:right;margin-right:40px;padding:10px;margin-top:275px;width:398px;color:#282828;font-size:12px;font-weight:bold;font-family:Arial, Helvetica, sans-serif;height:159px;background-image:url(http://www.socialracecycling.de/images/counter/counter-bg.png);" id="counter">
+                	<p style="margin:2px;">Es wurden schon insgesamt</p>
+                    <p style="margin:2px;height:50px;overflow:hidden;">{$activities}<img style="margin-bottom:15px;" src="http://www.socialracecycling.de/images/counter/aktivitaeten.png" /></p>
+                    <p style="margin:0px;margin-top:-5px;">mit insgesamt</p>
+                	<p style="margin:2px;height:50px;overflow:hidden;">{$km}</p>
+                    <p style="margin:2px;font-size:14px;">in die Datenbank von Social Race Cycling <img src="http://socialracecycling.de/images/favicon.jpg" height="18"style="margin-top:2px;" /> eingetragen</p>
+                </div>
             <div id="text-box">  
     {/if}
 

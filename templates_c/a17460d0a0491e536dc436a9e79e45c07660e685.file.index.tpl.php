@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-22 15:35:37
+<?php /* Smarty version Smarty-3.1.8, created on 2013-05-03 09:38:01
          compiled from "01_tpl/frontpage/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13624452064f81a3f7e17ac2-57622255%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a17460d0a0491e536dc436a9e79e45c07660e685' => 
     array (
       0 => '01_tpl/frontpage/index.tpl',
-      1 => 1335108937,
+      1 => 1367573879,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f81a3f7e74326_58068554')) {function content_4f81a3f7e74326_58068554($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-
+			
 
                     <h1>Herzlich Willkommen!</h1>
             <img src="images/Logo.png" alt="logo" style="float:left;padding:5px;" width="139" height="59" />
@@ -51,7 +51,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           	<li class="gallery"><a href="about.php" class="homepage">mehr Informationen</a></li>
             <li class="gallery"><a href="registration-screen.php" class="homepage">zur Registrierung</a></li>
          </ul>
-         
+        
          
          
 <?php echo $_smarty_tpl->getSubTemplate ("01_tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
