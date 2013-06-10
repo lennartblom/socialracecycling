@@ -3,6 +3,10 @@
 	require_once('ink/functions.ink.php');
 	require_once('ink/global.php');
 	
+	
+	require_once('ink/db.ink.php');
+	require_once('ink/counter.ink.php');
+	
 	$tpl->assign('online',false);
 	$tpl->assign('usercp', false);
 

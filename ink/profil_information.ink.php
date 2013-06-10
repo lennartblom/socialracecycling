@@ -1,5 +1,7 @@
 <?php
-if(isset($_POST['member-choice'])){
+
+
+
 $sql="	SELECT
 				Name,
 				Lastname,
@@ -13,16 +15,18 @@ $sql="	SELECT
 				birthday,
 				interests,
 				job,
-				bikemodel,
-				ID
+				bikemodel
 		FROM
 				user
 		Where
-				ID='".$_POST['member-choice']."'
+				ID='".$_SESSION['UserID']."'
 		";
 $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
 $row = mysql_fetch_assoc($result);
+
+$_SESSION['member-name']=$row['Name'];
+$_SESSION['member-lastname']=$row['Lastname'];
 
 if($row['PLZ']=='0'){
 	$row['PLZ']="";
@@ -32,9 +36,7 @@ if($row['birthday']=='0000-00-00'){
 	$row['birthday']="keine Angaben";
 }
 
-$tpl->assign('id', $row['ID']);
-$tpl->assign('vorname', $row['Name']);
-$tpl->assign('nachname', $row['Lastname']);
+
 $tpl->assign('email', $row['Email']);
 $tpl->assign('registrierungsdatum', $row['Registrierungsdatum']);
 $tpl->assign('strasse', $row['street']);
@@ -46,9 +48,3 @@ $tpl->assign('geburtstag', DatumsWandler($row['birthday']));
 $tpl->assign('interessen', $row['interests']);
 $tpl->assign('beruf', $row['job']);
 $tpl->assign('fahrrad', $row['bikemodel']);
-
-} else {
-	$error = "Du hast keinen Benutzernamen ausgewählt.";
-	
-	$tpl->assign('error',$error);	
-}

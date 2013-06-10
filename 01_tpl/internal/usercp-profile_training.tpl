@@ -6,6 +6,8 @@
 </div>
 {else}
 
+<h5 style="text-align:left;"><a href="usercp-profile_information.php?UserID={$id}"><img src="images/profile/arrow-left-24.png" height="15px" /></a> <img src="images/profile/user-icon.png" /> <span style="font-weight:300;">Profil von</span> {$vorname} {$nachname} <span style="font-weight:300;font-size:11px;"></span></h5>
+
 <form action="usercp-profile_training.php?id={$id}" method="POST" name="edit_charts">
 		<input type="hidden" name="week_change" value="{$week_change}" />
 		<input type="hidden" name="month_change" value="{$month_change}" />

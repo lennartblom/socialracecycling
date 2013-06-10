@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-19 18:19:53
+<?php /* Smarty version Smarty-3.1.8, created on 2013-06-04 09:02:58
          compiled from "01_tpl/internal/usercp-profile_training.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4576015834f90574988a659-24795394%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '61252ceeb603b7d9842c8deec41b45438d5cfff7' => 
     array (
       0 => '01_tpl/internal/usercp-profile_training.tpl',
-      1 => 1332796242,
+      1 => 1370336575,
       2 => 'file',
     ),
   ),
@@ -15,17 +15,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f905749a77236_87018267',
   'variables' => 
   array (
     'error' => 0,
     'id' => 0,
+    'vorname' => 0,
+    'nachname' => 0,
     'week_change' => 0,
     'month_change' => 0,
     'year_change' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f905749a77236_87018267',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f905749a77236_87018267')) {function content_4f905749a77236_87018267($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -36,6 +38,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </p>
 </div>
 <?php }else{ ?>
+
+<h5 style="text-align:left;"><a href="usercp-profile_information.php?UserID=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+"><img src="images/profile/arrow-left-24.png" height="15px" /></a> <img src="images/profile/user-icon.png" /> <span style="font-weight:300;">Profil von</span> <?php echo $_smarty_tpl->tpl_vars['vorname']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['nachname']->value;?>
+ <span style="font-weight:300;font-size:11px;"></span></h5>
 
 <form action="usercp-profile_training.php?id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 " method="POST" name="edit_charts">

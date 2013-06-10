@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-11-07 12:26:01
+<?php /* Smarty version Smarty-3.1.8, created on 2013-05-26 19:42:10
          compiled from "01_tpl/internal/tour-add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:347392594f81926e534f22-61879260%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3b6d89485b73ca98eb4e6c4ce492c7547267c91c' => 
     array (
       0 => '01_tpl/internal/tour-add.tpl',
-      1 => 1334948279,
+      1 => 1369597327,
       2 => 'file',
     ),
   ),
@@ -274,7 +274,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 					            </tr>
 					            <tr>
 					                <td valign="top" class="label-input-addtrack"><label>Weitere Angaben:</label></td>
-					                <td colspan="4"><textarea class="tour-edit-input" style="height:100px;" name="moreinformation" rows="5" cols="37"><?php echo $_smarty_tpl->tpl_vars['infos']->value;?>
+					                <td colspan="4"><textarea class="tour-edit-input" name="moreinformation" rows="5" cols="37"><?php echo $_smarty_tpl->tpl_vars['infos']->value;?>
 </textarea></td>
 					            </tr>
                                 <tr>

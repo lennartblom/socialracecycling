@@ -109,7 +109,7 @@
 					            </tr>
 					            <tr>
 					                <td valign="top" class="label-input-addtrack"><label>Weitere Angaben:</label></td>
-					                <td colspan="4"><textarea class="tour-edit-input" style="height:100px;" name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
+					                <td colspan="4"><textarea class="tour-edit-input" name="moreinformation" rows="5" cols="37">{$infos}</textarea></td>
 					            </tr>
                                 <tr>
 					                <td class="label-input-addtrack"><select name="weiteres feld"><option>&oslash; Herzfrequenz</option></select></td>

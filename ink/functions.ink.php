@@ -1,6 +1,92 @@
 <?php
 require_once('ink/global.php');
 
+
+ function format_datetime($date_time) { 
+   if(date('Y-m-d', strtotime($date_time)) == date('Y-m-d')) { 
+     return date('\H\e\u\t\e, H:i'); 
+   } else if(date('Y-m-d', strtotime($date_time)) == date('Y-m-d', strtotime('yesterday'))) { 
+     return 'Gestern, '.date('H:i'); 
+   } else { 
+     return date('d.m.Y, H:i', strtotime($date_time)); 
+   } 
+ }  
+
+function RelativesDatum($Datum)
+{
+    $Zeitstempel = strtotime($Datum);
+
+    if($Zeitstempel <= time())
+    {
+        if(date("Y-m-d", $Zeitstempel) == date("Y-m-d"))
+        {
+            return "heute";
+        }
+        elseif($Zeitstempel <= strtotime("-1 day") && $Zeitstempel > strtotime("-2 day"))
+        {
+            return "gestern";
+        }
+        elseif($Zeitstempel <= strtotime("-2 day") && $Zeitstempel > strtotime("-3 day"))
+        {
+            return "vorgestern";
+        }
+        elseif($Zeitstempel <= strtotime("-3 day") && $Zeitstempel > time()-120*86400)
+        {
+            $Tage = floor((time()-$Zeitstempel)/86400);
+            return "vor ".$Tage." Tagen";
+        }
+        elseif(date("Y", $Zeitstempel) == date("Y"))
+        {
+            return date("d.m.", $Zeitstempel);
+        }
+        else
+        {
+            return date("d.m.Y", $Zeitstempel);
+        }
+    }
+    else
+    {
+        if($Zeitstempel <= strtotime("+1 day"))
+        {
+            return "morgen";
+        }
+        elseif($Zeitstempel <= strtotime("+2 day"))
+        {
+            return "übermorgen";
+        }
+        elseif($Zeitstempel <= time()+120*86400)
+        {
+            $Tage = ceil(($Zeitstempel-time())/86400);
+            return "in ".$Tage." Tagen";
+        }
+        elseif(date("Y", $Zeitstempel) == date("Y"))
+        {
+            return date("d.m.", $Zeitstempel);
+        }
+        else
+        {
+            return date("d.m.Y", $Zeitstempel);
+        }
+    }
+}
+
+
+
+
+
+
+function ago($timestamp){
+  $difference = time() - $timestamp;
+  $periods = array("second", "minute", "hour", "day", "week", "month", "years", "decade");
+  $lengths = array("60","60","24","7","4.35","12","10");
+  for($j = 0; $difference >= $lengths[$j]; $j++)
+  $difference /= $lengths[$j];
+  $difference = round($difference);
+  if($difference != 1) $periods[$j].= "s";
+  $text = "$difference $periods[$j] ago";
+  return $text;
+ }
+
 function DatumsWandler($Datum) {
     if(strlen($Datum) == 10) {
         $GewandeltesDatum = substr($Datum, 8, 2);

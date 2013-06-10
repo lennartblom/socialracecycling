@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-05-03 11:52:40
+<?php /* Smarty version Smarty-3.1.8, created on 2013-06-10 12:50:52
          compiled from "01_tpl/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3289826974f8186b48f4bd8-74494191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c12a49841c809fb1b1f476a138dd4ab83133e4f8' => 
     array (
       0 => '01_tpl/header.tpl',
-      1 => 1367581959,
+      1 => 1370868412,
       2 => 'file',
     ),
   ),
@@ -41,18 +41,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
     <?php }?>
     
+    <?php if ($_smarty_tpl->tpl_vars['title']->value=='Profil bearbeiten'){?>
+    	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/frontpage/lightbox.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+    <?php }?>
+    
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 <?php if ($_smarty_tpl->tpl_vars['online']->value==false){?>    
     
         <?php echo $_smarty_tpl->getSubTemplate ("01_tpl/frontpage/lightbox.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-    
-    
+    	
+    	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
     </head>
     <body>
     
-    <?php if ($_smarty_tpl->tpl_vars['title']->value=='Informationen'){?>                 
+    <?php if ($_smarty_tpl->tpl_vars['title']->value=='Informationen'||$_smarty_tpl->tpl_vars['title']->value=='Team Dashboard'){?>                 
     <div id="wrapper">
         <div id="container-toppart"></div>
         <div id="content-middlepart"> 
@@ -63,6 +69,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div id="container-toppart"></div>
         <div id="container-middlepart">
         <div id="content">
+        		<?php if ($_smarty_tpl->tpl_vars['title']->value=="Startseite"||$_smarty_tpl->tpl_vars['title']->value=="Registrierung"){?>
         		<div style="float:right;margin-right:40px;padding:10px;margin-top:275px;width:398px;color:#282828;font-size:12px;font-weight:bold;font-family:Arial, Helvetica, sans-serif;height:159px;background-image:url(http://www.socialracecycling.de/images/counter/counter-bg.png);" id="counter">
                 	<p style="margin:2px;">Es wurden schon insgesamt</p>
                     <p style="margin:2px;height:50px;overflow:hidden;"><?php echo $_smarty_tpl->tpl_vars['activities']->value;?>
@@ -70,24 +77,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <p style="margin:0px;margin-top:-5px;">mit insgesamt</p>
                 	<p style="margin:2px;height:50px;overflow:hidden;"><?php echo $_smarty_tpl->tpl_vars['km']->value;?>
 </p>
-                    <p style="margin:2px;font-size:14px;">in die Datenbank von Social Race Cycling <img src="http://socialracecycling.de/images/favicon.jpg" height="18"style="margin-top:2px;" /> eingetragen</p>
+                    <p style="margin:2px;font-size:13px;">in die Datenbank von Social Race Cycling <img src="http://socialracecycling.de/images/favicon.jpg" height="18"style="margin-top:2px;" /> eingetragen</p>
+                    
                 </div>
+                <?php }?>
             <div id="text-box">  
+            
+            
     <?php }?>
 
 <?php }elseif($_smarty_tpl->tpl_vars['online']->value=='false'){?>
+
+	<?php if ($_smarty_tpl->tpl_vars['title']->value!=='Profil bearbeiten'){?>
 		<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/JSToolTip.js"></script>
         <script type="text/javascript" src="jqPlot/jquery.jqplot.js"></script>
-    
+     <?php }?>
+        
+        
 	<?php if ($_smarty_tpl->tpl_vars['title']->value=='Dashboard'){?>
     	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/internal/charts-self.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     <?php }?>
+    
+    <?php if ($_smarty_tpl->tpl_vars['title']->value=='Profildaten'||$_smarty_tpl->tpl_vars['title']->value=='Profil-Information'){?>
+    	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/internal/charts-profile-self.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+    <?php }?>
+    
     <?php if ($_smarty_tpl->tpl_vars['title']->value=='Trainingsinformationen'){?>
     	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/internal/charts-user.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     <?php }?>
+	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
    </head>
 <body>
@@ -141,7 +163,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div id="usercp-background-sidebar">
                 <ul id="usercp-navigation">
                     <li class="usercp-navigation-headline">Soziales</li>
-                    
+                    	<li><a href="usercp-teams.php" class="usercp-navigation-button<?php if ($_smarty_tpl->tpl_vars['title']->value=='Teams'){?>-active<?php }?>">Teams</a></li>	
                         <li><a href="usercp-edit-profile.php" class="usercp-navigation-button<?php if ($_smarty_tpl->tpl_vars['title']->value=='Profil bearbeiten'){?>-active<?php }?>">Profil bearbeiten</a></li>		
                         <li><a href="usercp-profile_self.php" class="usercp-navigation-button<?php if ($_smarty_tpl->tpl_vars['title']->value=='Profildaten'){?>-active<?php }?>">Profil anzeigen</a></li>
                         <li><a href="usercp-mitgliederliste.php" class="usercp-navigation-button<?php if ($_smarty_tpl->tpl_vars['title']->value=='Mitgliederliste'||$_smarty_tpl->tpl_vars['title']->value=='Profil-Information'){?>-active<?php }?>">Mitgliederliste</a></li>

@@ -4,14 +4,13 @@
 	
 			$height_km=68;
 	
-			$sql="SELECT SUM(  `distance` ) AS  `fahrradkilometer` 
-					FROM  `touren` 
-					WHERE `typ`='radfahren'";
+			$sql="SELECT SUM(`distance`) AS `fahrradkilometer` 
+					FROM  `touren` ";
 					
 			$result= mysql_query($sql) OR die ("<pre>\n".$sql."</pre>\n".mysql_error());
 			$row = mysql_fetch_assoc($result);
 			
-			
+			 
 			$radkilometer=round($row['fahrradkilometer'],0);
 			
 			$string_1=str_split($radkilometer);
@@ -35,8 +34,7 @@
 			$height_activities=60;
 			
 			$sql2="SELECT COUNT( * ) AS activities 
-				FROM  `touren` where
-				`typ`='radfahren'";
+				FROM  `touren` ";
 									
 			$result= mysql_query($sql2) OR die ("<pre>\n".$sql2."</pre>\n".mysql_error());
 			$row = mysql_fetch_assoc($result);
@@ -44,7 +42,6 @@
 			
 			$string_2=str_split($row['activities']);
 			
-			$activities = "";
 			
 			for($j=0; $j<strlen($row['activities']); $j++){
 				if($string_2[$j]=='.')

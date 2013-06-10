@@ -1,4 +1,6 @@
 <?php
+
+
 if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschicken') {	
 	$errors = array();
 	
@@ -19,6 +21,7 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 		elseif (trim($_POST['profile_password']) != trim($_POST['profile_password_confirm']))
 			$errors[]= "Die beiden Passwörter stimmen nicht überein.";
 			
+			
 		$tpl->assign('error',$errors);
 
 	}
@@ -35,6 +38,7 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 										job, 
 										interests, 
 										city, 
+										privacy,
 										Avatar
 								FROM
 										user
@@ -44,7 +48,6 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 						$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 						
 						$row = mysql_fetch_assoc($result);
-						
 						
 						
 						$tpl->assign('tag', $_POST['birth_Day']);
@@ -75,11 +78,34 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 		
 		$birthday = "".$_POST['birth_Year']."-".$_POST['birth_Month']."-".$_POST['birth_Day']."";
 		
-		
+		if($_POST['privacy_profilinformation']=='true') 
+			$_POST['privacy_profilinformation'] = 1;
+		else
+			$_POST['privacy_profilinformation'] = 2;
+			
+		if($_POST['privacy_activitychart']=='true') 
+			$_POST['privacy_activitychart'] = 1;
+		else
+			$_POST['privacy_activitychart'] = 2;
+			
+		if($_POST['privacy_yeartraining']=='true') 
+			$_POST['privacy_yeartraining'] = 1;
+		else
+			$_POST['privacy_yeartraining'] = 2;
+			
+		if($_POST['privacy_activitylog']=='true') 
+			$_POST['privacy_activitylog'] = 1;
+		else
+			$_POST['privacy_activitylog'] = 2;
+			
+			
+			
+			
+		$privacy=$_POST['privacy_profilinformation'].$_POST['privacy_activitychart'].$_POST['privacy_yeartraining'].$_POST['privacy_activitylog'];
 		
 		
 		$sqlab = "update user set";
-		if(isset($_POST['profile_password']) AND isset($_POST['profile_password_confirm'])){
+		if(isset($_POST['profile_password']) AND  !$_POST['profile_password']=='' AND isset($_POST['profile_password_confirm'])){
 				$sqlab.=" Passwort  =	'". md5(trim($_POST['profile_password']))."',";
 		}
 		$sqlab  .=	" Name 		=	'" .$_POST['profile_name'] . "',"
@@ -93,6 +119,7 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 				.	" birthday  = 	'					$birthday',"
 				.	" bikemodel	 	=	'" .$_POST['profile_bike']."',"
 				.	" interests  = 	'" .$_POST['profile_interests']."',"
+				.	" privacy  = 	'" .$privacy."',"
 				.	" job 		= 	'" .$_POST['profile_job']."'"
 				.	" where ID 	= '" .$_SESSION['UserID']."'";
 				
@@ -127,6 +154,7 @@ $sql = "SELECT
 				job, 
 				interests, 
 				city, 
+				privacy,
 				Avatar
 		FROM
 				user
@@ -137,6 +165,19 @@ $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
 $row = mysql_fetch_assoc($result);
 
+
+
+$privacy=str_split($row['privacy']);
+
+$profile_settings = $privacy[0];
+$activitychart_settings = $privacy[1];
+$trainingdetails_settings = $privacy[2];
+$activitylog_settings = $privacy[3];
+
+$tpl->assign('privacy_profil', $profile_settings );
+$tpl->assign('privacy_chart', $activitychart_settings );
+$tpl->assign('privacy_details', $trainingdetails_settings );
+$tpl->assign('privacy_log', $activitylog_settings );
 
 $tpl->assign('tag', $row['tag']);
 $tpl->assign('monat', $row['monat']);
@@ -173,6 +214,7 @@ $sql = "SELECT
 				job, 
 				interests, 
 				city, 
+				privacy,
 				Avatar
 		FROM
 				user
@@ -183,6 +225,17 @@ $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
 $row = mysql_fetch_assoc($result);
 
+$privacy=str_split($row['privacy']);
+
+$profile_settings = $privacy[0];
+$activitychart_settings = $privacy[1];
+$trainingdetails_settings = $privacy[2];
+$activitylog_settings = $privacy[3];
+
+$tpl->assign('privacy_profil', $profile_settings );
+$tpl->assign('privacy_chart', $activitychart_settings );
+$tpl->assign('privacy_details', $trainingdetails_settings );
+$tpl->assign('privacy_log', $activitylog_settings );
 
 $tpl->assign('tag', $row['tag']);
 $tpl->assign('monat', $row['monat']);

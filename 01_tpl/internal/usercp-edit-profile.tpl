@@ -47,12 +47,47 @@
 							
 								<tr>
 									<td>
+                                     <h2>Privatsphäre</h2>
+                                        <table style="display:block;margin-left:0px;">
+                                            <tr>
+                                                <td class="profil-column">Profildaten öffentlich?:</td>
+                                                <td><input {if $privacy_profil=='1'} checked="checked"{/if} value="true" name="privacy_profilinformation" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Deine Profilinformationen werden nicht angezeigt" href="images/profile/privacy_infos.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="profil-column">Monatsaktivitäten <br />
+öffentlich?:</td>
+                                                <td><input {if $privacy_chart eq 1} checked="checked"{/if} value="true" name="privacy_activitychart" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Das Diagramm für die moantlichen Aktivitäten ist nicht sichtbar" href="images/profile/privacy_chart.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="profil-column">Jahrestrainingsdetails <br />
+öffentlich?:</td>
+                                                <td><input {if $privacy_details eq 1} checked="checked"{/if} value="true" name="privacy_yeartraining" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Die Jahresbilanzen deines Trainings können nicht von anderen Mitgliedern angesehen werden, ebenso wenig ist die Vergleichfunktion aktiv" href="images/profile/privacy_trainingdetails.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="profil-column">Aktivitätstagebuch <br />
+öffentlich?:</td>
+                                                <td><input  {if $privacy_log eq 1} checked="checked"{/if} value="true" name="privacy_activitylog" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Deine letzten 5 Aktivitäten sind für andere Mitglieder nicht einsehbar" href="images/profile/privacy_log.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                
+                                	<td>
 							
+                 
+                            
 							<h2>Name und Adresse</h2>
 							<table>
 								<tr>
 									<td class="profil-column">Vorname:</td>
-									<td><input name="profile_name" class="profile-normalinput"  value="{$vorname}" /></td>
+									<td><input  name="profile_name" class="profile-normalinput"  value="{$vorname}" /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">Nachname:</td>
@@ -60,7 +95,7 @@
 								</tr>
 								<tr>
 									<td class="profil-column">Straße:</td>
-									<td><input name="profile_street" value="{$strasse}" class="profile-normalinput"  /></td>
+									<td><input  name="profile_street" value="{$strasse}" class="profile-normalinput"  /></td>
 								</tr>
 								<tr>
 									<td class="profil-column">PLZ:</td>

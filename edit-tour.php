@@ -5,6 +5,7 @@
 	require_once('ink/functions.ink.php');
 	require_once('ink/global.php');
 	require_once('ink/db.ink.php');
+	require_once('ink/wysiwyg.ink.php');
 	
 	$tpl->assign('title', 'Tour Übersicht');
 	$tpl->assign('usercp', false);
@@ -14,6 +15,7 @@
 			$tpl->assign('online',true);
 	
 			require_once('ink/footer_data.ink.php');
+			
 			require_once('ink/tour-edit.ink.php');
 			
 			$tpl->assign('name',$_SESSION['Vorname']);

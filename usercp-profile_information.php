@@ -17,6 +17,7 @@
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
 		
+		require_once('ink/user_data.ink.php');
 		require_once('ink/footer_data.ink.php');
 		require_once('ink/profil_information.ink.php');
 		

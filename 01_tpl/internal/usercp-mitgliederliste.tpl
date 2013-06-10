@@ -1,5 +1,8 @@
 {include file="01_tpl/header.tpl"}
-			<h3>Mitgliederliste</h3>
+			<h5>Mitgliederliste</h5>
+            <h6>Klicke die Auswahlbox an und schau dir die Profile an</h6>
+            
+            <p class="about-text-new" style="text-align:center;">Die Mitglieder werden dem Datum ihrer letzten Aktivität sortiert</p>
                 <form action="usercp-mitgliederliste.php" method="post">
                     <input type="hidden" name="change_selection_mitgliederliste" value="{$change_selection}">
                     <p style="text-align:center;">
@@ -10,12 +13,14 @@
                 <form action="usercp-profile_information.php" method="post">	
                 <table border="1" id="edittour-tabelle">
                             <tr>
-                                <td class="edittour-showtour-headline">Auswahl</td>
+                                <td class="edittour-showtour-headline"> </td>
+                                <td class="edittour-showtour-headline">folgen</td>
                                 <td class="edittour-showtour-headline">Vorname</td>
                                 <td class="edittour-showtour-headline">Nachname</td>
-                                <td class="edittour-showtour-headline">Registrierungsdatum</td>
-                                <td class="edittour-showtour-headline">Geburtstag</td>
+                                <td class="edittour-showtour-headline">Reg. Datum</td>
+                                <td class="edittour-showtour-headline">aktiv?</td>
                                 <td class="edittour-showtour-headline">Land</td>
+                                 <td class="edittour-showtour-headline">Team</td>
                             </tr>
                         
                         {foreach from=$mitgliederliste item=benutzer}
@@ -25,7 +30,6 @@
                         {/foreach}
                                                     
                 </table>
-                <p style="text-align:left;"><input type="submit" value="Profil anzeigen" name="show_profile" /></p>
                 </form>
                 
 

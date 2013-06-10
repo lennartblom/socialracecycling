@@ -8,6 +8,7 @@
 	
 	$tpl->assign('title', 'Tour Übersicht');
 	$tpl->assign('usercp', false);
+	require_once('ink/wysiwyg.ink.php');
 	
 	if(isset($_SESSION['UserID'])){
 		if(isset($_GET['tourID'])){

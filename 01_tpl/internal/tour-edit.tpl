@@ -118,7 +118,7 @@
     </tr>
     <tr>
         <td class="label">zusätzliche Tourinformationen:</td>
-        <td><textarea class="tour-edit-input" name="other-information" style="margin-left:-1px;height:100px;" type="text" rows="10" cols="35" >{$info}</textarea></td>
+        <td><textarea name="other-information" style="margin-left:-1px;height:100px;" type="text" rows="10" cols="35" >{$info}</textarea></td>
     </tr>
     <tr>
         <td class="label-input-addtrack">Aktivitätstyp:</td>

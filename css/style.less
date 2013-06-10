@@ -1,6 +1,36 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+@font-face {
+font-family: Proxima Nova; 
+src: url(../fonts/ProximaNova-Regular.otf); 
+}
+
+@font-face {
+font-family: Proxima Nova; 
+src: url(../fonts/ProximaNova-Regular.otf); 
+}
+
+@font-face {
+font-family: Proxima Nova; 
+font-weight:bold;
+src: url(../fonts/ProximaNova-Bold.otf); 
+}
+
+@font-face {
+font-family: Proxima Nova; 
+font-weight:300;
+src: url(../fonts/ProximaNova-Light.otf); 
+} 
+
+@font-face {
+font-family: Journal; 
+src: url(../fonts/JOURNAL.TTF); 
+} 
+
+
+
 a img {
 border : 0 none;
 }
@@ -106,8 +136,8 @@ div#usercp-content-box{
 	margin-bottom:0px;
 	margin-left:40px;
 	width:650px;
-	height:500px;
-	overflow:auto;
+	height:auto;
+	min-height:400px;
 }
 
 /*
@@ -133,7 +163,7 @@ div#usercp-background-top{
 
 div#usercp-background-sidebar{
 	width:161px;
-	height:500px;
+	height: auto;
 	background-image:url(../images/control-panel/sidebar-background.png);
 	background-repeat:repeat-y;
 	background-position:right;
@@ -144,7 +174,7 @@ div#usercp-background-sidebar{
 
 div#usercp-background-content{
 	width:700px;
-	height:500px;
+	height:auto;
 	margin-right:19px;
 	margin-top:30px;
 	background-image:url(../images/control-panel/background-middle.png);
@@ -187,7 +217,7 @@ div#profile-background-middle{
 	width:450px;
 	height:100%;
 	margin-left:auto;
-	margin-right:auto;
+	margin-right:auto; 
 	background-image:url(../images/profile/profile-bg-middle.png);
 	background-repeat:repeat-y;
 }
@@ -511,6 +541,45 @@ h3 {
 	margin-left:50px;
 }
 
+h5{
+	font-family:Proxima Nova;
+	color:#1c1c1c;
+	font-size:20px;
+	font-weight:bold;
+	margin:5px;
+	text-align:center;
+	height:auto;
+	width:auto;
+}
+
+h6{
+	font-family:Proxima Nova;
+	color:#969696;
+	font-weight:300;
+	font-size:20px;
+	margin:0px;
+	text-align:center;
+}
+
+.about-text-new{
+	color:#565656;
+	font-family:Proxima Nova;
+	font-weight:300;
+	line-height:20px;
+}
+
+.team-description{
+	text-align:left;
+	color:#565656;
+	font-family:Proxima Nova;
+	font-weight:300;
+	line-height:20px;
+	margin-left:225px;
+}
+
+.bold{
+	font-weight:bold;
+}
 select.addtour-timeinput{
 	width:107px;
 }
@@ -827,7 +896,7 @@ ul#informationen li {
 	margin-top:0px;
 	font-size:14px;
 	color:#5a5a5a;
-	list-style-image:url(../images/list-hacken.png);
+	list-style-image:url(http://photography.lennart-blom.de/wp-content/themes/lbfotoblog/images/check-24-ns.png);
 }
 
 div#content {
@@ -835,7 +904,7 @@ div#content {
 	width:960px;
 	margin-left:auto;
 	margin-right:auto;
-	background-image:url(../images/homepage-backgrounds/homepage-image.png);
+	background-image:url(../images/homepage-backgrounds/homepage-image.jpg);
 	background-position:center;
 	background-repeat:no-repeat;
 }
@@ -852,7 +921,6 @@ td.trenner {
 td#lennart-blom {
 	height:165px;
 	width:306px;
-	background-image:url(../images/lennart-blom-no.png);
 	background-repeat:no-repeat;
 	background-position:20px 50px;
 	color:#6c6c6c;
@@ -886,7 +954,6 @@ td.profil-column{
 }
 
 td#lennart-blom:hover {
-	background-image:url(../images/lennart-blom.png);
 	color:#3378c5;
 }
 
@@ -894,7 +961,6 @@ td#follow {
 	height:165px;
 	width:445px;
 	color:#6c6c6c;
-	background-image:url(../images/follow-us-nohover.png);
 	background-repeat:no-repeat;
 	background-position:15px 60px;
 }
@@ -903,7 +969,6 @@ td#follow:hover {
 	height:165px;
 	width:445px;
 	color:#3378c5;
-	background-image:url(../images/follow-us-hover.png);
 }
 
 td.label {
@@ -1111,4 +1176,67 @@ ul#homepage_gallery{
 li.gallery{
 	float:left;	
 	padding:5px;
+}
+
+
+.comment-top{
+	height:25px;
+	width:625px;
+	background-image:url(../images/activitylog-top-bg.png);
+	background-repeat:none;
+}
+
+.comment-middle{
+	height:auto;
+	min-height:50px;
+	width:625px;
+	background-image:url(../images/activitylog-middle-bg.png);
+	background-repeat:repeat-y;
+}
+
+.comment-bottom{
+	height:45px;
+	width:625px;
+	background-image:url(../images/activitylog-bottom-bg.png);
+	background-repeat:none;
+}
+
+.activities-top{
+	height:21px;
+	width:610px;
+	background-image:url(../images/profile/activity-log-top.png);
+	background-repeat:none;
+}
+
+.activities-middle{
+	height:auto;
+	min-height:100px;
+	width:610px;
+	background-image:url(../images/profile/activity-log-middle.png);
+	background-repeat:repeat-y;
+}
+
+.activities-bottom{
+	height:45px;
+	background-repeat:no-repeat;
+	width:610px;
+	background-image:url(../images/profile/activity-log-bottom.png);
+	background-repeat:none;
+}
+
+.link-title{
+	font-family:Proxima Nova;
+	font-weight:bold;
+	color:#333;
+	text-align:center;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.link-notice{
+	font-family:Proxima Nova;
+	font-weight:300;
+	font-size:12px;
+	padding-left:15px;
+	padding-right:15px;
 }

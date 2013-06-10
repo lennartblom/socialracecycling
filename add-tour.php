@@ -16,6 +16,7 @@
 		
 		require_once('ink/tour-add.ink.php');
 		require_once('ink/footer_data.ink.php');
+		require_once('ink/wysiwyg.ink.php');
 		
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
