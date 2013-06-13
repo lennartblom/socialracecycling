@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	//window.setInterval($("#notif").click(), 5000);
 	$state = false;
 	$("#notif").click(function(){
 		if(!$state){
