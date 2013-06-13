@@ -378,7 +378,7 @@ function ListMessagesInBox(){
 	return $return;
 }
 
-	
+require_once('ink/notif_functions.ink.php');	
 
 
 ?>

@@ -1,0 +1,7 @@
+@charset "utf-8";
+@font-face{font-family:Tahoma;}
+div#notif{background:url(../images/notif.png);}
+div#notif:hover{background:url(../images/notif-hover.png);}
+div#notif_display{display:none;}
+div.notif_inv{}
+a.notif_msg{text-decoration: none;}
