@@ -1,7 +1,11 @@
 $ cat .gitignore
 
-# Can ignore specific files
+# File #
 db-frontpage.ink.php
 db.ink.php
 *.tpl.php
+*.php.php
+*.css.php
+*.js.php
+# Dir #
 dir_to_ignore/templates_c/
