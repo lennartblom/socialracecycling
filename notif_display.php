@@ -1,6 +1,5 @@
 <html>
 <head>
-<meta http-equiv="refresh" content="20; URL=notif_timer.php" />
 <link rel="stylesheet" type="text/css" href="css/notif.css"/> <!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/notif.js"></script>
@@ -21,7 +20,7 @@
 		
 		if(isset($_GET['showall'])){
 			if($_GET['showall']>1)
-				$showall = $_GET['showall'];
+				$showall = 1;
 			else	
 				$showall = $_GET['showall'];
 		}else
@@ -31,6 +30,11 @@
 			$limit = $_GET['limit'];
 		else
 			$limit = 0;	
+			
+		if(isset($_GET['url']))	
+			$url = $_GET['url'];
+		else
+			$url= "../";		
 		
 		/*
 		echo Counter?!
@@ -62,64 +66,62 @@
 		//Anzeige
 		//Unread
 		$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
-				FROM  `notifications`, `user` 
-				WHERE  `userFromID` = `user`.`ID` 
-					AND `notifications`.`userToID` = '$user' 
-					AND  `notifications`.`read` = 0 
-				ORDER BY `notifications`.`date` DESC
+				FROM  notifications, user 
+				WHERE  userFromID = user.ID 
+					AND notifications.userToID = '$user' 
+					AND  notifications.`read` = 0 
+				ORDER BY notifications.date DESC
 					";
 		if($limit>0)
-			$sql = "SELECT COUNT(*) AS anzahl, notifID, userFromID, userToID, type, date, link, content, name, lastname 
-					FROM  `notifications`, `user` 
-					WHERE  `userFromID` = `user`.`ID` 
-						AND `notifications`.`userToID` = '$user' 
-						AND  `notifications`.`read` = 0 
-					ORDER BY `notifications`.`date` DESC
-					LIMIT 0 , '$limit'
-						";	
+			$sql = "SELECT COUNT(notifID) AS anzahl, notifID, userFromID, userToID, type, date, link, content, name, lastname 
+					FROM  notifications, user 
+					WHERE  userFromID = user.ID 
+						AND notifications.userToID = '$user'
+						AND  notifications.`read` = 0 
+					ORDER BY notifications.date DESC
+					LIMIT 0 , $limit
+						";		
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
 				die('Ungültige Abfrage: ' . mysql_error());
 		else{
 			while($row = @mysql_fetch_object($result)){ 
 				if($row->type == "inv"){
-					$url = $_SERVER['REQUEST_URI'];
+					//$url = $_SERVER['REQUEST_URI']; // parameter setzen
 					echo '<div class="notif_inv"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>
 						<div style="margin-left:30;height:30px;width:120px;float:left;">
-						<form action="invite-team.php?inv='.$row->notifID.'&sta=acc&lin='.$url.'" method="post"><input name="accept_team" value="Annehmen" style="display:block;width:100;" type="submit" /></form>
+						<form action="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'" method="post"><input name="accept_team" value="Annehmen" style="display:block;width:100;" type="submit" /></form>
 						</div>
 						<div style="height:30px;width:120px;float:left;">
-						<form action="invite-team.php?inv='.$row->notifID.'&sta=dec&lin='.$url.'" method="post"><input name="decline_team" value="Ablehnen" style="display:block;width:100;" type="submit" /></form>
+						<form action="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'" method="post"><input name="decline_team" value="Ablehnen" style="display:block;width:100;" type="submit" /></form>
 						</div>
 						'.'</b></font></div><hr style="background:white;clear:both;" />';
 				}else
 					if($row->type == "msg")
-						echo '<a class="notif_msg" href="message-read.php?l='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';
-			if($limit>0)
-				$count = $row->anzahl;
+						echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';
+				if($limit>0)
+					$count = $row->anzahl;	
 			}
 		}
 		if($showall == 1){
 			//Read
 			$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
-					FROM  `notifications`, `user` 
-					WHERE  `userFromID` = `user`.`ID` 
-						AND `notifications`.`userToID` = '$user' 
-						AND  `notifications`.`read` = 1 
-					ORDER BY `notifications`.`date` DESC
+					FROM  notifications, user 
+					WHERE  userFromID = user.ID 
+						AND notifications.userToID = '$user' 
+						AND  notifications.`read` = 1 
+					ORDER BY notifications.date DESC
 						";
-			if($limit>0){
-				$limit = $limit - $count;
-				if($limit>=0)
+			if($limit>0)
+				if(($limit - $count)>0)
 					$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
-							FROM  `notifications`, `user` 
-							WHERE  `userFromID` = `user`.`ID` 
-								AND `notifications`.`userToID` = '$user' 
-								AND  `notifications`.`read` = 1 
-							ORDER BY `notifications`.`date` DESC
-							LIMIT 0 , '$limit'
-								";
-			}				
+							FROM  notifications, user
+							WHERE  userFromID = user.ID 
+								AND notifications.userToID = '$user' 
+								AND  notifications.`read` = 1 
+							ORDER BY notifications.date DESC
+							LIMIT 0 , $limit
+								";							
 			$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 			if (!$result)
 					die('Ungültige Abfrage: ' . mysql_error());
@@ -157,7 +159,7 @@
 							$status.'</font></div><hr style="background:white;clear:both;" />';	
 					}else
 						if($row->type == "msg")
-							echo '<a class="notif_msg" href="message-read.php?l='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
+							echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
 				}
 			}
 		}	

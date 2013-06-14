@@ -73,7 +73,6 @@ if($row[0]=="inv"){
 	}
 }else
 	if($row[0]=="msg"){
-
 		$sql = "UPDATE notifications 
 				SET `read` = 1 
 				WHERE notifID = '$notifID'
