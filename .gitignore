@@ -4,3 +4,4 @@ $ cat .gitignore
 db-frontpage.ink.php
 db.ink.php
 *.tpl.php
+dir_to_ignore/templates_c/
