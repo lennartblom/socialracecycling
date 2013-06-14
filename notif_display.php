@@ -16,14 +16,9 @@
 						type TEXT, date TIMESTAMP, `read` TINYINT(1), link TEXT, content TEXT, PRIMARY KEY (notifID))";
 	*/
 	
-	/*
-	if(isset($_SESSION['UserID'])){
-		
-		require_once('ink/footer_data.ink.php');
-	*/
-	// Session wird nicht übernommen?!
-		$user = 29; //Testuser  /* trim($_SESSION['UserID']); */
-		
+	if(isset($_GET['u'])){			
+		$user = $_GET['u'];
+			
 		//Counter
 		$sql = "SELECT COUNT(*)
 				FROM notifications
@@ -45,7 +40,8 @@
 					<font color="#FFFFFF">0</font></div>';
 		}		
 		
-		echo '<div id="notif_display" >';//style="display:none;"
+		echo '<div id="notif_display" >';
+		
 		//Anzeige
 		//Unread
 		$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
@@ -123,13 +119,11 @@
 						echo '<a class="notif_msg" href="message-read.php?l='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
 			}
 		}
-	echo '</div>';		
-	/*		
+	echo '</div>';				
 	}
 	else{
 		echo "Nicht eingeloggt"; // || BLANK
 	}
-	*/	
 ?>
 </body>
 </html>
