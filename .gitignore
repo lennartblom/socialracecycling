@@ -3,3 +3,4 @@ $ cat .gitignore
 # Can ignore specific files
 db-frontpage.ink.php
 db.ink.php
+*.tpl.php
