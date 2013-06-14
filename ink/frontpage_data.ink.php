@@ -240,7 +240,7 @@ $dayofweekresKM = array();
 	
 	
 	
-
+	$woche = 0;
 
 	$kw1 = mktime(0,0,0,date('m'),((date('j')+7)-1+$_SESSION['week_change']*7),date('Y')); 
 	$montag = $kw1 + 86400 * (7*($woche-1)- date('w', $kw1)+1);

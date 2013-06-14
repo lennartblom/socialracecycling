@@ -58,7 +58,7 @@
                                                 <td class="profil-column">Monatsaktivitäten <br />
 öffentlich?:</td>
                                                 <td><input {if $privacy_chart eq 1} checked="checked"{/if} value="true" name="privacy_activitychart" type="checkbox" /></td>
-                                                <td>[ <a rel="lightbox[privacy]" title="Das Diagramm für die moantlichen Aktivitäten ist nicht sichtbar" href="images/profile/privacy_chart.jpg">Was bedeutet das?</a> ]</td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Das Diagramm für die monatlichen Aktivitäten ist nicht sichtbar" href="images/profile/privacy_chart.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
                                             <tr>
                                                 <td class="profil-column">Jahrestrainingsdetails <br />

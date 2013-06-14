@@ -1,4 +1,5 @@
 <?php
+			$km = "";
 			$height_km=68;
 	
 			$sql="SELECT SUM(`distance`) AS `fahrradkilometer` 
@@ -27,7 +28,7 @@
 			
 			$tpl->assign('km', $km );
 			
-			
+			$activities = "";
 			$height_activities=60;
 			
 			$sql2="SELECT COUNT( * ) AS activities 
