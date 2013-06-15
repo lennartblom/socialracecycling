@@ -22,7 +22,7 @@ $sql = "SELECT type
 			";
 $result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 if (!$result)
-	die('Ungültige Abfrage: ' . mysql_error());
+	die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 else
 	$row = mysql_fetch_row($result);	
 if($row[0]=="inv"){		
@@ -39,10 +39,10 @@ if($row[0]=="inv"){
 				";
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
-			die('Ungültige Abfrage: ' . mysql_error());
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 		else
-			$row_tmp = mysql_fetch_object($result);			
-		if(joinTeam($row_tmp->userToID, $row_tmp->userFromID, "")){
+			$tmp_row = mysql_fetch_object($result);			
+		if(joinTeam($tmp_row->userToID, $tmp_row->userFromID, "")){
 			echo '<html><head><meta http-equiv="refresh" content="3; URL='.$link.'" /></head><body>
 				<img style="float:right;margin-right:100px;" src="images/haeckchen.jpg" alt="Häckchen nach dem Beitritt eines Teams" width="200" height="200">
 				<h3>Team-Beitritt war erfolgreich!</h3>

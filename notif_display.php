@@ -48,7 +48,7 @@
 					";
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
-				die('Ungültige Abfrage: ' . mysql_error());
+				die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 		else{
 			$row = mysql_fetch_row($result);
 			if($row[0]>0)
@@ -73,17 +73,17 @@
 				ORDER BY notifications.date DESC
 					";
 		if($limit>0)
-			$sql = "SELECT COUNT(notifID) AS anzahl, notifID, userFromID, userToID, type, date, link, content, name, lastname 
+			$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
 					FROM  notifications, user 
 					WHERE  userFromID = user.ID 
 						AND notifications.userToID = '$user'
 						AND  notifications.`read` = 0 
 					ORDER BY notifications.date DESC
-					LIMIT 0 , $limit
+					LIMIT $limit
 						";		
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
-				die('Ungültige Abfrage: ' . mysql_error());
+				die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 		else{
 			while($row = @mysql_fetch_object($result)){ 
 				if($row->type == "inv"){
@@ -98,10 +98,27 @@
 						'.'</b></font></div><hr style="background:white;clear:both;" />';
 				}else
 					if($row->type == "msg")
-						echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';
-				if($limit>0)
-					$count = $row->anzahl;	
+						echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';		
 			}
+			if($limit>0){
+				$sql = "SELECT COUNT(*) 
+						FROM (
+								SELECT notifID 
+								FROM notifications 
+								WHERE userToID = '$user' 
+									AND `read` = 0
+								LIMIT $limit
+								) 
+						AS tmp	
+							";
+				$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+				if (!$result)
+					die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+				else{
+					$row = mysql_fetch_row($result);
+					$count = $row[0];
+				}	
+			}		
 		}
 		if($showall == 1){
 			//Read
@@ -112,43 +129,50 @@
 						AND  notifications.`read` = 1 
 					ORDER BY notifications.date DESC
 						";
-			if($limit>0)
-				if(($limit - $count)>0)
+			if($limit>0){
+				$new_limit = $limit - $count;
+				if(($new_limit)>1)
 					$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
 							FROM  notifications, user
 							WHERE  userFromID = user.ID 
 								AND notifications.userToID = '$user' 
 								AND  notifications.`read` = 1 
 							ORDER BY notifications.date DESC
-							LIMIT 0 , $limit
-								";							
+							LIMIT $new_limit
+								";	
+				else
+					$sql = "SELECT * 
+							FROM notifications 
+							WHERE userFromID = -1
+								";			
+			}	
 			$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 			if (!$result)
-					die('Ungültige Abfrage: ' . mysql_error());
+					die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 			else{
-				while($row = @mysql_fetch_object($result)){ 
+				while($row = mysql_fetch_object($result)){ 
 					if($row->type == "inv"){
-						$url = $_SERVER['REQUEST_URI'];
+						//$url = $_SERVER['REQUEST_URI'];
 						$sql = "SELECT team 
 								FROM user 
 								WHERE ID = '$user' 
-								LIMIT 0 , 1
+								LIMIT 1
 									";
-						$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-						if (!$result)
-							die('Ungültige Abfrage: ' . mysql_error());
+						$tmp_result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+						if (!$tmp_result)
+							die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 						else{
-							$tmp_row1 = mysql_fetch_row($result);
+							$tmp_row1 = mysql_fetch_row($tmp_result);
 							$sql = "SELECT team 
 									FROM user
 									WHERE ID = '$row->userFromID'
-									LIMIT 0 , 1
+									LIMIT 1
 										";
-							$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-							if (!$result)
-								die('Ungültige Abfrage: ' . mysql_error());
+							$tmp_result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+							if (!$tmp_result)
+								die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 							else{
-								$tmp_row2 = mysql_fetch_row($result);
+								$tmp_row2 = mysql_fetch_row($tmp_result);
 								if($tmp_row1[0] == $tmp_row2[0])
 									$status = "- Angenommen -";
 								else
