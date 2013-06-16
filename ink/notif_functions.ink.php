@@ -235,7 +235,7 @@ function remFriendship($FriendshipID){
 				FROM friends
 				WHERE friendshipID = '$FriendshipID'
 						";
-		mysql_query($sql)) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		
 		return true; //erfolgreich gelöscht
 	}else{ 
