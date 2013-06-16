@@ -201,20 +201,38 @@ function addFriendship($User1, $User2){
 		$tmp_row2 = mysql_fetch_row($result);
 	
 	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
-		$sql = "INSERT INTO friends
-					(
-					user1,
-					user2
-					)
-				VALUES
-					(
-					'$User1',
-					'$User2'
-					)
+		$sql = "SELECT friendshipID
+				FROM friends
+				WHERE (user1 = '$User1' 
+						AND user2 = '$User2')
+					OR (user1 = '$User2'
+						AND user2 = '$User1')
 					";
-		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+		
+		if($row[0]==0){
+			// addNotif(...)
+			// folgendes --> process-notif => friend-invite 
+			$sql = "INSERT INTO friends
+						(
+						user1,
+						user2
+						)
+					VALUES
+						(
+						'$User1',
+						'$User2'
+						)
+						";
+			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
-		return true; //Freundschaft erfolgreich eingetragen	
+			return true; //Freundschaft erfolgreich eingetragen	// !eingeladen!
+		}else
+			return false; //sind bereits befreundet
 	}else
 		return false; //min. einer der User nicht vorhanden
 }
