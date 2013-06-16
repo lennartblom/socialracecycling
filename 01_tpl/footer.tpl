@@ -82,7 +82,7 @@
                         {$lastname}
                         
                         <div class="toolTipContent">        
-                            <h2 id="hovercard">{$name} {$lastname}</h2>   
+                            <h2 class="hovercard">{$name} {$lastname}</h2>   
                               <table cellpadding="0" cellspacing="0" border="1" id="information">
                                 <tr>
                                     <td class="title">
@@ -112,7 +112,52 @@
                               </table> 
                         </div>
                       </a></h1>
-                      <div id="tooltipContainer">...</div>
+                      
+                      
+                      <h1 class="footer-headline">
+                      <!--
+                      
+                      ±±±±±± keine Benachrichtitungen ±±±±±±
+                      
+                      <a href="#" class="tooltipLinknotif-none">
+                      	
+                        <span id="notif-counter">
+                         
+                        </span>
+                        
+                     -->
+                     
+                     <a href="#" class="tooltipLinknotif">
+                      
+                        <span id="notif-counter">
+                         25
+                        </span>
+                        
+                        <div class="toolTipContent">        
+                           <h2 class="hovercard"><span id="notification-box">25</span> Benachrichtigung(en)</h2>
+                            <div id="notification-overview">
+                            	<div class="notification-element">
+                                	<p><img src="images/notifications/new-activity.png" /> <span class="bold">Lennart Blom</span> hat irgendeine Mistaktivität eingetragen </p>
+                                </div>
+                                <div class="notification-element">
+                                	<p><img src="images/notifications/team-invite.png" /> <span class="bold">Lennart Blom</span> hat dich zum <span class="bold">Team Coffeeride</span> eingeladen</p>
+                                    
+                                    <ul id="notification-confirm">
+                                    	<li><img src="images/notifications/confirm.png" /> annehmen</li>
+                                        <li><img src="images/notifications/decline.png" /> ablehnen</li>
+                                    </ul>
+                                </div>
+                                <div class="notification-element">
+                                	<p>Digga du hast eine Benachrichtitung</p>
+                                </div>
+                                <div class="notification-element">
+                                	<p>Digga du hast eine Benachrichtitung</p>
+                                </div>
+                            </div>
+                        </div>
+                      </a></h1>
+                      <div class="tooltipContainer">...</div>
+                      
                       <hr id="logout-trenner" />
                       <a href="usercp.php" class="logout-link">Kontrollzentrum</a>
                       <a href="usercp-edit-profile.php" class="logout-link">Profil bearbeiten</a>

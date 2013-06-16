@@ -45,7 +45,7 @@ $(document).ready(function (){
         }
         $(".tooltipContainer").css("left", pos.left+rightLeftOffset);
     }
-    $(".tooltipLinknotif").each(function(){
+    $(".tooltipLink").each(function(){
         $(this).mouseover(function(){
             clearTimeout(tooltipTimeout);
             tooltipElement = this;

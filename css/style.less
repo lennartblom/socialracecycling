@@ -45,14 +45,14 @@ border : 0 none;
 	height: 0px;
 	width: 0px;
 }
-#tooltipContainer{
+.tooltipContainer{
 	width: 0px;
 	height: 0px;
 	display: none;
 	position: absolute;
 	background-image:url(../images/hovercard-background.png);
 	background-repeat:no-repeat;
-	margin-left:-210px;
+	margin-left:-235px;
 }
 
 h4#control-panel{
@@ -460,14 +460,30 @@ a.delete{
 
 	
 
-h2#hovercard {
+h2.hovercard {
 	font-family:Arial;
 	font-size:17px;
 	color:#0865c4;
 	margin-top:35px;
-	margin-left:-16spo0px;
+	margin-left:40px;
+	margin-bottom:0px;
+	padding-bottom:10px;
+	text-align:left;
+	display:block;
+	height:auto;
+	padding-bottom:0px;
+	width:250px;
 }
 
+
+
+h2.footer-notification{
+	margin:0px;
+	font-weight:bold;
+	font-size:14px;
+	font-family:Arial;
+	float:right;
+}
 table#information{
 	width:304px;
 	height:80px;
@@ -526,6 +542,8 @@ hr#logout-trenner{
 	height:2px;
 	margin-top:-7px;
 	margin-bottom:-1px;
+	float:left;
+	margin-left:12px;
 }
 
 
@@ -1035,25 +1053,145 @@ a.tooltipLink {
 	color:#3378c5;
 	text-decoration:none;
 	display:block;
-	width:122px;
+	width:72px;
 	height:50px;
+	float:left;
 }
 
-a.logout-link {
-	margin-top:0px;
-	font-weight:normal;
-	font-size:12px;
+a.tooltipLinknotif{
+	margin:0px;
+	margin-top:-10px;
+	font-weight:bold;
+	font-size:14px;
 	font-family:Arial;
 	color:#3378c5;
 	text-decoration:none;
+	background-image:url(../images/notifications/notification-bg.png);
+	background-repeat:no-repeat;
 	display:block;
-	width:103px;
-	height:21px;
-	margin-left:10px;
-	padding-left:15px;
-	padding-top:7px;
-	text-align:left;
-	vertical-align:central;
+	width:50px;
+	height:50px;
+	float:right;
+}
+
+#hovercard-headline{
+	float:left;
+	margin:0px;
+}
+
+span#notification-box{
+	height:13px;
+	padding-top:2px;
+	width:25px;
+	display:block;
+	background-color: #ec3e14;
+	border: 2px solid transparent;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	text-align:center;
+	color:#fff;
+	float:left;
+	font-size:11px;
+	font-weight:normal;
+	text-family:Arial;
+	margin-right:3px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+	
+}
+
+a.tooltipLinknotif-none{
+	margin:0px;
+	margin-top:-10px;
+	font-weight:bold;
+	font-size:14px;
+	font-family:Arial;
+	color:#3378c5;
+	text-decoration:none;
+	background-image:url(../images/notifications/nonotification-bg.png);
+	background-repeat:no-repeat;
+	display:block;
+	width:50px;
+	height:50px;
+	float:right;
+}
+
+span#notif-counter{
+	color:#FFF;
+	font-family: Arial;
+	font-size:10px;
+	font-weight:300;
+	text-align:center;
+	display:block;
+	height:15px;
+	margin-top:5px;
+	width:38px;
+}
+
+div#notification-overview{
+	display:block;
+	margin-left:36px;
+	margin-right:40px;
+	height:90px;
+	width:315px;
+	overflow:scroll;
+	padding-bottom:15px;
+}
+
+div.notification-element{
+	width:290px;
+	height:auto;
+	min-height:35px;
+	border-bottom:#d9d9d9 thin dashed;	
+	margin:0px;
+	margin-left:auto;
+	margin-right:auto;
+	color:#626262;
+	font-family:Proxima Nova;
+	font-size:12px;
+	padding:5px;
+}
+
+div.notification-element:hover{
+	background-color:#f4f9ff;
+}
+
+ul#notification-confirm{
+	display:block;
+	height:15px;
+	width:auto;
+	list-style:none;	
+	margin:0px;
+	padding:0px;
+	padding-bottom:5px;
+}
+
+ul#notification-confirm li{
+	float:left;
+	margin-right:5px;
+}
+
+div.notification-element p{
+	margin:0px;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+a.logout-link {
+	color: #3378C5;
+    display: block;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    height: 21px;
+    margin-left: 10px;
+    margin-top: 0;
+    padding-left: 15px;
+    padding-top: 7px;
+    text-align: left;
+    text-decoration: none;
+    width: 103px;
 }
 
 a.logout-link:hover{
