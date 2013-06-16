@@ -52,7 +52,7 @@ function RelativesDatum($Datum)
         }
         elseif($Zeitstempel <= strtotime("+2 day"))
         {
-            return "übermorgen";
+            return "&uuml;bermorgen";
         }
         elseif($Zeitstempel <= time()+120*86400)
         {
@@ -278,7 +278,7 @@ function SendMessage($absender, $empfaenger, $betreff, $inhalt){
 	
 	$num	=	mysql_affected_rows();
 	if($num>0){
-		$return="Es wurde ein Datensatz hinzugefügt";
+		$return="Es wurde ein Datensatz hinzugef&uuml;gt";
 	} else {
 		$return="Es ist irgendetwas schief gelaufen";
 	}
