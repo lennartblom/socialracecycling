@@ -1,10 +1,3 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/notif.css"/> <!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/notif.js"></script>
-</head>
-<body>
 <?php
 	require_once('ink/functions.ink.php');
 	require_once('ink/global.php');
@@ -37,34 +30,6 @@
 		else
 			$url= "../";		
 		
-		/*
-		echo Counter?!
-		*/
-		
-		//Counter
-		$sql = "SELECT COUNT(*)
-				FROM notifications
-				WHERE userToID = '$user' 
-					AND `read` = 0
-					";
-		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-		if (!$result)
-				die('Ung&uuml;ltige Abfrage: ' . mysql_error());
-		else{
-			$row = mysql_fetch_row($result);
-			if($row[0]>0)
-				echo '<div id="notif" style="height:125;width:85;">
-					<br/><br/><br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<b><font color="#FFFFFF">'.$row[0].'</font></b></div>';
-			else	
-				echo '<div id="notif" style="height:125;width:85;">
-					<br/><br/><br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<font color="#FFFFFF">0</font></div>';
-		}		
-		
-		echo '<div id="notif_display" >';
-		
-		//Anzeige
 		//Unread
 		$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
 				FROM  notifications, user 
@@ -88,18 +53,29 @@
 		else{
 			while($row = @mysql_fetch_object($result)){ 
 				if($row->type == "inv"){
-					//$url = $_SERVER['REQUEST_URI']; // parameter setzen
-					echo '<div class="notif_inv"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>
+					
+					/*echo '<div class="notif_inv"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>
 						<div style="margin-left:30;height:30px;width:120px;float:left;">
 						<form action="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'" method="post"><input name="accept_team" value="Annehmen" style="display:block;width:100;" type="submit" /></form>
 						</div>
 						<div style="height:30px;width:120px;float:left;">
 						<form action="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'" method="post"><input name="decline_team" value="Ablehnen" style="display:block;width:100;" type="submit" /></form>
 						</div>
-						'.'</b></font></div><hr style="background:white;clear:both;" />';
+						'.'</b></font></div><hr style="background:white;clear:both;" />';*/
+						
+					echo '<div class="notification-element">
+							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span>'.$row->content.'</p>
+							<ul id="notification-confirm">
+							<li><a href="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'"><img src="images/notifications/confirm.png" /> annehmen</a></li>
+							<li><a href="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'"><img src="images/notifications/decline.png" /> ablehnen</a></li>
+							</ul>
+							</div>';	
 				}else
 					if($row->type == "msg")
-						echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';		
+					
+						//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';		
+						
+						echo '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p><img src="images/notifications/new-activity.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span><br/>'.$row->content.'</p></div>';
 			}
 			if($limit>0){
 				$sql = "SELECT COUNT(*) 
@@ -153,7 +129,6 @@
 			else{
 				while($row = mysql_fetch_object($result)){ 
 					if($row->type == "inv"){
-						//$url = $_SERVER['REQUEST_URI'];
 						$sql = "SELECT team 
 								FROM user 
 								WHERE ID = '$user' 
@@ -180,11 +155,22 @@
 									$status = "- Abgelehnt -";
 							}	
 						}					
-						echo '<div class="notif_inv"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>'.
-							$status.'</font></div><hr style="background:white;clear:both;" />';	
+						
+						/*echo '<div class="notif_inv"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>'.
+							$status.'</font></div><hr style="background:white;clear:both;" />';*/
+						
+						echo '<div class="notification-element">
+							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p>
+							<ul id="notification-confirm">
+							<li> '.$status.' </li>
+							</ul>
+							</div>';
 					}else
 						if($row->type == "msg")
-							echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
+						
+							//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
+						
+							echo '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p></div>';
 				}
 			}
 		}	
@@ -194,5 +180,3 @@
 		echo "Nicht eingeloggt"; // || BLANK
 	}
 ?>
-</body>
-</html>

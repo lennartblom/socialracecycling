@@ -215,6 +215,7 @@ function addFriendship($User1, $User2){
 			$row = mysql_fetch_row($result);
 		
 		if($row[0]==0){
+		 // immer true
 			// addNotif(...)
 			// folgendes --> process-notif => friend-invite 
 			$sql = "INSERT INTO friends

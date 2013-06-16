@@ -128,31 +128,37 @@
                      -->
                      
                      <a href="#" class="tooltipLinknotif">
-                      
+					 
+<!-- TIMER -->                     
+					 
+						<script>
+							$.ajax({
+								url: "../notif_counter.php",
+								data: "user=29",
+								success: function(data){
+									$("#notif-counter").append(data);
+									}
+							});
+						</script>
+					  
                         <span id="notif-counter">
-                         25
+							<!-- AJAX -->
                         </span>
                         
+						<script>
+							$.ajax({
+								url: "../notif_display.php",
+								data: "user=29&showall",
+								success: function(data){
+									$("#notification-overview").append(data);
+									}
+							});
+						</script>
+						
                         <div class="toolTipContent">        
                            <h2 class="hovercard"><span id="notification-box">25</span> Benachrichtigung(en)</h2>
                             <div id="notification-overview">
-                            	<div class="notification-element">
-                                	<p><img src="images/notifications/new-activity.png" /> <span class="bold">Lennart Blom</span> hat irgendeine Mistaktivität eingetragen </p>
-                                </div>
-                                <div class="notification-element">
-                                	<p><img src="images/notifications/team-invite.png" /> <span class="bold">Lennart Blom</span> hat dich zum <span class="bold">Team Coffeeride</span> eingeladen</p>
-                                    
-                                    <ul id="notification-confirm">
-                                    	<li><img src="images/notifications/confirm.png" /> annehmen</li>
-                                        <li><img src="images/notifications/decline.png" /> ablehnen</li>
-                                    </ul>
-                                </div>
-                                <div class="notification-element">
-                                	<p>Digga du hast eine Benachrichtitung</p>
-                                </div>
-                                <div class="notification-element">
-                                	<p>Digga du hast eine Benachrichtitung</p>
-                                </div>
+                            	<!-- AJAX -->
                             </div>
                         </div>
                       </a></h1>

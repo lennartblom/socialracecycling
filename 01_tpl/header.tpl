@@ -56,7 +56,7 @@
 		<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/JSToolTinotifs.js"></script>
         <script type="text/javascript" src="js/JSToolTip.js"></script>
-        <script type="text/javascript" src="jqPlot/jquery.jqplot.js"></script>
+        <script type="text/javascript" src="jqPlot/jquery.jqplot.js"></script>	
      {/if}
         
         
