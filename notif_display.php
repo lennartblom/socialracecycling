@@ -19,10 +19,11 @@
 		$user = $_GET['user'];
 		
 		if(isset($_GET['showall'])){
-			if($_GET['showall']>1)
-				$showall = 1;
-			else	
-				$showall = $_GET['showall'];
+			$showall = 1;
+			/*
+			if($_GET['showall']<<1)
+				$showall = 0;
+			*/
 		}else
 			$showall = 0;
 			
