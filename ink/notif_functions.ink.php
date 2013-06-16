@@ -57,9 +57,9 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 								";
 					mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 					
-					return true;
+					return true; //User erfolgreich eingeladen
 				}else
-					return false;
+					return false; //User ist bereits in einem Team
 			}
 		}else{
 			if($Type = "msg"){
@@ -118,7 +118,7 @@ function joinTeam($User, $TeamLead, $TeamID){
 					$sql = "SELECT team 
 							FROM user 
 							WHERE ID = '$User' 
-							LIMIT 0 , 1
+							LIMIT 1
 								";
 					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 					if (!$result)
@@ -132,12 +132,12 @@ function joinTeam($User, $TeamLead, $TeamID){
 									";
 						mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 						
-						return true;
+						return true; //Team erfolgreich beigetreten
 					}else
-						return false;	
+						return false; //User ist bereits in einen Team
 				}
 			}else
-				return false;
+				return false; //Keine TeamLead angegeben
 		}else{
 			$sql = "
 					SELECT COUNT(*) 
@@ -154,7 +154,7 @@ function joinTeam($User, $TeamLead, $TeamID){
 				$sql = "SELECT team 
 						FROM user 
 						WHERE ID = '$User' 
-						LIMIT 0 , 1
+						LIMIT 1
 							";
 				$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 				if (!$result)
@@ -168,12 +168,12 @@ function joinTeam($User, $TeamLead, $TeamID){
 									";
 						mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 						
-						return true;
+						return true; //Team erfolgreich beigetreten
 					}else
-						return false;
+						return false; //TeamLead nicht vorhanden
 				}		
 			}else
-				return false;
+				return false; //Team nicht vorhanden
 		}
 	}else
 		return false; //User nicht vorhanden
@@ -214,23 +214,76 @@ function addFriendship($User1, $User2){
 					";
 		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 
-		return true;	
+		return true; //Freundschaft erfolgreich eingetragen	
 	}else
 		return false; //min. einer der User nicht vorhanden
 }
 
 function remFriendship($FriendshipID){
-	$sql = "DELETE 
+	$sql = "SELECT friendshipID 
 			FROM friends
 			WHERE friendshipID = '$FriendshipID'
-					";
-	if(mysql_query($sql))
-		return true;
-	else{ 
-		die("<pre>\n".$sql."</pre>\n".mysql_error());
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_row($result);
+	
+	if($row[0]>0){
+		$sql = "DELETE 
+				FROM friends
+				WHERE friendshipID = '$FriendshipID'
+						";
+		mysql_query($sql)) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		
+		return true; //erfolgreich gelöscht
+	}else{ 
 		return false; //existiert nicht
 	}
+}
+
+function areFriends($User1, $User2){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User1'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row1 = mysql_fetch_row($result);
+		
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User2'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row2 = mysql_fetch_row($result);
+	
+	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
+		$sql = "SELECT *
+				FROM friends
+				WHERE (user1 = '$User1'
+						AND user2 = '$USer2')
+					OR (user1 = '$User2'
+						AND user2 = '$User1')	
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else{
+			$row = mysql_fetch_row($result);
+			if($row[0]>0)
+				return true; //befreundet
+			else
+				return false; //nicht befreundet
+		}	
+	}else
+		return false; //min. einer der User nicht vorhanden
 }
 
 //...
