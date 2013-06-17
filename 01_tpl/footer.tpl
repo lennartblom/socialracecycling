@@ -130,16 +130,28 @@
                      <a href="#" class="tooltipLinknotif">
 					 
 <!-- TIMER & SESSION-->                     
-						<script>
-							ID = "<?php echo $_SESSION['userID']; ?>";
+						<script>		
+							var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
 							$.ajax({
 								url: "../notif_counter.php",
-								data: "user=".ID,
+								data: "user="+ID,
 								success: function(data){
-									$("#notif-counter").append(data);
-									$("#notification-box").append(data);
+									$("#notif-counter").html(data);
+									$("#notification-box").html(data);
 									}
 							});
+							function callNotifCounter(){
+								var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
+								$.ajax({
+									url: "../notif_counter.php",
+									data: "user="+ID,
+									success: function(data){
+										$("#notif-counter").html(data);
+										$("#notification-box").html(data);
+										}
+								});
+							}
+							var timer_counter = window.setInterval(callNotifCounter,10000);
 						</script>
 
                         <span id="notif-counter">
@@ -147,15 +159,27 @@
                         </span>
                         
 						<script>
-							ID = "<?php echo $_SESSION['userID']; ?>";
-							link = "<?php echo $_SERVER['REQUEST_URI']; ?>";
+							var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
+							var link = '../';//'<?php echo $_SERVER['REQUEST_URI']; ?>';
 							$.ajax({
 								url: "../notif_display.php",
-								data: "user=".."&url=".link.",
+								data: "user="+ID+"&url="+link,
 								success: function(data){
-									$("#notification-overview").append(data);
+									$("#notification-overview").html(data);
 									}
 							});
+							function callNotifDisplay(){
+								var ID = '29';//'<?php echo json_encode($_SESSION['userID']); ?>';
+								var link = '../';//'<?php echo json_encode($_SERVER['REQUEST_URI']); ?>';
+								$.ajax({
+									url: "../notif_display.php",
+									data: "user="+ID+"&url="+link,
+									success: function(data){
+										$("#notification-overview").html(data);
+										}
+								});
+							}
+							var timer_display = window.setInterval(callNotifDisplay,10000);
 						</script>
 						
                         <div class="toolTipContent">        
