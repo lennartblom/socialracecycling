@@ -129,26 +129,29 @@
                      
                      <a href="#" class="tooltipLinknotif">
 					 
-<!-- TIMER -->                     
-					 
+<!-- TIMER & SESSION-->                     
 						<script>
+							ID = "<?php echo $_SESSION['userID']; ?>";
 							$.ajax({
 								url: "../notif_counter.php",
-								data: "user=29",
+								data: "user=".ID,
 								success: function(data){
 									$("#notif-counter").append(data);
+									$("#notification-box").append(data);
 									}
 							});
 						</script>
-					  
+
                         <span id="notif-counter">
 							<!-- AJAX -->
                         </span>
                         
 						<script>
+							ID = "<?php echo $_SESSION['userID']; ?>";
+							link = "<?php echo $_SERVER['REQUEST_URI']; ?>";
 							$.ajax({
 								url: "../notif_display.php",
-								data: "user=29&showall",
+								data: "user=".."&url=".link.",
 								success: function(data){
 									$("#notification-overview").append(data);
 									}
@@ -156,7 +159,7 @@
 						</script>
 						
                         <div class="toolTipContent">        
-                           <h2 class="hovercard"><span id="notification-box">25</span> Benachrichtigung(en)</h2>
+                           <h2 class="hovercard"><span id="notification-box"><!-- AJAX --></span> Benachrichtigung(en)</h2>
                             <div id="notification-overview">
                             	<!-- AJAX -->
                             </div>
