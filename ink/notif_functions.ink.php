@@ -43,7 +43,8 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 								type,				
 								`read`,
 								link,
-								content
+								content,
+								confirm
 								)
 							VALUES
 								(
@@ -52,7 +53,8 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 								'$Type',
 								'0',
 								'$Link',
-								'$Content'
+								'$Content',
+								'0'
 								)
 								";
 					mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
@@ -179,7 +181,36 @@ function joinTeam($User, $TeamLead, $TeamID){
 		return false; //User nicht vorhanden
 }
 
-function addFriendship($User1, $User2){
+function inTeam($User){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_row($result);
+	if($row[0]>0){
+		$sql = "SELECT team
+				FROM user
+				WHERE ID = '$User'
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);	
+		if($row[0]>0)
+			return true; //User ist in einem Team
+		else
+			return false; //User ist in keinem Team
+	}else
+		return false; //User nicht vorhanden
+}
+
+function inSameTeam($User1, $User2){
 	$sql = "SELECT ID 
 			FROM user 
 			WHERE ID = '$User1'
@@ -201,71 +232,69 @@ function addFriendship($User1, $User2){
 		$tmp_row2 = mysql_fetch_row($result);
 	
 	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
-		$sql = "SELECT friendshipID
-				FROM friends
-				WHERE (user1 = '$User1' 
-						AND user2 = '$User2')
-					OR (user1 = '$User2'
-						AND user2 = '$User1')
+		$sql = "SELECT team
+				FROM user
+				WHERE ID = '$User1'
 					";
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
 			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 		else
-			$row = mysql_fetch_row($result);
-		
-		if($row[0]==0){
-		 // immer true
-			// addNotif(...)
-			// folgendes --> process-notif => friend-invite 
-			$sql = "INSERT INTO friends
-						(
-						user1,
-						user2
-						)
-					VALUES
-						(
-						'$User1',
-						'$User2'
-						)
-						";
-			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+			$tmp_row1 = mysql_fetch_row($result);
 
-			return true; //Freundschaft erfolgreich eingetragen	// !eingeladen!
-		}else
-			return false; //sind bereits befreundet
+		$sql = "SELECT team
+				FROM user
+				WHERE ID = '$User2'
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$tmp_row2 = mysql_fetch_row($result);
+
+		if($tmp_row1[0]==$tmp_row2[0])
+			return true; //im selben Team
+		else
+			return false; //nicht im selben Team
 	}else
 		return false; //min. einer der User nicht vorhanden
 }
 
-function remFriendship($FriendshipID){
-	$sql = "SELECT friendshipID 
-			FROM friends
-			WHERE friendshipID = '$FriendshipID'
+function getTeamByUser($User){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User'
 				";
 	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 	if (!$result)
 		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 	else
 		$row = mysql_fetch_row($result);
-	
 	if($row[0]>0){
-		$sql = "DELETE 
-				FROM friends
-				WHERE friendshipID = '$FriendshipID'
-						";
-		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-		
-		return true; //erfolgreich gelöscht
-	}else{ 
-		return false; //existiert nicht
-	}
+		$sql = "SELECT team
+				FROM user
+				WHERE ID = '$User'
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+		if($row[0]>0)	
+			$team = $row[0];
+		else
+			$team = 0;
+			
+		return $team;	
+	}else
+		return -1;
 }
 
-function areFriends($User1, $User2){
+function follow($User, $FollowUser){
 	$sql = "SELECT ID 
 			FROM user 
-			WHERE ID = '$User1'
+			WHERE ID = '$User'
 				";
 	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 	if (!$result)
@@ -275,7 +304,111 @@ function areFriends($User1, $User2){
 		
 	$sql = "SELECT ID 
 			FROM user 
-			WHERE ID = '$User2'
+			WHERE ID = '$FollowUser'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row2 = mysql_fetch_row($result);
+	
+	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
+		$sql = "SELECT followID
+				FROM follow
+				WHERE userID = '$User' 
+					AND followUserID = '$FollowUser'
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+		
+		if($row[0]==0){
+			$sql = "INSERT INTO follow
+						(
+						userID,
+						followUserID
+						)
+					VALUES
+						(
+						'$User',
+						'$FollowUser'
+						)
+						";
+			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+			addNotif($User, $FollowUser, 'msg', 'usercp-profile_information.php?UserID='.$User, 'folgt dir jetzt auf SRC');
+
+			return true; //Follow erfolgreich eingetragen //User folgt jetzt followUser
+		}else
+			return false; //User folgt followUser bereits
+	}else
+		return false; //min. einer der User nicht vorhanden
+}
+
+function unFollow($User, $FollowUser){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row1 = mysql_fetch_row($result);
+		
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$FollowUser'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row2 = mysql_fetch_row($result);
+	
+	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
+		$sql = "SELECT followID
+				FROM follow
+				WHERE userID = '$User' 
+					AND followUserID = '$FollowUser'
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+
+		if($row[0]>0){
+			$sql = "DELETE 
+				FROM follow
+				WHERE followID = '$row[0]'
+						";
+			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+			addNotif($User, $FollowUser, 'msg', 'usercp-profile_information.php?UserID='.$User, 'folgt dir nicht mehr auf SRC');
+			
+			return true; //Follow erfolgreich gelöscht //User folgt followUser nicht mehr
+		}else{ 
+			return false; //User folgt nicht followUser
+		}
+	}else
+		return false; //min. einer der User nicht vorhanden
+}
+
+function doesFollow($User, $FollowUser){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row1 = mysql_fetch_row($result);
+		
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$FollowUser'
 				";
 	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 	if (!$result)
@@ -285,11 +418,9 @@ function areFriends($User1, $User2){
 	
 	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
 		$sql = "SELECT *
-				FROM friends
-				WHERE (user1 = '$User1'
-						AND user2 = '$USer2')
-					OR (user1 = '$User2'
-						AND user2 = '$User1')	
+				FROM follow
+				WHERE userID = '$User'
+					AND followUserID = '$FollowUser'	
 					";
 		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 		if (!$result)
@@ -297,9 +428,9 @@ function areFriends($User1, $User2){
 		else{
 			$row = mysql_fetch_row($result);
 			if($row[0]>0)
-				return true; //befreundet
+				return true; //User folgt followUser
 			else
-				return false; //nicht befreundet
+				return false; //User folgt nicht followUser
 		}	
 	}else
 		return false; //min. einer der User nicht vorhanden

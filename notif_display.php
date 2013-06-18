@@ -62,20 +62,24 @@
 						<form action="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'" method="post"><input name="decline_team" value="Ablehnen" style="display:block;width:100;" type="submit" /></form>
 						</div>
 						'.'</b></font></div><hr style="background:white;clear:both;" />';*/
-						
-					echo '<div class="notification-element">
-							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span>'.$row->content.'</p>
+					
+					$inv = '<div class="notification-element">
+							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p>
 							<ul id="notification-confirm">
 							<li><a href="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'"><img src="images/notifications/confirm.png" /> annehmen</a></li>
 							<li><a href="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'"><img src="images/notifications/decline.png" /> ablehnen</a></li>
 							</ul>
 							</div>';	
+					echo $inv;	
 				}else
-					if($row->type == "msg")
-					
+					if($row->type == "msg"){
 						//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';		
 						
-						echo '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p><img src="images/notifications/new-activity.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span><br/>'.$row->content.'</p></div>';
+						$msg = '<div class="notification-element" onclick="';
+						$msg .= "location.href='process-notif.php?url=".$row->link."&n=".$row->notifID."'";
+						$msg .= ';" style="cursor:pointer;"><p><img src="images/notifications/new-activity.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p></div>';
+						echo $msg;
+					}	
 			}
 			if($limit>0){
 				$sql = "SELECT COUNT(*) 
@@ -129,51 +133,50 @@
 			else{
 				while($row = mysql_fetch_object($result)){ 
 					if($row->type == "inv"){
-						$sql = "SELECT team 
-								FROM user 
-								WHERE ID = '$user' 
+						$sql = "SELECT confirm 
+								FROM notifications
+								WHERE userToID = '$user' AND type = 'inv' AND notifID = '$row->notifID'
 								LIMIT 1
 									";
 						$tmp_result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 						if (!$tmp_result)
 							die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 						else{
-							$tmp_row1 = mysql_fetch_row($tmp_result);
-							$sql = "SELECT team 
-									FROM user
-									WHERE ID = '$row->userFromID'
-									LIMIT 1
-										";
-							$tmp_result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-							if (!$tmp_result)
-								die('Ung&uuml;ltige Abfrage: ' . mysql_error());
-							else{
-								$tmp_row2 = mysql_fetch_row($tmp_result);
-								if($tmp_row1[0] == $tmp_row2[0])
+							$tmp_row = mysql_fetch_row($tmp_result);
+							echo $tmp_row[0];
+							if($tmp_row[0] == 2){
 									$status = "- Angenommen -";
-								else
+									$status_img = '<img src="images/notifications/confirm.png" />'; 
+							}else
+								if($tmp_row[0] == 1){
 									$status = "- Abgelehnt -";
-							}	
+									$status_img = '<img src="images/notifications/decline.png" />';
+								}else{
+									$status = "";
+									$status_img = "";
+								}	
 						}					
-						
 						/*echo '<div class="notif_inv"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>'.
 							$status.'</font></div><hr style="background:white;clear:both;" />';*/
 						
-						echo '<div class="notification-element">
-							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p>
-							<ul id="notification-confirm">
-							<li> '.$status.' </li>
-							</ul>
-							</div>';
+						$inv = '<div class="notification-element">
+								<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.' '.$row->content.'</p>
+								<ul id="notification-confirm">
+								<li> '.$status_img.' '.$status.' </li>
+								</ul>
+								</div>';
+						echo $inv;	
 					}else
-						if($row->type == "msg")
-						
+						if($row->type == "msg"){
 							//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
 						
-							echo '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p></div>';
+							$msg = '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p></div>';
+							echo $msg;
+						}		
 				}
 			}
 		}	
+	echo '<div id="notif-showall" align="center"><a rel="lightbox" title="Alle Benachrichtigungen anzeigen" href="notifications.php">Alle anzeigen</a></div>';	
 	echo '</div>';				
 	}
 	else{

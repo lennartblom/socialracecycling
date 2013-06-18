@@ -43,29 +43,28 @@ if($row[0]=="inv"){
 		else
 			$tmp_row = mysql_fetch_object($result);			
 		if(joinTeam($tmp_row->userToID, $tmp_row->userFromID, "")){
-			echo '<html><head><meta http-equiv="refresh" content="3; URL='.$link.'" /></head><body>
-				<img style="float:right;margin-right:100px;" src="images/haeckchen.jpg" alt="Häckchen nach dem Beitritt eines Teams" width="200" height="200">
-				<h3>Team-Beitritt war erfolgreich!</h3>
-				<div style="margin-left:110px;margin-bottom:50px;" id="errorbox-green">
-				<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Sie sind erfolgreich einem Team beigetreten!</p>
-				</div>
-				</body></html>';
+			$join = '<html><head><meta http-equiv="refresh" content="3; URL='.$link.'" /></head><body>';
+			//Template !--
+			$join .= '<img style="float:right;margin-right:100px;" src="images/haeckchen.jpg" alt="Häckchen nach dem Beitritt eines Teams" width="200" height="200">
+						<h3>Team-Beitritt war erfolgreich!</h3>
+						<div style="margin-left:110px;margin-bottom:50px;" id="errorbox-green">
+						<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Sie sind erfolgreich einem Team beigetreten!</p>
+						</div>';
+			//--! Template			
+			$join .= '</body></html>';
+			echo $join;
+			
 			$sql = "UPDATE notifications 
-					SET `read` = 1 
+					SET `read` = 1, confirm = 2
 					WHERE notifID = '$notifID'
 						";
 			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());	
 		}else
-			echo '<html><head><meta http-equiv="refresh" content="3; URL='.$link.'" /></head><body>
-				<h3>Team-Beitritt fehlgeschlagen!</h3>
-				<div style="margin-left:110px;margin-bottom:50px;" id="errorbox-red">
-				<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Sie wurden keinem Team zugewiesen, da ein Fehler aufgetreten ist!</p>
-				</div>
-				</body></html>';
+			echo 'Es ist ein Fehler aufgetreten';
 	}else{
 		if($state == "dec"){
 			$sql = "UPDATE notifications 
-					SET `read` = 1 
+					SET `read` = 1, confirm = 1
 					WHERE notifID = '$notifID'
 						";
 			mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());

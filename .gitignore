@@ -7,5 +7,6 @@ db.ink.php
 *.php.php
 *.css.php
 *.js.php
+*.db
 # Dir #
 dir_to_ignore/templates_c/

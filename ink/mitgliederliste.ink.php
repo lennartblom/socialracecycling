@@ -66,7 +66,13 @@ $row = mysql_fetch_assoc($result);
 	
 	
 		$users[$i]  ="<td class=\"$libackground\"><a href=\"usercp-profile_information.php?UserID=".$dsatz['ID']."\"><img src=\"images/profile/contacts-icon.png\" title=\"Profil betrachten\" /></a></td>\n";
-		$users[$i] .="<td class=\"$libackground\"><a href=\"javascript:alert('In Arbeit... :-)')\"><img src=\"images/profile/user-add-icon.png\" title=\"folge den Benutzer und werde sein Freund\" /></a></td>\n";
+		
+		if(doesFollow($_SESSION['UserID'], $dsatz['ID']))
+			$button = "<a href=\"unfollow_user.php?user=".$_SESSION['UserID']."&unfollow=".$dsatz['ID']."&url=".$_SERVER['REQUEST_URI']."\"><img src=\"images/profile/user-rem-icon.png\" title=\"folge dem Benutzer nicht mehr\" /></a>";
+		else
+			$button = "<a href=\"follow_user.php?user=".$_SESSION['UserID']."&follow=".$dsatz['ID']."&url=".$_SERVER['REQUEST_URI']."\"><img src=\"images/profile/user-add-icon.png\" title=\"folge dem Benutzer und werde sein Freund\" /></a>";
+		
+		$users[$i] .="<td class=\"$libackground\">".$button."</td>\n";
 		$users[$i] .="<td class=\"$libackground\">".$dsatz['Name']."</td>\n";
 		$users[$i] .="	<td class=\"$libackground\">".$dsatz['Lastname']."</td>\n";
 		$users[$i] .="	<td class=\"$libackground\">".DatumsWandler($dsatz['Registrierungsdatum'])."</td>\n";
@@ -83,7 +89,23 @@ $row = mysql_fetch_assoc($result);
 		$users[$i] .="</td>\n";
 		
 		$users[$i] .="<td class=\"$libackground\">".$dsatz['country']."</td>\n";	
-		$users[$i] .="<td class=\"$libackground\"><a href=\"javascript:alert('In Arbeit... :-)')\"><img src=\"images/profile/group-add-icon.png\" title=\"zum Team hinzufügen\" /></a></td>\n";
+
+		if(inTeam($_SESSION['UserID'])){
+			if(inTeam($dsatz['ID'])){
+				if(inSameTeam($_SESSION['UserID'], $dsatz['ID'])){
+					$team_button = "<a href=\"usercp-teams.php\"><img src=\"images/profile/group-change-icon.png\" title=\"zur Teamverwaltung\" /></a>";
+				}else
+					if(getTeamByUser($dsatz['ID'])>0)
+						$team_button = "<a href=\"usercp-team_information.php?team=".getTeamByUser($dsatz['ID'])."\"><img src=\"images/profile/group-view-icon.png\" title=\"Team ansehen\" /></a>";
+					else
+						echo "Es ist ein Fehler aufgetreten";
+						
+			}else
+				$team_button = "<a href=\"team_invite.php?user=".$_SESSION['UserID']."&invite=".$dsatz['ID']."&url=".$_SERVER['REQUEST_URI']."\"><img src=\"images/profile/group-add-icon.png\" title=\"zum Team hinzufügen\" /></a>";
+		}else
+			$team_button = "<a href=\"#\"><img src=\"images/profile/group-new-icon.png\" title=\"Teams durchstöbern\" /></a>";
+		
+		$users[$i] .="<td class=\"$libackground\">".$team_button."</td>\n";
 		 
 }
 

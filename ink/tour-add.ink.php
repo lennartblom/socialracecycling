@@ -113,6 +113,8 @@ if(isset($_POST['abschicken']) AND $_POST['abschicken']=='Tourdaten abschicken')
 						  require_once('ink/footer_data.ink.php');
 						  
 						  $tpl->display('01_tpl/internal/tour-add-success.tpl');
+						  
+						  require_once('ink/addNotif-Tour.ink.php');
 							
 						  if(($_SESSION['UserID'] <> 22) AND ($_SESSION['UserID'] <> 25)AND ($_SESSION['UserID'] <> 70)){
 			

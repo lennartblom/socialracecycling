@@ -128,27 +128,26 @@
                      -->
                      
                      <a href="#" class="tooltipLinknotif">
-					 
-<!-- TIMER & SESSION-->                     
+					                  
 						<script>		
-							var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
+							var ID = {$curUser};
 							$.ajax({
 								url: "../notif_counter.php",
 								data: "user="+ID,
 								success: function(data){
-									$("#notif-counter").html(data);
-									$("#notification-box").html(data);
-									}
+											$("#notif-counter").html(data);
+											$("#notification-box").html(data);
+										}
 							});
 							function callNotifCounter(){
-								var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
+								var ID = {$curUser};
 								$.ajax({
 									url: "../notif_counter.php",
 									data: "user="+ID,
 									success: function(data){
-										$("#notif-counter").html(data);
-										$("#notification-box").html(data);
-										}
+												$("#notif-counter").html(data);
+												$("#notification-box").html(data);
+											}
 								});
 							}
 							var timer_counter = window.setInterval(callNotifCounter,10000);
@@ -158,28 +157,28 @@
 							<!-- AJAX -->
                         </span>
                         
-						<script>
-							var ID = '29';//'<?php echo $_SESSION['userID']; ?>';
-							var link = '../';//'<?php echo $_SERVER['REQUEST_URI']; ?>';
+						<script>		
+							var ID = {$curUser};
+							var link = document.URL;
 							$.ajax({
-								url: "../notif_display.php",
-								data: "user="+ID+"&url="+link,
-								success: function(data){
-									$("#notification-overview").html(data);
-									}
-							});
+									url: "../notif_display.php",
+									data: "user="+ID+"&url="+link,
+									success: function(data){
+												$("#notification-overview").html(data);
+											}
+								});
 							function callNotifDisplay(){
-								var ID = '29';//'<?php echo json_encode($_SESSION['userID']); ?>';
-								var link = '../';//'<?php echo json_encode($_SERVER['REQUEST_URI']); ?>';
+								var ID = {$curUser};
+								var link = document.URL;
 								$.ajax({
 									url: "../notif_display.php",
 									data: "user="+ID+"&url="+link,
 									success: function(data){
-										$("#notification-overview").html(data);
-										}
+												$("#notification-overview").html(data);
+											}
 								});
 							}
-							var timer_display = window.setInterval(callNotifDisplay,10000);
+							var timer_display= window.setInterval(callNotifDisplay,10000);
 						</script>
 						
                         <div class="toolTipContent">        
