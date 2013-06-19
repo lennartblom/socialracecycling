@@ -150,7 +150,7 @@
 											}
 								});
 							}
-							var timer_counter = window.setInterval(callNotifCounter,10000);
+							var timer_counter = window.setInterval(callNotifCounter,5000);
 						</script>
 
                         <span id="notif-counter">
@@ -178,7 +178,7 @@
 											}
 								});
 							}
-							var timer_display= window.setInterval(callNotifDisplay,10000);
+							var timer_display= window.setInterval(callNotifDisplay,5000);
 						</script>
 						
                         <div class="toolTipContent">        
