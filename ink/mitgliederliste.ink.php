@@ -93,15 +93,21 @@ $row = mysql_fetch_assoc($result);
 		if(inTeam($_SESSION['UserID'])){
 			if(inTeam($dsatz['ID'])){
 				if(inSameTeam($_SESSION['UserID'], $dsatz['ID'])){
-					$team_button = "<a href=\"usercp-teams.php\"><img src=\"images/profile/group-change-icon.png\" title=\"zur Teamverwaltung\" /></a>";
+					$team_button = "<a href=\"usercp-teams.php\"><img src=\"images/profile/group-change-icon.png\" title=\"Zur Teamverwaltung\" /></a>";
 				}else
 					if(getTeamByUser($dsatz['ID'])>0)
-						$team_button = "<a href=\"usercp-team_information.php?team=".getTeamByUser($dsatz['ID'])."\"><img src=\"images/profile/group-view-icon.png\" title=\"Team ansehen\" /></a>";
+						$team_button = "<a href=\"usercp-team_information.php?teamID=".getTeamByUser($dsatz['ID'])."\"><img src=\"images/profile/group-view-icon.png\" title=\"Team ansehen\" /></a>";
 					else
 						echo "Es ist ein Fehler aufgetreten";
 						
 			}else
-				$team_button = "<a href=\"team_invite.php?user=".$_SESSION['UserID']."&invite=".$dsatz['ID']."&url=".$_SERVER['REQUEST_URI']."\"><img src=\"images/profile/group-add-icon.png\" title=\"zum Team hinzufügen\" /></a>";
+				if(ownsTeam($_SESSION['UserID'])){
+					if(didInviteUser($_SESSION['UserID'],$dsatz['ID']))
+						$team_button = "<a href=\"#\"><img src=\"images/profile/group-pending-icon.png\" title=\"Team-Einladung gesendet\" /></a>";
+					else
+						$team_button = "<a href=\"team_invite.php?user=".$_SESSION['UserID']."&invite=".$dsatz['ID']."&url=".$_SERVER['REQUEST_URI']."\"><img src=\"images/profile/group-add-icon.png\" title=\"Zum Team hinzufügen\" /></a>";
+				}else
+					$team_button = "<a href=\"#\"><img src=\"images/profile/group-icon.png\" title=\"Ist in keinem Team\" /></a>";
 		}else
 			$team_button = "<a href=\"#\"><img src=\"images/profile/group-new-icon.png\" title=\"Teams durchstöbern\" /></a>";
 		

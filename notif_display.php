@@ -54,15 +54,6 @@
 			while($row = @mysql_fetch_object($result)){ 
 				if($row->type == "inv"){
 					
-					/*echo '<div class="notif_inv"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>
-						<div style="margin-left:30;height:30px;width:120px;float:left;">
-						<form action="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'" method="post"><input name="accept_team" value="Annehmen" style="display:block;width:100;" type="submit" /></form>
-						</div>
-						<div style="height:30px;width:120px;float:left;">
-						<form action="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'" method="post"><input name="decline_team" value="Ablehnen" style="display:block;width:100;" type="submit" /></form>
-						</div>
-						'.'</b></font></div><hr style="background:white;clear:both;" />';*/
-					
 					$inv = '<div class="notification-element">
 							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p>
 							<ul id="notification-confirm">
@@ -72,9 +63,7 @@
 							</div>';	
 					echo $inv;	
 				}else
-					if($row->type == "msg"){
-						//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF"><b>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</b></font></span></a><hr style="background:white;" />';		
-						
+					if($row->type == "msg"){	
 						$msg = '<div class="notification-element" onclick="';
 						$msg .= "location.href='process-notif.php?url=".$row->link."&n=".$row->notifID."'";
 						$msg .= ';" style="cursor:pointer;"><p><img src="images/notifications/new-activity.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p></div>';
@@ -156,8 +145,6 @@
 									$status_img = "";
 								}	
 						}					
-						/*echo '<div class="notif_inv"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Einladung von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'<br/>'.
-							$status.'</font></div><hr style="background:white;clear:both;" />';*/
 						
 						$inv = '<div class="notification-element">
 								<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.' '.$row->content.'</p>
@@ -168,8 +155,6 @@
 						echo $inv;	
 					}else
 						if($row->type == "msg"){
-							//echo '<a class="notif_msg" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'" id="button-contact"><span style="display:block;"><font color="#FFFFFF">'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>Neues von '.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</font></span></a><hr style="background:white;" />';
-						
 							$msg = '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p></div>';
 							echo $msg;
 						}		

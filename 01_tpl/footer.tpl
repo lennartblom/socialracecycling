@@ -127,7 +127,7 @@
                         
                      -->
                      
-                     <a href="#" class="tooltipLinknotif">
+                     <a href="#" class="tooltipLinknotif" id="class-trigger">
 					                  
 						<script>		
 							var ID = {$curUser};
@@ -135,9 +135,14 @@
 								url: "../notif_counter.php",
 								data: "user="+ID,
 								success: function(data){
-											$("#notif-counter").html(data);
 											$("#notification-box").html(data);
-										}
+											if(data=='0'){
+												$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
+											}else{
+												$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
+												$("#notif-counter").html(data);
+											}
+										}		
 							});
 							function callNotifCounter(){
 								var ID = {$curUser};
@@ -145,10 +150,15 @@
 									url: "../notif_counter.php",
 									data: "user="+ID,
 									success: function(data){
-												$("#notif-counter").html(data);
 												$("#notification-box").html(data);
-											}
-								});
+												if(data=='0'){
+													$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
+												}else{
+													$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
+													$("#notif-counter").html(data);
+												}
+											}		
+								});	
 							}
 							var timer_counter = window.setInterval(callNotifCounter,5000);
 						</script>
@@ -165,6 +175,7 @@
 									data: "user="+ID+"&url="+link,
 									success: function(data){
 												$("#notification-overview").html(data);
+												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
 											}
 								});
 							function callNotifDisplay(){
@@ -175,6 +186,7 @@
 									data: "user="+ID+"&url="+link,
 									success: function(data){
 												$("#notification-overview").html(data);
+												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
 											}
 								});
 							}

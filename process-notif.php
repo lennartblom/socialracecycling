@@ -54,6 +54,22 @@ if($row[0]=="inv"){
 			$join .= '</body></html>';
 			echo $join;
 			
+			//Notif Team
+			$topic = $tmp_row->userToID;
+			$teamID = getTeamByUser($tmp_row->userFromID);
+			$sql = "SELECT *
+					FROM user
+					WHERE team = '$teamID'
+						";
+			$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+			if (!$result)
+				die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+			else
+				while($tmp_row2 = mysql_fetch_object($result)){	
+					if($tmp_row2->ID != $topic)	
+						addNotif($topic,$tmp_row2->ID,'msg','usercp-team_information.php?teamID='.$teamID,'ist dem Team beigetreten');
+				}
+			
 			$sql = "UPDATE notifications 
 					SET `read` = 1, confirm = 2
 					WHERE notifID = '$notifID'

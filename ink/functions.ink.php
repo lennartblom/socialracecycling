@@ -126,7 +126,7 @@ function doLogin($ID, $Autologin=false)
 						Autologin = NULL,
 						IP = '".$_SERVER['REMOTE_ADDR']."',
 						Letzter_Login = '".mysql_real_escape_string(time())."',
-						Letzte_Aktion = '".mysql_real_escape_string(time())."'					
+						Letzte_Aktion = '".mysql_real_escape_string(time())."'	
 				WHERE
 						ID = '".$ID."'
 				";

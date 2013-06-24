@@ -26,5 +26,5 @@ if(isset($_GET['user'])&&isset($_GET['invite'])&&isset($_GET['url'])){
 	else
 		echo "Es ist ein Fehler aufgetreten";
 }else
-	echo "Nicht genügend Parameter";				
+	echo "Nicht gen&uuml;gend Parameter";				
 ?>

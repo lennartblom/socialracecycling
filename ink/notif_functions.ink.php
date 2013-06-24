@@ -260,6 +260,45 @@ function inSameTeam($User1, $User2){
 		return false; //min. einer der User nicht vorhanden
 }
 
+function ownsTeam($User){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row= mysql_fetch_row($result);
+	if($row[0]>0){
+		$sql = "SELECT team
+				FROM user
+				WHERE ID = '$User'
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$tmp_row1= mysql_fetch_row($result);		
+		$sql = "SELECT userID
+				FROM teams
+				WHERE teamID = '$tmp_row1[0]'
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$tmp_row2= mysql_fetch_row($result);
+			
+		if($tmp_row2[0]==$User)
+			return true; //User ist TeamLead
+		else
+			return false; //User ist nicht TeamLead
+		
+	}else
+		return false; //User nicht vorhanden 
+}
+
 function getTeamByUser($User){
 	$sql = "SELECT ID 
 			FROM user 
@@ -434,6 +473,131 @@ function doesFollow($User, $FollowUser){
 		}	
 	}else
 		return false; //min. einer der User nicht vorhanden
+}
+
+function getMsgID($UserFrom, $UserTo, $Topic, $Content){
+	$sql = "SELECT msgID
+			FROM message
+			WHERE userFromID = '$UserFrom'
+				AND userToID = '$UserTo'
+				AND topic = '$Topic'
+				AND content = '$Content'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else{
+		$row = mysql_fetch_row($result);
+		if($row[0]>0)
+			return $row[0];
+		else
+			return -1;
+	}	
+}
+
+function addMSG($UserFrom, $UserTo, $Topic, $Content){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$UserFrom'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row1 = mysql_fetch_row($result);
+		
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$UserTo'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row2 = mysql_fetch_row($result);
+	
+	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
+		$sql = "SELECT COUNT(*)
+				FROM message
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+	
+		$identifier = "";
+		if(getMsgID($UserFrom, $UserTo, $Topic, $Content)>0)
+			for($i=0;$i<=$row[0];$i++)
+				$identifier .= "&nbsp;";			
+		
+		$Content .= $identifier;
+		$sql = "INSERT INTO
+				message
+				(
+					userFromID,
+					userToID,
+					topic,				
+					content,
+					`read`
+				)
+				VALUES
+				(
+					'$UserFrom',
+					'$UserTo',
+					'$Topic',
+					'$Content',
+					'0'
+				)
+					";
+		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+					
+		return true; //Nachricht erfolgreich eingetragen
+	}else
+		return false; //min. ein User nicht vorhanden
+}
+
+function didInviteUser($User1, $User2){
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User1'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row1 = mysql_fetch_row($result);
+		
+	$sql = "SELECT ID 
+			FROM user 
+			WHERE ID = '$User2'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$tmp_row2 = mysql_fetch_row($result);
+	
+	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){
+		$sql = "SELECT * 
+				FROM notifications
+				WHERE userFromID = '$User1'
+					AND userToID = '$User2'
+					AND type = 'inv'
+					AND confirm = '0'
+				LIMIT 1	
+				";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else
+			$row = mysql_fetch_row($result);
+		if($row[0]>0)
+			return true; //User1 hat User2 in sein Team eingeladen
+		else	
+			return false; //User1 hat User2 nicht eingeladen
+	}else
+		return false; //min. ein User nicht vorhanden
 }
 
 //...
