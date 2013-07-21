@@ -172,13 +172,51 @@ function joinTeam($User, $TeamLead, $TeamID){
 						
 						return true; //Team erfolgreich beigetreten
 					}else
-						return false; //TeamLead nicht vorhanden
+						return false; //User ist bereits Teil eines Teams
 				}		
 			}else
 				return false; //Team nicht vorhanden
 		}
 	}else
 		return false; //User nicht vorhanden
+}
+
+function leaveTeam($User, $TeamID){
+	$sql = "
+			SELECT COUNT(*) 
+			AS anzahl 
+			FROM teams
+			WHERE teamID = '$TeamID'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_object($result);
+	if($row->anzahl == 1){
+		$sql = "SELECT team 
+				FROM user 
+				WHERE ID = '$User' 
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else{
+			$row = mysql_fetch_row($result);
+		 	if($row[0] != 0){
+				$sql = "UPDATE user 
+						SET team = 0 
+						WHERE ID = '$User'
+							";
+				mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+				
+				return true; //Team erfolgreich verlassen
+			}else
+				return false; //User ist in keinem Team
+		}
+	}else
+		return false; //Team nicht vorhanden
 }
 
 function inTeam($User){

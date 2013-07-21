@@ -44,15 +44,20 @@ if($row[0]=="inv"){
 			$tmp_row = mysql_fetch_object($result);			
 		if(joinTeam($tmp_row->userToID, $tmp_row->userFromID, "")){
 			$join = '<html><head><meta http-equiv="refresh" content="3; URL='.$link.'" /></head><body>';
-			//Template !--
 			$join .= '<img style="float:right;margin-right:100px;" src="images/haeckchen.jpg" alt="Häckchen nach dem Beitritt eines Teams" width="200" height="200">
 						<h3>Team-Beitritt war erfolgreich!</h3>
 						<div style="margin-left:110px;margin-bottom:50px;" id="errorbox-green">
 						<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Sie sind erfolgreich einem Team beigetreten!</p>
-						</div>';
-			//--! Template			
+						</div>';			
 			$join .= '</body></html>';
+			
+			//Template !--
+			$tpl->display('01_tpl/header.tpl');
+			
 			echo $join;
+			
+			$tpl->display('01_tpl/footer.tpl');
+			//--! Template	
 			
 			//Notif Team
 			$topic = $tmp_row->userToID;
@@ -67,7 +72,7 @@ if($row[0]=="inv"){
 			else
 				while($tmp_row2 = mysql_fetch_object($result)){	
 					if($tmp_row2->ID != $topic)	
-						addNotif($topic,$tmp_row2->ID,'msg','usercp-team_information.php?teamID='.$teamID,'ist dem Team beigetreten');
+						addNotif($topic,$tmp_row2->ID,'msg','usercp-team-view.php?teamID='.$teamID,'ist dem Team beigetreten');
 				}
 			
 			$sql = "UPDATE notifications 
@@ -93,6 +98,6 @@ if($row[0]=="inv"){
 				WHERE notifID = '$notifID'
 					";
 		mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-	}
+	}	
 echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';
 ?>
