@@ -53,9 +53,9 @@
 		else{
 			while($row = @mysql_fetch_object($result)){ 
 				if($row->type == "inv"){
-					
+					$timespan = getTimespan($row->date); //vor x Minuten/Stunden/Tagen/Wochen/Monaten/Jahren
 					$inv = '<div class="notification-element">
-							<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p>
+							<p><div style="float:left;"><img src="images/notifications/team-invite.png" />&nbsp;&nbsp;'.date("d.m.Y - H:i",strtotime($row->date)).'</div><div style="float:right; margin-top:8px;">'.$timespan.'</div><div style="clear:both;"><br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</div></p>
 							<ul id="notification-confirm">
 							<li><a href="process-notif.php?n='.$row->notifID.'&s=acc&url='.$url.'"><img src="images/notifications/confirm.png" /> annehmen</a></li>
 							<li><a href="process-notif.php?n='.$row->notifID.'&s=dec&url='.$url.'"><img src="images/notifications/decline.png" /> ablehnen</a></li>
@@ -63,10 +63,11 @@
 							</div>';	
 					echo $inv;	
 				}else
-					if($row->type == "msg"){	
+					if($row->type == "msg"){
+						$timespan = getTimespan($row->date); //vor x Minuten/Stunden/Tagen/Wochen/Monaten/Jahren	
 						$msg = '<div class="notification-element" onclick="';
 						$msg .= "location.href='process-notif.php?url=".$row->link."&n=".$row->notifID."'";
-						$msg .= ';" style="cursor:pointer;"><p><img src="images/notifications/new-activity.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</p></div>';
+						$msg .= ';" style="cursor:pointer;"><p><div style="float:left;"><img src="images/notifications/new-activity.png" />&nbsp;&nbsp;'.date("d.m.Y - H:i",strtotime($row->date)).'</div><div style="float:right; margin-top:5px;">'.$timespan.'</div><div style="clear:both;"><br/><span class="bold">'.$row->name.' '.$row->lastname.'</span> '.$row->content.'</div></p></div>';
 						echo $msg;
 					}	
 			}
@@ -92,6 +93,7 @@
 		}
 		if($showall == 1){
 			//Read
+			echo '<hr/><div align="center">Gelesen</div><hr/>';
 			$sql = "SELECT notifID, userFromID, userToID, type, date, link, content, name, lastname 
 					FROM  notifications, user 
 					WHERE  userFromID = user.ID 
@@ -132,7 +134,6 @@
 							die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 						else{
 							$tmp_row = mysql_fetch_row($tmp_result);
-							echo $tmp_row[0];
 							if($tmp_row[0] == 2){
 									$status = "- Angenommen -";
 									$status_img = '<img src="images/notifications/confirm.png" />'; 
@@ -145,9 +146,9 @@
 									$status_img = "";
 								}	
 						}					
-						
+						$timespan = getTimespan($row->date); //vor x Minuten/Stunden/Tagen/Wochen/Monaten/Jahren
 						$inv = '<div class="notification-element">
-								<p><img src="images/notifications/team-invite.png" />'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.' '.$row->content.'</p>
+								<p><div style="float:left;"><img src="images/notifications/team-invite.png" />&nbsp;&nbsp;'.date("d.m.Y - H:i",strtotime($row->date)).'</div><div style="float:right; margin-top:8px;">'.$timespan.'</div><div style="clear:both;"><br/>'.$row->name.' '.$row->lastname.' '.$row->content.'</div></p>
 								<ul id="notification-confirm">
 								<li> '.$status_img.' '.$status.' </li>
 								</ul>
@@ -155,7 +156,8 @@
 						echo $inv;	
 					}else
 						if($row->type == "msg"){
-							$msg = '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p>'.date("d.m.Y - H:i",strtotime($row->date)).'<br/>'.$row->name.' '.$row->lastname.'<br/>'.$row->content.'</p></div>';
+							$timespan = getTimespan($row->date); //vor x Minuten/Stunden/Tagen/Wochen/Monaten/Jahren
+							$msg = '<div class="notification-element" href="process-notif.php?url='.$row->link.'&n='.$row->notifID.'"><p><div style="float:left;"><img src="images/notifications/new-activity.png" />&nbsp;&nbsp;'.date("d.m.Y - H:i",strtotime($row->date)).'</div><div style="float:right; margin-top:5px;">'.$timespan.'</div><div style="clear:both;"><br/>'.$row->name.' '.$row->lastname.' '.$row->content.'</div></p></div>';
 							echo $msg;
 						}		
 				}

@@ -638,5 +638,10 @@ function didInviteUser($User1, $User2){
 		return false; //min. ein User nicht vorhanden
 }
 
+function getTimespan($Date){
+	//Zeitspanne von <date("d.m.Y - H:i",strtotime($Date));> MySQL-TIMESTAMP bis $Date
+	return 'vor x Minuten';	
+}
+
 //...
 ?>
