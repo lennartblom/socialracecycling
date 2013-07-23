@@ -1037,11 +1037,14 @@ div.notification-element p {
   padding-top: 5px;
 }
 div#notif-display{
-	margin-left:auto;
+	margin-left:-30px;
 	margin-right:auto;
 	height:600px;
-	width:310px;
+	width:680px;
 	overflow:scroll;	
+}
+div#notif-display .notification-element{
+width:650px !important;	
 }
 a.logout-link {
   color: #3378C5;

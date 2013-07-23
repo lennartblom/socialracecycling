@@ -162,8 +162,10 @@
 						}		
 				}
 			}
-		}	
-	echo '<div id="notif-showall" align="center"><a rel="lightbox" title="Alle Benachrichtigungen anzeigen" href="notifications.php">Alle anzeigen</a></div>';	
+		}
+	if($showall == 0){		
+		echo '<div id="notif-showall" align="center"><a rel="lightbox" title="Alle Benachrichtigungen anzeigen" href="notifications.php">Alle anzeigen</a></div>';	
+	}
 	echo '</div>';				
 	}
 	else{

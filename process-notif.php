@@ -72,7 +72,9 @@ if($row[0]=="inv"){
 			else
 				while($tmp_row2 = mysql_fetch_object($result)){	
 					if($tmp_row2->ID != $topic)	
-						addNotif($topic,$tmp_row2->ID,'msg','usercp-team-view.php?teamID='.$teamID,'ist dem Team beigetreten');
+						addNotif($topic,$tmp_row2->ID,'msg','usercp-team-view.php?id='.$teamID,'ist dem Team beigetreten');
+					else
+						addNotif($topic,$tmp_row2->ID,'msg','usercp-team-view.php?id='.$teamID,', willkommen im Team!');	
 				}
 			
 			$sql = "UPDATE notifications 

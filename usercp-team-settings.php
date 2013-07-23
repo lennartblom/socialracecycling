@@ -6,8 +6,10 @@
 	require_once('ink/global.php');
 	require_once('ink/db.ink.php');
 	
-	$tpl->assign('title', 'Dashboard');
-	$tpl->assign('usercp', false);
+	$tpl->assign('title', 'Team');
+	$tpl->assign('online',true);
+	$tpl->assign('profile',true);
+	$tpl->assign('usercp',true);
 	
 	
 	if(isset($_SESSION['UserID'])){
@@ -16,8 +18,8 @@
 		$tpl->assign('name',$_SESSION['Vorname']);
 		$tpl->assign('lastname',$_SESSION['Nachname']);
 		
-        require_once('ink/frontpage_data.ink.php');
 		require_once('ink/footer_data.ink.php');
+		require_once('ink/usercp-team-settings.ink.php');
 		
 		$tpl->assign('userID',$_SESSION['UserID']);
 		$tpl->assign('url',$_SERVER['REQUEST_URI']);

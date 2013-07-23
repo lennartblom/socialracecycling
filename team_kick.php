@@ -8,8 +8,9 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 	$link = $_GET['url'];
 	
 	$sql = "SELECT COUNT(*)
-		FROM user
-		WHERE ID = '$User'";
+			FROM user
+			WHERE ID = '$User'
+				";
 
 	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 	if (!$result)
@@ -30,28 +31,6 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 				$row = mysql_fetch_row($result);
 				if($row[0] != 0){
 					$TeamID = $row[0];
-					
-					//TeamLead
-					$sql = "SELECT userID 
-							FROM teams
-							WHERE teamID = '$TeamID'
-							LIMIT 1
-								";
-								
-					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-					if (!$result)
-						die('Ung&uuml;ltige Abfrage: ' . mysql_error());
-					else{
-						$row = mysql_fetch_row($result);
-						if($row[0]=='$User'){
-							$sql = "UPDATE teams
-									SET userID = 0 
-									WHERE teamID = '$TeamID'
-										";	// userID = <nächster User in Team | ausgewählter User in Team (Rückfrage an Formular?)>
-										
-							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-						}
-					}
 					//Team-Query
 					$sql = "SELECT *
 								FROM user
@@ -65,9 +44,9 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 						else
 							while($tmp_row = mysql_fetch_object($result)){	
 								if($tmp_row->ID != $User)	
-									addNotif($User,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"hat das Team verlassen.");
+									addNotif($User,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"wurde aus dem Team entfernt.");
 								else
-									addNotif($User,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,", du hast das Team verlassen.");	
+									addNotif($User,$tmp_row->ID,'msg','usercp-team-view.php?id='.$TeamID,', du wurdest aus dem Team entfernt.');	
 							}
 						echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';	
 					}else

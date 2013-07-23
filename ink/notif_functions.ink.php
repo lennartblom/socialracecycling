@@ -129,7 +129,8 @@ function joinTeam($User, $TeamLead, $TeamID){
 						$row = mysql_fetch_row($result);
 					if($row[0] == 0){
 						$sql = "UPDATE user 
-								SET team = '$TeamID' 
+								SET team = '$TeamID',
+								joined = 'date(\"Y-m-d H:i:s\")' 
 								WHERE ID = '$User'
 									";
 						mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
@@ -639,9 +640,27 @@ function didInviteUser($User1, $User2){
 }
 
 function getTimespan($Date){
-	//Zeitspanne von <date("d.m.Y - H:i",strtotime($Date));> MySQL-TIMESTAMP bis $Date
-	return 'vor x Minuten';	
+	$sql = "SELECT  TIME_TO_SEC(TIMEDIFF(NOW(),'$Date'))";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if(!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else{
+		$row = mysql_fetch_row($result);
+		$timespan = 'vor wenigen Sekunden';
+		if(($row[0]/60)>=1)
+			$timespan = 'vor '.round(($row[0]/60)).' Minute(n)';
+		if(($row[0]/60/60)>=1)
+			$timespan = 'vor '.round(($row[0]/60/60)).' Stunde(n)';
+		if(($row[0]/60/60/24)>=1)
+			$timespan = 'vor '.round(($row[0]/60/60/24)).' Tag(en)';
+		if(($row[0]/60/60/24/7)>=1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/7)).' Woche(n)';
+		if(($row[0]/60/60/24/30)>=1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/30)).' Monat(en)';
+		if(($row[0]/60/60/24/365)>=1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/365)).' Jahr(en)';			
+		return $timespan;
+	}
 }
-
 //...
 ?>

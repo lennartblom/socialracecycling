@@ -96,7 +96,7 @@ $row = mysql_fetch_assoc($result);
 					$team_button = "<a href=\"usercp-team-settings.php\"><img src=\"images/profile/group-change-icon.png\" title=\"Zur Teamverwaltung\" /></a>";
 				}else
 					if(getTeamByUser($dsatz['ID'])>0)
-						$team_button = "<a href=\"usercp-team-view.php?teamID=".getTeamByUser($dsatz['ID'])."\"><img src=\"images/profile/group-view-icon.png\" title=\"Team ansehen\" /></a>";
+						$team_button = "<a href=\"usercp-team-view.php?id=".getTeamByUser($dsatz['ID'])."\"><img src=\"images/profile/group-view-icon.png\" title=\"Team ansehen\" /></a>";
 					else
 						echo "Es ist ein Fehler aufgetreten";
 						
