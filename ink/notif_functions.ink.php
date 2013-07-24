@@ -22,7 +22,7 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 	else
 		$tmp_row2 = mysql_fetch_row($result);
-	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){	
+	if(($tmp_row1[0]!=0)&&($tmp_row2[0]!=0)){	
 		if($Type == "inv"){
 			$sql = "SELECT team 
 					FROM user 
@@ -647,18 +647,31 @@ function getTimespan($Date){
 	else{
 		$row = mysql_fetch_row($result);
 		$timespan = 'vor wenigen Sekunden';
-		if(($row[0]/60)>=1)
-			$timespan = 'vor '.round(($row[0]/60)).' Minute(n)';
-		if(($row[0]/60/60)>=1)
-			$timespan = 'vor '.round(($row[0]/60/60)).' Stunde(n)';
-		if(($row[0]/60/60/24)>=1)
-			$timespan = 'vor '.round(($row[0]/60/60/24)).' Tag(en)';
-		if(($row[0]/60/60/24/7)>=1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/7)).' Woche(n)';
-		if(($row[0]/60/60/24/30)>=1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/30)).' Monat(en)';
-		if(($row[0]/60/60/24/365)>=1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/365)).' Jahr(en)';			
+		if(round($row[0]/60)==1)
+			$timespan = 'vor einer Minute';
+		if(round($row[0]/60)>1)
+			$timespan = 'vor '.round(($row[0]/60)).' Minuten';
+		if(round($row[0]/60/60)==1)
+			$timespan = 'vor einer Stunde';
+		if(round($row[0]/60/60)>1)
+			$timespan = 'vor '.round(($row[0]/60/60)).' Stunden';	
+		if(round($row[0]/60/60/24)==1)
+			$timespan = 'Gestern';
+		if(round($row[0]/60/60/24)>1)
+			$timespan = 'vor '.round(($row[0]/60/60/24)).' Tagen';	
+		if(round($row[0]/60/60/24/7)==1)
+			$timespan = 'vor einer Woche';
+		if(round($row[0]/60/60/24/7)>1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/7)).' Wochen';	
+		if(round($row[0]/60/60/24/30)==1)
+			$timespan = 'vor einem Monat';
+		if(round($row[0]/60/60/24/30)>1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/30)).' Monaten';	
+		if(round($row[0]/60/60/24/365)==1)
+			$timespan = 'vor einem Jahr';	
+		if(round($row[0]/60/60/24/365)>1)
+			$timespan = 'vor '.round(($row[0]/60/60/24/365)).' Jahren';	
+					
 		return $timespan;
 	}
 }

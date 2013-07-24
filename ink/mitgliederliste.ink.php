@@ -25,6 +25,8 @@ $res = mysql_query("select
 						user 
 				where 
 						NOT(ID='".$_SESSION['UserID']."')
+						AND
+						NOT(ID='-1')
 				ORDER BY
 						`Letzter_Login`
 				DESC

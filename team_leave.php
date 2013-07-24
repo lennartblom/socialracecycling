@@ -44,12 +44,8 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 					else{
 						$row = mysql_fetch_row($result);
 						if($row[0]=='$User'){
-							$sql = "UPDATE teams
-									SET userID = 0 
-									WHERE teamID = '$TeamID'
-										";	// userID = <nächster User in Team | ausgewählter User in Team (Rückfrage an Formular?)>
-										
-							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+							//Form -> self
+							exit;
 						}
 					}
 					//Team-Query
@@ -57,7 +53,7 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 								FROM user
 								WHERE team = '$TeamID'
 									";
-					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());			
+					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());		
 					if(leaveTeam($User, $TeamID)){
 						//Notif Team
 						if (!$result)
@@ -67,7 +63,7 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 								if($tmp_row->ID != $User)	
 									addNotif($User,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"hat das Team verlassen.");
 								else
-									addNotif($User,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,", du hast das Team verlassen.");	
+									addNotif(-1,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"Du hast das Team verlassen.");	
 							}
 						echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';	
 					}else
