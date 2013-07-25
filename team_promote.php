@@ -43,7 +43,7 @@ if(isset($_GET['user'])&&isset($_GET['url'])&&isset($_GET['promo'])){
 						die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 					else{
 						$row = mysql_fetch_row($result);
-						if($row[0]=='$User'){
+						if($row[0]==$User){
 							$sql = "UPDATE teams
 									SET userID = '$newLead' 
 									WHERE teamID = '$TeamID'

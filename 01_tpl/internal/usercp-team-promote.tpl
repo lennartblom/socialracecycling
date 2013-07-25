@@ -5,7 +5,7 @@
 <input type="text" style="display:none;" name="user" value="{$User}" />
 <input type="text" style="display:none;" name="url" value="{$Link}" />
 <select name="promo" style="width:200px;">
-{$options}
+{$Options}
 </select>
 <br/>
 <input type="submit" value="Für Team-Leitung auswählen" style="width:200px;">

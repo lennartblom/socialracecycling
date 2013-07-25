@@ -18,7 +18,7 @@
 		$tpl->assign('lastname',$_SESSION['Nachname']);
 		
 		require_once('ink/footer_data.ink.php');
-		require_once('ink/usercp-teams-promote.ink.php');
+		require_once('ink/usercp-team-promote.ink.php');
 		
 		if(isset($_GET['user'])&&isset($_GET['url'])){
 			$tpl->assign('User',$_GET['user']);
