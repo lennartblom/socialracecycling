@@ -57,7 +57,7 @@ if(isset($_POST['create_team']) AND $_POST['create_team']=='Team erstellen'){
 								if($img_size[0]>200 || $img_size[1]>200)	
 									$errors[]="Bild überschreitet Maße (max. 200*200px)";
 								else
-									$teamLogo=trim($_SESSION['UserID']);
+									$teamLogo="set";
 							}
 						}			
 					}else 
@@ -115,7 +115,7 @@ if(isset($_POST['create_team']) AND $_POST['create_team']=='Team erstellen'){
 					FROM teams 
 					WHERE userID = '$teamLead' 
 						AND name = '$teamName' 
-					LIMIT 0, 1
+					LIMIT 1
 						";
 			$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error()); 
 			if (!$result)
@@ -125,8 +125,14 @@ if(isset($_POST['create_team']) AND $_POST['create_team']=='Team erstellen'){
 				$teamID = $row[0];
 			}
 		
-			if($teamLogo != "default")	
+			if($teamLogo != "default"){	
 				move_uploaded_file($file_tmp,"images/teamlogos/$teamID.jpg");
+				$sql = "UPDATE teams 
+						SET logoID = '$teamID' 
+						WHERE teamID = '$teamID'
+							";
+				mysql_query($sql) OR die ("<pre>n" .$sql. "</pre>n".mysql_error());	
+			}
 			
 			joinTeam($teamLead, $teamLead, $teamID);	
 		

@@ -20,7 +20,6 @@ else{
 		if (!$result)
 			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 		else{
-			$row = mysql_fetch_row($result);
 			$list = '';
 			while($row = mysql_fetch_row($result)){
 				if($row[0]!=$User)

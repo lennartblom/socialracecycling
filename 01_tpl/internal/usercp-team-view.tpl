@@ -3,9 +3,9 @@
 		<input type="hidden" name="year_change" value="{$year_change}">
 			
 <div style="box-shadow:0px 0px 25px #333;margin-right:25px;background-image:url({$team_logo});float:right;height:200px;width:200px;">
-<div class="about-text-new" style="margin-top:165px;box-shadow:0px 0px 5px #333;opacity:0.5;text-align:center;height:20px;width:200px;background-color:black;color:#fff;">{$team_name}</div>
+<div class="about-text-new" style="margin-top:165px;box-shadow:0px 0px 5px #333;opacity:0.5;text-align:center;height:20px;width:200px;background-color:black;color:#fff;">Team {$team_name}</div>
 </div>								
-<h5 style="text-align:left;"><!--<img src="images/profile/arrow-left-24.png" height="15px" />--> <img src="images/profile/user-icon.png" /> <span style="font-weight:300;">Profil von</span> {$team_name}</h5>
+<h5 style="text-align:left;"><!--<img src="images/profile/arrow-left-24.png" height="15px" />--> <img src="images/profile/user-icon.png" /> <span style="font-weight:300;">Profil von</span> Team {$team_name}</h5>
 
 <div style="float:left;width:400px;height:225px;">
 <h3 style="float:left;margin-top:10px;margin-left:0px;height:25px;width:400px;font-size:16px;"><img src="images/profile/chart.png" /> Aktivitätsdiagramm</h3>

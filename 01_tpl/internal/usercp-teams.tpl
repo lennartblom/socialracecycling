@@ -10,7 +10,7 @@
     {if $teamLead eq 1}
     	<li><a href="usercp-team-settings.php">Interne Teamseite</a></li>
     {else if $teamLead eq 2}
-    	<li><a href="usercp-team-settings.php?admin=1">Adminpanel</a></li>
+    	<li><a href="usercp-team-settings.php">Adminpanel</a></li>
     {/if}
     <li><a href="usercp-team-list.php">Teams durchstöbern</a></li>
 {/if}

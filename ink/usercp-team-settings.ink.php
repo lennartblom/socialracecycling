@@ -54,7 +54,7 @@ else{
 						$list .= '<tr><td class="edittour-showtour-dark" style="width:400px;">'.$row[4].' '.$row[5].'</td><td class="edittour-showtour-dark">'.DatumsWandler($row[21]).'</td><td class="edittour-showtour-dark"><a href="usercp-team-view.php?id='.$row[0].'"><img src="images/profile/contacts-icon.png" title="Profil ansehen" /></a></td>';
 					if($teamLeadFlag == 2){
 						$list .= '<td class="edittour-showtour-dark"><a href="team_kick.php?user='.$row[0].'&url='.$_SERVER['REQUEST_URI'].'"><img src="images/profile/user-rem-icon.png" title="Aus Team entfernen" /></a></td>';	
-						$list .= '<td class="edittour-showtour-dark"><a href="team_promote.php?user='.$user.'&url='.$_SERVER['REQUEST_URI'].'&promo='.$row[0].'"><img src="images/profile/group-lead-icon.png" title="Team-Leitung abgeben" /></a></td>';
+						$list .= '<td class="edittour-showtour-dark"><a href="team_promote.php?user='.$user.'&url='.$_SERVER['REQUEST_URI'].'&promo='.$row[0].'"><img src="images/profile/user-promote-icon.png" title="Team-Leitung abgeben" /></a></td>';
 					}
 					$list .= '</tr>';	
 					$i = 2;
@@ -63,7 +63,7 @@ else{
 							$list .= '<tr><td class="edittour-showtour-light" style="width:400px;">'.$row[4].' '.$row[5].'</td><td class="edittour-showtour-light">'.DatumsWandler($row[21]).'</td><td class="edittour-showtour-light"><a href="usercp-team-view.php?id='.$row[0].'"><img src="images/profile/contacts-icon.png" title="Team ansehen" /></a></td>';
 							if($teamLeadFlag == 2){
 								$list .= '<td class="edittour-showtour-light"><a href="team_kick.php?user='.$row[0].'&url='.$_SERVER['REQUEST_URI'].'"><img src="images/profile/user-rem-icon.png" title="Aus Team entfernen" /></a></td>';	
-								$list .= '<td class="edittour-showtour-light"><a href="team_promote.php?user='.$user.'&url='.$_SERVER['REQUEST_URI'].'&promo='.$row[0].'"><img src="images/profile/group-lead-icon.png" title="Team-Leitung abgeben" /></a></td>';	
+								$list .= '<td class="edittour-showtour-light"><a href="team_promote.php?user='.$user.'&url='.$_SERVER['REQUEST_URI'].'&promo='.$row[0].'"><img src="images/profile/user-promote-icon.png" title="Team-Leitung abgeben" /></a></td>';	
 							}
 							$list .= '</tr>';
 							$i = 1;

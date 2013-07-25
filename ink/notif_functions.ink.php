@@ -128,9 +128,10 @@ function joinTeam($User, $TeamLead, $TeamID){
 					else
 						$row = mysql_fetch_row($result);
 					if($row[0] == 0){
+						$joinDate = date("Y-m-d",time());
 						$sql = "UPDATE user 
 								SET team = '$TeamID',
-								joined = 'date(\"Y-m-d H:i:s\")' 
+								joined = '$joinDate'
 								WHERE ID = '$User'
 									";
 						mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
@@ -647,30 +648,30 @@ function getTimespan($Date){
 	else{
 		$row = mysql_fetch_row($result);
 		$timespan = 'vor wenigen Sekunden';
-		if(round($row[0]/60)==1)
+		if(floor($row[0]/60)==1)
 			$timespan = 'vor einer Minute';
-		if(round($row[0]/60)>1)
-			$timespan = 'vor '.round(($row[0]/60)).' Minuten';
-		if(round($row[0]/60/60)==1)
+		if(floor($row[0]/60)>1)
+			$timespan = 'vor '.floor(($row[0]/60)).' Minuten';
+		if(floor($row[0]/60/60)==1)
 			$timespan = 'vor einer Stunde';
-		if(round($row[0]/60/60)>1)
-			$timespan = 'vor '.round(($row[0]/60/60)).' Stunden';	
-		if(round($row[0]/60/60/24)==1)
+		if(floor($row[0]/60/60)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60)).' Stunden';	
+		if(floor($row[0]/60/60/24)==1)
 			$timespan = 'Gestern';
-		if(round($row[0]/60/60/24)>1)
-			$timespan = 'vor '.round(($row[0]/60/60/24)).' Tagen';	
-		if(round($row[0]/60/60/24/7)==1)
+		if(floor($row[0]/60/60/24)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24)).' Tagen';	
+		if(floor($row[0]/60/60/24/7)==1)
 			$timespan = 'vor einer Woche';
-		if(round($row[0]/60/60/24/7)>1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/7)).' Wochen';	
-		if(round($row[0]/60/60/24/30)==1)
+		if(floor($row[0]/60/60/24/7)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/7)).' Wochen';	
+		if(floor($row[0]/60/60/24/30)==1)
 			$timespan = 'vor einem Monat';
-		if(round($row[0]/60/60/24/30)>1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/30)).' Monaten';	
-		if(round($row[0]/60/60/24/365)==1)
+		if(floor($row[0]/60/60/24/30)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/30)).' Monaten';	
+		if(floor($row[0]/60/60/24/365)==1)
 			$timespan = 'vor einem Jahr';	
-		if(round($row[0]/60/60/24/365)>1)
-			$timespan = 'vor '.round(($row[0]/60/60/24/365)).' Jahren';	
+		if(floor($row[0]/60/60/24/365)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/365)).' Jahren';	
 					
 		return $timespan;
 	}

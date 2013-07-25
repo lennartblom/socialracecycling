@@ -7,6 +7,10 @@ if(isset($_GET['user'])&&isset($_GET['url'])&&isset($_GET['promo'])){
 	$User = $_GET['user'];
 	$link = $_GET['url'];
 	$newLead = $_GET['promo'];
+	if(isset($_GET['leave']))
+		$leaveTeam = $_GET['leave'];
+	else
+		$leaveTeam = 0;	
 	
 	$sql = "SELECT COUNT(*)
 		FROM user
@@ -56,10 +60,16 @@ if(isset($_GET['user'])&&isset($_GET['url'])&&isset($_GET['promo'])){
 									WHERE team = '$TeamID'
 										";
 							$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-							while($tmp_row = mysql_fetch_object($result)){		
-								addNotif($newLead,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"leitet jetzt das Team.");
+							while($tmp_row = mysql_fetch_object($result)){
+								if($tmp_row->ID!=$newLead){		
+									addNotif($newLead,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"leitet jetzt das Team.");
+								}else
+									addNotif(-1,$tmp_row->ID, 'msg','usercp-team-view.php?id='.$TeamID,"Dir wurde die Team-Leitung übergeben.");
 							}
-							echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';	
+							if($leaveTeam ==0)
+								echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';
+							else
+								echo '<html><head><meta http-equiv="refresh" content="0; URL=team_leave.php?user='.$User.'&url='.$link.'" /></head></html>';		
 						}else
 							echo "Du hast nicht die benötigten Rechte dazu!";
 					}

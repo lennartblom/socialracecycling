@@ -21,7 +21,7 @@ if(isset($_GET['user'])&&isset($_GET['invite'])&&isset($_GET['url'])){
 		$team = $row[0];
 	}	
 	
-	if(addNotif($user, $invite, 'inv', '', 'hat dich zu '.$team.' eingeladen'))
+	if(addNotif($user, $invite, 'inv', '', 'hat dich zu Team '.$team.' eingeladen'))
 		echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';
 	else
 		echo "Es ist ein Fehler aufgetreten";
