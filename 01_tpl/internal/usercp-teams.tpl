@@ -6,7 +6,8 @@
     <li><a href="usercp-team-list.php">Teams durchstöbern</a></li>
     <li><a href="usercp-team-new.php">Eigenes Team erstellen</a></li>
 {else}
-    <li><a href="usercp-team-view.php?id={$teamID}">Öffentliche Teamseite</a></li>
+ 	<li><a href="team.php?id={$teamID}">Öffentliche Teamseite</a></li>
+    <li><a href="usercp-team-view.php?id={$teamID}">Allgemeine Teamseite</a></li>
     {if $teamLead eq 1}
     	<li><a href="usercp-team-settings.php">Interne Teamseite</a></li>
     {else if $teamLead eq 2}

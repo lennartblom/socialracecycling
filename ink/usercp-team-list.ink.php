@@ -1,4 +1,14 @@
 <?php
+$sql = "SELECT COUNT(*) as anzahl
+		FROM teams
+			";
+$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+if(!$result)
+	die('Ungültige Abfrage: ' . mysql_error());
+else{
+	$row = mysql_fetch_row($result);
+	$tpl->assign('teamCount',$row[0]);
+}
 $sql = "SELECT * 
 		FROM teams
 		ORDER BY teamID ASC

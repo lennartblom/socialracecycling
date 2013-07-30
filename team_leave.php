@@ -6,8 +6,7 @@ require_once('ink/db.ink.php');
 if(isset($_GET['user'])&&isset($_GET['url'])){
 	$User = $_GET['user'];
 	$link = $_GET['url'];
-	
-	$sql = "SELECT COUNT(*)
+	echo '<html><head><title>Verarbeitete Daten - SRC</title></head><body><div align="center"><br/><br/><br/><br/><br/><br/><br/><img src="images/lightbox-ico-loading.gif" width="32" height="32" /></div></body></html>';	$sql = "SELECT COUNT(*)
 			FROM user
 			WHERE ID = '$User'
 				";

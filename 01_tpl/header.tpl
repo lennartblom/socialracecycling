@@ -20,7 +20,7 @@
     
         {include file="01_tpl/frontpage/lightbox.tpl"}
     	
-    	{include file="01_tpl/analytics.tpl"}
+    	<!--{include file="01_tpl/analytics.tpl"}-->
     </head>
     <body>
     
@@ -71,7 +71,7 @@
     {if $title eq 'Trainingsinformationen'}
     	{include file="01_tpl/internal/charts-user.tpl"}
     {/if}
-	{include file="01_tpl/analytics.tpl"}
+	<!--{include file="01_tpl/analytics.tpl"}-->
    </head>
 <body>
 <div id="wrapper">

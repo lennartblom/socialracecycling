@@ -7,7 +7,7 @@ if(isset($_GET['user'])&&isset($_GET['invite'])&&isset($_GET['url'])){
 	$invite = $_GET['invite'];
 	$link = $_GET['url'];
 	$team = "Nicht gefunden";
-	
+	echo '<html><head><title>Verarbeitete Daten - SRC</title></head><body><div align="center"><br/><br/><br/><br/><br/><br/><br/><img src="images/lightbox-ico-loading.gif" width="32" height="32" /></div></body></html>';
 	$sql = "SELECT name 
 			FROM teams
 			WHERE userID = '$user'

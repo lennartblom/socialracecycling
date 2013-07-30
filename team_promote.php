@@ -11,8 +11,7 @@ if(isset($_GET['user'])&&isset($_GET['url'])&&isset($_GET['promo'])){
 		$leaveTeam = $_GET['leave'];
 	else
 		$leaveTeam = 0;	
-	
-	$sql = "SELECT COUNT(*)
+	echo '<html><head><title>Verarbeitete Daten - SRC</title></head><body><div align="center"><br/><br/><br/><br/><br/><br/><br/><img src="images/lightbox-ico-loading.gif" width="32" height="32" /></div></body></html>';	$sql = "SELECT COUNT(*)
 		FROM user
 		WHERE ID = '$User'";
 

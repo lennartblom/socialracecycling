@@ -3,9 +3,9 @@
 <img style="float:right;margin-right:100px;" src="images/haeckchen.jpg" alt="Häckchen nach der Abschließung der Team-Erstellung" width="200" height="200">
 <h3>Datentransfer war erfolgreich!</h3>
 <div style="margin-left:110px;margin-bottom:50px;" id="errorbox-green">
-<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Dein Team konnte zur Datenbank hinzugefügt werden!</p>
+<p style="font-weight:bold;font-family:arial; font-size:14px;color:#007125;">Deine Anfrage wurde versendet!</p>
 </div>
-<a href="usercp-teams.php" style="margin-left:50px;">Zurück zum Teamcenter</a>
+<a href="usercp-team-list.php" style="margin-left:50px;">Zurück zur Teamübersicht</a>
 
 
 

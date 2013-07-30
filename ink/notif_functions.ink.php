@@ -64,7 +64,7 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 					return false; //User ist bereits in einem Team
 			}
 		}else{
-			if($Type = "msg"){
+			if($Type == "msg"){
 				$sql = "INSERT INTO
 							notifications
 							(
@@ -88,6 +88,48 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 				mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 				
 				//return true; --> nur INVITE
+			}else{
+				if($Type == "req"){
+					$sql = "SELECT team 
+							FROM user 
+							WHERE ID = '$UserFrom' 
+							LIMIT 0 , 1
+								";
+					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+					if (!$result)
+						die('Ung&uuml;ltige Abfrage: ' . mysql_error());	
+					else{
+						$row = mysql_fetch_row($result);
+						if($row[0] == 0){
+							$sql = "INSERT INTO
+										notifications
+										(
+										userFromID,
+										userToID,
+										type,				
+										`read`,
+										link,
+										content,
+										confirm
+										)
+									VALUES
+										(
+										'$UserFrom',
+										'$UserTo',
+										'$Type',
+										'0',
+										'$Link',
+										'$Content',
+										'0'
+										)
+										";
+							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+							
+							return true; //Antrag erfolgreich gestellt
+						}else
+							return false; //Antragsteller ist bereits in einem Team
+					}
+				}
 			}
 		}
 	}
@@ -676,5 +718,6 @@ function getTimespan($Date){
 		return $timespan;
 	}
 }
+
 //...
 ?>
