@@ -1,0 +1,43 @@
+<?php /* Smarty version Smarty-3.1.8, created on 2013-07-25 02:15:49
+         compiled from "01_tpl\internal\usercp-team-list.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2508451ebd25d4c0416-38153189%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'a6a9f117a738fdb53db110e294e29917994c5b2b' => 
+    array (
+      0 => '01_tpl\\internal\\usercp-team-list.tpl',
+      1 => 1374617053,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '2508451ebd25d4c0416-38153189',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_51ebd25d4f2a57_26244766',
+  'variables' => 
+  array (
+    'teamList' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_51ebd25d4f2a57_26244766')) {function content_51ebd25d4f2a57_26244766($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
+<!-- Content -->
+<!-- list all teams & create own team -->
+<!-- TEMPLATE -->
+<div id="team-list" align="center"><?php echo $_smarty_tpl->tpl_vars['teamList']->value;?>
+</div>
+<br/><br/>
+<div id="create-team" align="center">
+Nichts passendes gefunden? <a href="usercp-team-new.php">Hier</a> eigenes Team erstellen.
+</div>
+<!-- TEMPLATE -->
+
+        
+<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php }} ?>

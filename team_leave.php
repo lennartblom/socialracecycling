@@ -80,7 +80,13 @@ if(isset($_GET['user'])&&isset($_GET['url'])){
 							$sql = "DELETE FROM teams
 									WHERE teamID = '$TeamID'
 										";
-							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());			
+							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());	
+							$sql = "DELETE FROM notifications
+									WHERE type = 'inv'
+										AND userFromID = '$User'
+										AND confirm = 0
+										";		
+							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());	
 							addNotif(-1,$User,'msg','home.php','Das Team wurde aufgelöst.');	
 						}
 						echo '<html><head><meta http-equiv="refresh" content="0; URL='.$link.'" /></head></html>';	

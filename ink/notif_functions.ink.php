@@ -719,5 +719,36 @@ function getTimespan($Date){
 	}
 }
 
+function allowsFollow($User){
+	$sql = "SELECT COUNT(*) as anzahl 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_row($result);
+	if($row[0]>0){
+		$sql = "SELECT privacy 
+				FROM user
+				WHERE ID = '$User'
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if(!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else{
+			$row = mysql_fetch_row($result);
+			$priv_arr = str_split($row[0]);
+			$priv = $priv_arr[4];
+			if($priv == 1)
+				return true;
+			else
+				return false;
+		}
+	}else
+		return false;
+}
 //...
 ?>
