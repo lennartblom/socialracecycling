@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-10 12:50:52
+<?php /* Smarty version Smarty-3.1.8, created on 2013-06-19 14:15:59
          compiled from "01_tpl/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3289826974f8186b48f4bd8-74494191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c12a49841c809fb1b1f476a138dd4ab83133e4f8' => 
     array (
       0 => '01_tpl/header.tpl',
-      1 => 1370868412,
+      1 => 1371651285,
       2 => 'file',
     ),
   ),
@@ -90,8 +90,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<?php if ($_smarty_tpl->tpl_vars['title']->value!=='Profil bearbeiten'){?>
 		<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="js/JSToolTinotifs.js"></script>
         <script type="text/javascript" src="js/JSToolTip.js"></script>
-        <script type="text/javascript" src="jqPlot/jquery.jqplot.js"></script>
+        <script type="text/javascript" src="jqPlot/jquery.jqplot.js"></script>	
      <?php }?>
         
         

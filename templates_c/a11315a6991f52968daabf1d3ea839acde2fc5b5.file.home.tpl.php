@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 13:28:10
+<?php /* Smarty version Smarty-3.1.8, created on 2013-06-13 16:37:01
          compiled from "01_tpl/internal/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1500902274f81926a983f12-80299465%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a11315a6991f52968daabf1d3ea839acde2fc5b5' => 
     array (
       0 => '01_tpl/internal/home.tpl',
-      1 => 1333121770,
+      1 => 1371131304,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f81926aa05108_60108911',
   'variables' => 
   array (
     'week_change' => 0,
@@ -26,8 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'charts_yearkilometer' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f81926aa05108_60108911',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f81926aa05108_60108911')) {function content_4f81926aa05108_60108911($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

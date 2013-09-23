@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-10 20:28:37
+<?php /* Smarty version Smarty-3.1.8, created on 2013-07-14 12:06:27
          compiled from "01_tpl/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11035082704f8186b4a37c91-23099780%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8824737072be950e282dc42f505aa12ec4250e55' => 
     array (
       0 => '01_tpl/footer.tpl',
-      1 => 1370872341,
+      1 => 1372158424,
       2 => 'file',
     ),
   ),
@@ -27,6 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tooltip_kilometertotal' => 0,
     'tooltip_monthkilometer' => 0,
     'tooltip_lasttour' => 0,
+    'curUser' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -116,7 +117,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
                         
                         <div class="toolTipContent">        
-                            <h2 id="hovercard"><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+                            <h2 class="hovercard"><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['lastname']->value;?>
 </h2>   
                               <table cellpadding="0" cellspacing="0" border="1" id="information">
@@ -151,7 +152,100 @@ km</p>
                               </table> 
                         </div>
                       </a></h1>
-                      <div id="tooltipContainer">...</div>
+                      
+                      
+                      <h1 class="footer-headline">
+                      <!--
+                      
+                      ±±±±±± keine Benachrichtitungen ±±±±±±
+                      
+                      <a href="#" class="tooltipLinknotif-none">
+                      	
+                        <span id="notif-counter">
+                         
+                        </span>
+                        
+                     -->
+                     
+                     <a href="#" class="tooltipLinknotif" id="class-trigger">
+					                  
+						<script>		
+							var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
+;
+							$.ajax({
+								url: "../notif_counter.php",
+								data: "user="+ID,
+								success: function(data){
+											$("#notification-box").html(data);
+											if(data=='0'){
+												$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
+											}else{
+												$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
+												$("#notif-counter").html(data);
+											}
+										}		
+							});
+							function callNotifCounter(){
+								var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
+;
+								$.ajax({
+									url: "../notif_counter.php",
+									data: "user="+ID,
+									success: function(data){
+												$("#notification-box").html(data);
+												if(data=='0'){
+													$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
+												}else{
+													$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
+													$("#notif-counter").html(data);
+												}
+											}		
+								});	
+							}
+							var timer_counter = window.setInterval(callNotifCounter,5000);
+						</script>
+
+                        <span id="notif-counter">
+							<!-- AJAX -->
+                        </span>
+                        
+						<script>		
+							var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
+;
+							var link = document.URL;
+							$.ajax({
+									url: "../notif_display.php",
+									data: "user="+ID+"&url="+link,
+									success: function(data){
+												$("#notification-overview").html(data);
+												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
+											}
+								});
+							function callNotifDisplay(){
+								var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
+;
+								var link = document.URL;
+								$.ajax({
+									url: "../notif_display.php",
+									data: "user="+ID+"&url="+link,
+									success: function(data){
+												$("#notification-overview").html(data);
+												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
+											}
+								});
+							}
+							var timer_display= window.setInterval(callNotifDisplay,5000);
+						</script>
+						
+                        <div class="toolTipContent">        
+                           <h2 class="hovercard"><span id="notification-box"><!-- AJAX --></span> Benachrichtigung(en)</h2>
+                            <div id="notification-overview">
+                            	<!-- AJAX -->
+                            </div>
+                        </div>
+                      </a></h1>
+                      <div class="tooltipContainer">...</div>
+                      
                       <hr id="logout-trenner" />
                       <a href="usercp.php" class="logout-link">Kontrollzentrum</a>
                       <a href="usercp-edit-profile.php" class="logout-link">Profil bearbeiten</a>
