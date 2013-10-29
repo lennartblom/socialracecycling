@@ -24,9 +24,6 @@
     </head>
     <body>
     <!-- VERSION: Beta 1.0 -->
-	<script>
-		alert("JavaScript läuft!");
-	</script>
     {if $title == 'Informationen' OR $title =='Team Dashboard'}                 
     <div id="wrapper">
         <div id="container-toppart"></div>
