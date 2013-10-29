@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-07-14 12:06:27
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 09:28:36
          compiled from "01_tpl/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11035082704f8186b4a37c91-23099780%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8824737072be950e282dc42f505aa12ec4250e55' => 
     array (
       0 => '01_tpl/footer.tpl',
-      1 => 1372158424,
+      1 => 1383038613,
       2 => 'file',
     ),
   ),
@@ -170,21 +170,6 @@ km</p>
                      <a href="#" class="tooltipLinknotif" id="class-trigger">
 					                  
 						<script>		
-							var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
-;
-							$.ajax({
-								url: "../notif_counter.php",
-								data: "user="+ID,
-								success: function(data){
-											$("#notification-box").html(data);
-											if(data=='0'){
-												$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
-											}else{
-												$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
-												$("#notif-counter").html(data);
-											}
-										}		
-							});
 							function callNotifCounter(){
 								var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
 ;
@@ -203,6 +188,7 @@ km</p>
 								});	
 							}
 							var timer_counter = window.setInterval(callNotifCounter,5000);
+							callNotifCounter();
 						</script>
 
                         <span id="notif-counter">
@@ -210,17 +196,6 @@ km</p>
                         </span>
                         
 						<script>		
-							var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
-;
-							var link = document.URL;
-							$.ajax({
-									url: "../notif_display.php",
-									data: "user="+ID+"&url="+link,
-									success: function(data){
-												$("#notification-overview").html(data);
-												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
-											}
-								});
 							function callNotifDisplay(){
 								var ID = <?php echo $_smarty_tpl->tpl_vars['curUser']->value;?>
 ;
@@ -230,11 +205,12 @@ km</p>
 									data: "user="+ID+"&url="+link,
 									success: function(data){
 												$("#notification-overview").html(data);
-												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
+												$(".notifTooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
 											}
 								});
 							}
 							var timer_display= window.setInterval(callNotifDisplay,5000);
+							callNotifDisplay();
 						</script>
 						
                         <div class="toolTipContent">        
@@ -244,7 +220,9 @@ km</p>
                             </div>
                         </div>
                       </a></h1>
-                      <div class="tooltipContainer">...</div>
+                      
+                      <div class="tooltipContainer"><!-- jQUERY --></div>
+                      <div class="notifTooltipContainer"><!-- jQUERY --></div>
                       
                       <hr id="logout-trenner" />
                       <a href="usercp.php" class="logout-link">Kontrollzentrum</a>

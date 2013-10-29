@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2012-04-08 12:38:35
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 10:13:41
          compiled from "01_tpl/internal/tours-overview.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6372908924f8186cb187f16-58507728%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ae10dfd51643d7145d657cc759acad6ea9d569ac' => 
     array (
       0 => '01_tpl/internal/tours-overview.tpl',
-      1 => 1333209974,
+      1 => 1371131305,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_4f8186cb282022_86772124',
   'variables' => 
   array (
     'change_selection' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'touritem' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_4f8186cb282022_86772124',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4f8186cb282022_86772124')) {function content_4f8186cb282022_86772124($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

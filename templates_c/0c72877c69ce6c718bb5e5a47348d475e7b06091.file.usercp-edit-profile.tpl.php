@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-04 12:40:04
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 09:34:27
          compiled from "01_tpl/internal/usercp-edit-profile.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7306966934f86caa980fc68-19949322%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0c72877c69ce6c718bb5e5a47348d475e7b06091' => 
     array (
       0 => '01_tpl/internal/usercp-edit-profile.tpl',
-      1 => 1370349601,
+      1 => 1383038613,
       2 => 'file',
     ),
   ),
@@ -27,6 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'privacy_chart' => 0,
     'privacy_details' => 0,
     'privacy_log' => 0,
+    'privacy_follow' => 0,
     'vorname' => 0,
     'nachname' => 0,
     'strasse' => 0,
@@ -102,24 +103,33 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
                                      <h2>Privatsphäre</h2>
                                         <table style="display:block;margin-left:0px;">
                                             <tr>
-                                                <td class="profil-column">Profildaten:</td>
+                                                <td class="profil-column">Profildaten öffentlich?:</td>
                                                 <td><input <?php if ($_smarty_tpl->tpl_vars['privacy_profil']->value=='1'){?> checked="checked"<?php }?> value="true" name="privacy_profilinformation" type="checkbox" /></td>
                                                 <td>[ <a rel="lightbox[privacy]" title="Deine Profilinformationen werden nicht angezeigt" href="images/profile/privacy_infos.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
                                             <tr>
-                                                <td class="profil-column">Monatsaktivitäten:</td>
+                                                <td class="profil-column">Monatsaktivitäten <br />
+öffentlich?:</td>
                                                 <td><input <?php if ($_smarty_tpl->tpl_vars['privacy_chart']->value==1){?> checked="checked"<?php }?> value="true" name="privacy_activitychart" type="checkbox" /></td>
-                                                <td>[ <a rel="lightbox[privacy]" title="Das Diagramm für die moantlichen Aktivitäten ist nicht sichtbar" href="images/profile/privacy_chart.jpg">Was bedeutet das?</a> ]</td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Das Diagramm für die monatlichen Aktivitäten ist nicht sichtbar" href="images/profile/privacy_chart.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
                                             <tr>
-                                                <td class="profil-column">Jahrestrainingsdetails:</td>
+                                                <td class="profil-column">Jahrestrainingsdetails <br />
+öffentlich?:</td>
                                                 <td><input <?php if ($_smarty_tpl->tpl_vars['privacy_details']->value==1){?> checked="checked"<?php }?> value="true" name="privacy_yeartraining" type="checkbox" /></td>
                                                 <td>[ <a rel="lightbox[privacy]" title="Die Jahresbilanzen deines Trainings können nicht von anderen Mitgliedern angesehen werden, ebenso wenig ist die Vergleichfunktion aktiv" href="images/profile/privacy_trainingdetails.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
                                             <tr>
-                                                <td class="profil-column">Aktivitätstagebuch:</td>
+                                                <td class="profil-column">Aktivitätstagebuch <br />
+öffentlich?:</td>
                                                 <td><input  <?php if ($_smarty_tpl->tpl_vars['privacy_log']->value==1){?> checked="checked"<?php }?> value="true" name="privacy_activitylog" type="checkbox" /></td>
                                                 <td>[ <a rel="lightbox[privacy]" title="Deine letzten 5 Aktivitäten sind für andere Mitglieder nicht einsehbar" href="images/profile/privacy_log.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="profil-column">Andere Nutzer dürfen mir folgen <br />
+erlauben?:</td>
+                                                <td><input  <?php if ($_smarty_tpl->tpl_vars['privacy_follow']->value==1){?> checked="checked"<?php }?> value="true" name="privacy_follow" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Andere Mitglieder können dir nich folgen" href="images/profile/privacy_follow.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
                                         </table>
                                     </td>

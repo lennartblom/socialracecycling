@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-19 14:15:59
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 09:28:36
          compiled from "01_tpl/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3289826974f8186b48f4bd8-74494191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c12a49841c809fb1b1f476a138dd4ab83133e4f8' => 
     array (
       0 => '01_tpl/header.tpl',
-      1 => 1371651285,
+      1 => 1383038613,
       2 => 'file',
     ),
   ),
@@ -53,8 +53,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <?php echo $_smarty_tpl->getSubTemplate ("01_tpl/frontpage/lightbox.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     	
-    	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
+    	<!--<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+-->
     </head>
     <body>
     
@@ -110,8 +110,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/internal/charts-user.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     <?php }?>
-	<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
+	<!--<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/analytics.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+-->
    </head>
 <body>
 <div id="wrapper">

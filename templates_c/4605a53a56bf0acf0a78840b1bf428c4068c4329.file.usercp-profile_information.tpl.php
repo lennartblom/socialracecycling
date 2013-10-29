@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-04 12:19:20
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 09:47:42
          compiled from "01_tpl/internal/usercp-profile_information.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11264212054f8d536d8939c0-92463585%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4605a53a56bf0acf0a78840b1bf428c4068c4329' => 
     array (
       0 => '01_tpl/internal/usercp-profile_information.tpl',
-      1 => 1370348358,
+      1 => 1383040059,
       2 => 'file',
     ),
   ),
@@ -38,16 +38,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'activitylog' => 0,
     'touren' => 0,
     'tour' => 0,
-    'email' => 0,
-    'name' => 0,
-    'lastname' => 0,
-    'strasse' => 0,
-    'plz' => 0,
-    'land' => 0,
-    'geschlecht' => 0,
-    'fahrrad' => 0,
-    'vorname' => 0,
-    'nachname' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -226,216 +216,5 @@ $_smarty_tpl->tpl_vars['tour']->_loop = true;
 </form>
 
 
-<!--
-<table style="margin-left:-100px;">
-            <tr>
-                <td>
-
-                <table>
-                    <tr>
-                        <td class="profil-column">eMail:</td>
-                        <td><input  readonly name="profile_email" class="profile-normalinput" value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
-" /></td>
-                    </tr>
-                </table>
-        
-        
-                </td>
-            </tr>
-        
-        
-            <tr>
-                <td>
-        
-        <h2>Name und Adresse</h2>
-        <table>
-            <tr>
-                <td class="profil-column">Vorname:</td>
-                <td><input readonly name="profile_name"  class="profile-normalinput"  value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
-" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Nachname:</td>
-                <td><input  readonly name="profile_lastname"  class="profile-normalinput"  value="<?php echo $_smarty_tpl->tpl_vars['lastname']->value;?>
-" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Straße:</td>
-                <td><input  readonly name="profile_street" value="<?php echo $_smarty_tpl->tpl_vars['strasse']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">PLZ:</td>
-                <td><input  readonly name="profile_plz" value="<?php echo $_smarty_tpl->tpl_vars['plz']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Stadt:</td>
-                <td><input  readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['stadt']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Land</td>
-                <td><input  readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['land']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-        </table>
-        
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-        
-        <h2>Weitere Informationen</h2>
-        <table>
-            <tr>
-                <td class="profil-column">Geschlecht:</td>
-                <td><input readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['geschlecht']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td  class="profil-column">Geburtstag:</td>
-                <td><input readonly name="profile_email" value="<?php echo $_smarty_tpl->tpl_vars['geburtstag']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Interessen:</td>
-                <td><input  readonly="readonly" name="profile_interests" value="<?php echo $_smarty_tpl->tpl_vars['interessen']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Beruf:</td>
-                <td><input  readonly name="profile_job" value="<?php echo $_smarty_tpl->tpl_vars['beruf']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Rennradmodell:</td>
-                <td><input  readonly name="profile_bike" value="<?php echo $_smarty_tpl->tpl_vars['fahrrad']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-        </table>
-        
-                </td>
-            </tr>
-        </table>	
-        
-
-</form>-->
-
-
 <?php echo $_smarty_tpl->getSubTemplate ("01_tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-
-
-<!--<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-
-
-<h3>Profil von <?php echo $_smarty_tpl->tpl_vars['vorname']->value;?>
- <?php echo $_smarty_tpl->tpl_vars['nachname']->value;?>
-</h3>
-<form action="usercp-profile_training.php" method="post">
-
-<a href="usercp-profile_training.php?id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-">Trainingsinformationen abrufen</a>
-
-<table style="margin-left:-100px;">
-            <tr>
-                <td>
-
-                <table>
-                    <tr>
-                        <td class="profil-column">eMail:</td>
-                        <td><input  readonly name="profile_email" class="profile-normalinput" value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
-" /></td>
-                    </tr>
-                </table>
-        
-        
-                </td>
-            </tr>
-        
-        
-            <tr>
-                <td>
-        
-        <h2>Name und Adresse</h2>
-        <table>
-            <tr>
-                <td class="profil-column">Vorname:</td>
-                <td><input readonly name="profile_name"  class="profile-normalinput"  value="<?php echo $_smarty_tpl->tpl_vars['vorname']->value;?>
-" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Nachname:</td>
-                <td><input  readonly name="profile_lastname"  class="profile-normalinput"  value="<?php echo $_smarty_tpl->tpl_vars['nachname']->value;?>
-" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Straße:</td>
-                <td><input  readonly name="profile_street" value="<?php echo $_smarty_tpl->tpl_vars['strasse']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">PLZ:</td>
-                <td><input  readonly name="profile_plz" value="<?php echo $_smarty_tpl->tpl_vars['plz']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Stadt:</td>
-                <td><input  readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['stadt']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Land</td>
-                <td><input  readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['land']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-        </table>
-        
-                </td>
-            </tr>
-        
-            <tr>
-                <td>
-        
-        <h2>Weitere Informationen</h2>
-        <table>
-            <tr>
-                <td class="profil-column">Geschlecht:</td>
-                <td><input  readonly name="profile_city" value="<?php echo $_smarty_tpl->tpl_vars['geschlecht']->value;?>
-" class="profile-normalinput" /></td>
-            </tr>
-            <tr>
-                <td  class="profil-column">Geburtstag:</td>
-                <td><input  readonly name="profile_email" class="profile-normalinput" value="<?php echo $_smarty_tpl->tpl_vars['geburtstag']->value;?>
-" /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Interessen:</td>
-                <td><input  readonly name="profile_interests" value="<?php echo $_smarty_tpl->tpl_vars['interessen']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Beruf:</td>
-                <td><input  readonly name="profile_job" value="<?php echo $_smarty_tpl->tpl_vars['beruf']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-            <tr>
-                <td class="profil-column">Rennradmodell:</td>
-                <td><input  readonly name="profile_bike" value="<?php echo $_smarty_tpl->tpl_vars['fahrrad']->value;?>
-" class="profile-normalinput"  /></td>
-            </tr>
-        </table>
-        
-                </td>
-            </tr>
-        </table>	
-        
-
-</form>
-
-
-<?php echo $_smarty_tpl->getSubTemplate ("01_tpl/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
---><?php }} ?>
+<?php }} ?>

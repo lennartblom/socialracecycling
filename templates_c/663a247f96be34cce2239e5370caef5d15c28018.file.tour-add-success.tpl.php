@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2013-06-02 17:55:38
+<?php /* Smarty version Smarty-3.1.8, created on 2013-10-29 09:35:40
          compiled from "01_tpl/internal/tour-add-success.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5454849314f81927f4c1754-35761260%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '663a247f96be34cce2239e5370caef5d15c28018' => 
     array (
       0 => '01_tpl/internal/tour-add-success.tpl',
-      1 => 1333893936,
+      1 => 1371131305,
       2 => 'file',
     ),
   ),
