@@ -1,6 +1,6 @@
 /*Settings*/
-var tooltipHeight = 187;
-var tooltipWidth = 389;/*Both px values*/
+var tooltipHeight = 186;
+var tooltipWidth = 374;/*Both px values*/
 
 var preferedTooltipTopPosition =1; /*1=top, 2=bottom*/
 var preferedTooltipLeftPosition = 1; /*1=left, 2=right*/
@@ -45,7 +45,7 @@ $(document).ready(function (){
         }
         $(".tooltipContainer").css("left", pos.left+rightLeftOffset);
     }
-    $(".tooltipLinknotif").each(function(){
+    $(".tooltipLink").each(function(){
         $(this).mouseover(function(){
             clearTimeout(tooltipTimeout);
             tooltipElement = this;
@@ -73,6 +73,9 @@ $(document).ready(function (){
             }, timeTillHide);
         });
     });
+	$(".tooltipLinknotif").mouseover(function(){
+		$(".tooltipContainer").hide();
+	});
     $(".tooltipContainer").mouseover(function(){
         clearTimeout(tooltipTimeout);
     }).mouseout(function(){

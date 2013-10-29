@@ -7,7 +7,9 @@
 	require_once('ink/db.ink.php');
 	
 	$tpl->assign('title', 'Benachrichtigungen');
-	$tpl->assign('usercp', false);
+	$tpl->assign('online',true);
+	$tpl->assign('profile',true);
+	$tpl->assign('usercp',true);
 	
 	
 	if(isset($_SESSION['UserID'])){

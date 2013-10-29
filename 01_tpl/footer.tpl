@@ -130,20 +130,6 @@
                      <a href="#" class="tooltipLinknotif" id="class-trigger">
 					                  
 						<script>		
-							var ID = {$curUser};
-							$.ajax({
-								url: "../notif_counter.php",
-								data: "user="+ID,
-								success: function(data){
-											$("#notification-box").html(data);
-											if(data=='0'){
-												$("#class-trigger").removeClass('tooltipLinknotif').addClass('tooltipLinknotif-none');
-											}else{
-												$("#class-trigger").removeClass('tooltipLinknotif-none').addClass('tooltipLinknotif');
-												$("#notif-counter").html(data);
-											}
-										}		
-							});
 							function callNotifCounter(){
 								var ID = {$curUser};
 								$.ajax({
@@ -161,6 +147,7 @@
 								});	
 							}
 							var timer_counter = window.setInterval(callNotifCounter,5000);
+							callNotifCounter();
 						</script>
 
                         <span id="notif-counter">
@@ -168,16 +155,6 @@
                         </span>
                         
 						<script>		
-							var ID = {$curUser};
-							var link = document.URL;
-							$.ajax({
-									url: "../notif_display.php",
-									data: "user="+ID+"&url="+link,
-									success: function(data){
-												$("#notification-overview").html(data);
-												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
-											}
-								});
 							function callNotifDisplay(){
 								var ID = {$curUser};
 								var link = document.URL;
@@ -186,11 +163,12 @@
 									data: "user="+ID+"&url="+link,
 									success: function(data){
 												$("#notification-overview").html(data);
-												$(".tooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
+												$(".notifTooltipContainer").html($($(tooltipElement).children(".toolTipContent")[0]).html());
 											}
 								});
 							}
 							var timer_display= window.setInterval(callNotifDisplay,5000);
+							callNotifDisplay();
 						</script>
 						
                         <div class="toolTipContent">        
@@ -200,7 +178,9 @@
                             </div>
                         </div>
                       </a></h1>
-                      <div class="tooltipContainer">...</div>
+                      
+                      <div class="tooltipContainer"><!-- jQUERY --></div>
+                      <div class="notifTooltipContainer"><!-- jQUERY --></div>
                       
                       <hr id="logout-trenner" />
                       <a href="usercp.php" class="logout-link">Kontrollzentrum</a>

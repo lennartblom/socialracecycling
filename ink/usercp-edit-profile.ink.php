@@ -97,11 +97,14 @@ if(isset($_POST['profile_send']) AND $_POST['profile_send']=='Profildaten abschi
 			$_POST['privacy_activitylog'] = 1;
 		else
 			$_POST['privacy_activitylog'] = 2;
+		if($_POST['privacy_follow']=='true')
+			$_POST['privacy_follow'] = 1;
+		else	
+			$_POST['privacy_follow'] = 2;
 			
 			
 			
-			
-		$privacy=$_POST['privacy_profilinformation'].$_POST['privacy_activitychart'].$_POST['privacy_yeartraining'].$_POST['privacy_activitylog'];
+		$privacy=$_POST['privacy_profilinformation'].$_POST['privacy_activitychart'].$_POST['privacy_yeartraining'].$_POST['privacy_activitylog'].$_POST['privacy_follow'];
 		
 		
 		$sqlab = "update user set";
@@ -173,11 +176,13 @@ $profile_settings = $privacy[0];
 $activitychart_settings = $privacy[1];
 $trainingdetails_settings = $privacy[2];
 $activitylog_settings = $privacy[3];
+$follow_settings = $privacy[4];
 
 $tpl->assign('privacy_profil', $profile_settings );
 $tpl->assign('privacy_chart', $activitychart_settings );
 $tpl->assign('privacy_details', $trainingdetails_settings );
 $tpl->assign('privacy_log', $activitylog_settings );
+$tpl->assign('privacy_follow', $follow_settings );
 
 $tpl->assign('tag', $row['tag']);
 $tpl->assign('monat', $row['monat']);
@@ -231,11 +236,13 @@ $profile_settings = $privacy[0];
 $activitychart_settings = $privacy[1];
 $trainingdetails_settings = $privacy[2];
 $activitylog_settings = $privacy[3];
+$follow_settings = $privacy[4];
 
 $tpl->assign('privacy_profil', $profile_settings );
 $tpl->assign('privacy_chart', $activitychart_settings );
 $tpl->assign('privacy_details', $trainingdetails_settings );
 $tpl->assign('privacy_log', $activitylog_settings );
+$tpl->assign('privacy_follow', $follow_settings );
 
 $tpl->assign('tag', $row['tag']);
 $tpl->assign('monat', $row['monat']);

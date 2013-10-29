@@ -43,6 +43,15 @@ a img {
   background-repeat: no-repeat;
   margin-left: -235px;
 }
+.notifTooltipContainer {
+  width: 0px;
+  height: 0px;
+  display: none;
+  position: absolute;
+  background-image: url(../images/hovercard-background-big.png);
+  background-repeat: no-repeat;
+  margin-left: -235px;
+}
 h4#control-panel {
   font-family: Arial, Helvetica, sans-serif;
   color: #144371;
@@ -426,7 +435,7 @@ table#information {
   height: 80px;
   border: thin #e7e7e7;
   margin-left: 38px;
-  margin-top: -8px;
+  margin-top: 6px;
 }
 td.title {
   width: 189px;
@@ -987,13 +996,14 @@ div#notification-overview {
   display: block;
   margin-left: 36px;
   margin-right: 40px;
-  height: 90px;
-  width: 315px;
+  margin-top: 4px;
+  height: 500px;
+  width: 310px;
   overflow: scroll;
   padding-bottom: 15px;
 }
 div.notification-element {
-  width: 290px;
+  width: 280px;
   height: auto;
   min-height: 35px;
   border-bottom: #d9d9d9 thin dashed;
@@ -1025,6 +1035,16 @@ div.notification-element p {
   margin: 0px;
   padding-bottom: 5px;
   padding-top: 5px;
+}
+div#notif-display{
+	margin-left:-30px;
+	margin-right:auto;
+	height:600px;
+	width:680px;
+	overflow:scroll;	
+}
+div#notif-display .notification-element{
+width:650px !important;	
 }
 a.logout-link {
   color: #3378C5;

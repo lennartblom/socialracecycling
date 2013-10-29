@@ -72,6 +72,12 @@
                                                 <td><input  {if $privacy_log eq 1} checked="checked"{/if} value="true" name="privacy_activitylog" type="checkbox" /></td>
                                                 <td>[ <a rel="lightbox[privacy]" title="Deine letzten 5 Aktivitäten sind für andere Mitglieder nicht einsehbar" href="images/profile/privacy_log.jpg">Was bedeutet das?</a> ]</td>
                                             </tr>
+                                            <tr>
+                                                <td class="profil-column">Andere Nutzer dürfen mir folgen <br />
+erlauben?:</td>
+                                                <td><input  {if $privacy_follow eq 1} checked="checked"{/if} value="true" name="privacy_follow" type="checkbox" /></td>
+                                                <td>[ <a rel="lightbox[privacy]" title="Andere Mitglieder können dir nich folgen" href="images/profile/privacy_follow.jpg">Was bedeutet das?</a> ]</td>
+                                            </tr>
                                         </table>
                                     </td>
                                     

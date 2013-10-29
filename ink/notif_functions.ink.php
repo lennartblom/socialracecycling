@@ -22,7 +22,7 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
 	else
 		$tmp_row2 = mysql_fetch_row($result);
-	if(($tmp_row1[0]>0)&&($tmp_row2[0]>0)){	
+	if(($tmp_row1[0]!=0)&&($tmp_row2[0]!=0)){	
 		if($Type == "inv"){
 			$sql = "SELECT team 
 					FROM user 
@@ -64,7 +64,7 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 					return false; //User ist bereits in einem Team
 			}
 		}else{
-			if($Type = "msg"){
+			if($Type == "msg"){
 				$sql = "INSERT INTO
 							notifications
 							(
@@ -88,6 +88,48 @@ function addNotif($UserFrom, $UserTo, $Type, $Link, $Content){
 				mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
 				
 				//return true; --> nur INVITE
+			}else{
+				if($Type == "req"){
+					$sql = "SELECT team 
+							FROM user 
+							WHERE ID = '$UserFrom' 
+							LIMIT 0 , 1
+								";
+					$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+					if (!$result)
+						die('Ung&uuml;ltige Abfrage: ' . mysql_error());	
+					else{
+						$row = mysql_fetch_row($result);
+						if($row[0] == 0){
+							$sql = "INSERT INTO
+										notifications
+										(
+										userFromID,
+										userToID,
+										type,				
+										`read`,
+										link,
+										content,
+										confirm
+										)
+									VALUES
+										(
+										'$UserFrom',
+										'$UserTo',
+										'$Type',
+										'0',
+										'$Link',
+										'$Content',
+										'0'
+										)
+										";
+							mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+							
+							return true; //Antrag erfolgreich gestellt
+						}else
+							return false; //Antragsteller ist bereits in einem Team
+					}
+				}
 			}
 		}
 	}
@@ -128,8 +170,10 @@ function joinTeam($User, $TeamLead, $TeamID){
 					else
 						$row = mysql_fetch_row($result);
 					if($row[0] == 0){
+						$joinDate = date("Y-m-d",time());
 						$sql = "UPDATE user 
-								SET team = '$TeamID' 
+								SET team = '$TeamID',
+								joined = '$joinDate'
 								WHERE ID = '$User'
 									";
 						mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
@@ -172,13 +216,51 @@ function joinTeam($User, $TeamLead, $TeamID){
 						
 						return true; //Team erfolgreich beigetreten
 					}else
-						return false; //TeamLead nicht vorhanden
+						return false; //User ist bereits Teil eines Teams
 				}		
 			}else
 				return false; //Team nicht vorhanden
 		}
 	}else
 		return false; //User nicht vorhanden
+}
+
+function leaveTeam($User, $TeamID){
+	$sql = "
+			SELECT COUNT(*) 
+			AS anzahl 
+			FROM teams
+			WHERE teamID = '$TeamID'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_object($result);
+	if($row->anzahl == 1){
+		$sql = "SELECT team 
+				FROM user 
+				WHERE ID = '$User' 
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if (!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else{
+			$row = mysql_fetch_row($result);
+		 	if($row[0] != 0){
+				$sql = "UPDATE user 
+						SET team = 0 
+						WHERE ID = '$User'
+							";
+				mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+				
+				return true; //Team erfolgreich verlassen
+			}else
+				return false; //User ist in keinem Team
+		}
+	}else
+		return false; //Team nicht vorhanden
 }
 
 function inTeam($User){
@@ -600,5 +682,73 @@ function didInviteUser($User1, $User2){
 		return false; //min. ein User nicht vorhanden
 }
 
+function getTimespan($Date){
+	$sql = "SELECT  TIME_TO_SEC(TIMEDIFF(NOW(),'$Date'))";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if(!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else{
+		$row = mysql_fetch_row($result);
+		$timespan = 'vor wenigen Sekunden';
+		if(floor($row[0]/60)==1)
+			$timespan = 'vor einer Minute';
+		if(floor($row[0]/60)>1)
+			$timespan = 'vor '.floor(($row[0]/60)).' Minuten';
+		if(floor($row[0]/60/60)==1)
+			$timespan = 'vor einer Stunde';
+		if(floor($row[0]/60/60)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60)).' Stunden';	
+		if(floor($row[0]/60/60/24)==1)
+			$timespan = 'Gestern';
+		if(floor($row[0]/60/60/24)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24)).' Tagen';	
+		if(floor($row[0]/60/60/24/7)==1)
+			$timespan = 'vor einer Woche';
+		if(floor($row[0]/60/60/24/7)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/7)).' Wochen';	
+		if(floor($row[0]/60/60/24/30)==1)
+			$timespan = 'vor einem Monat';
+		if(floor($row[0]/60/60/24/30)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/30)).' Monaten';	
+		if(floor($row[0]/60/60/24/365)==1)
+			$timespan = 'vor einem Jahr';	
+		if(floor($row[0]/60/60/24/365)>1)
+			$timespan = 'vor '.floor(($row[0]/60/60/24/365)).' Jahren';	
+					
+		return $timespan;
+	}
+}
+
+function allowsFollow($User){
+	$sql = "SELECT COUNT(*) as anzahl 
+			FROM user 
+			WHERE ID = '$User'
+				";
+	$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+	if (!$result)
+		die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+	else
+		$row = mysql_fetch_row($result);
+	if($row[0]>0){
+		$sql = "SELECT privacy 
+				FROM user
+				WHERE ID = '$User'
+				LIMIT 1
+					";
+		$result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
+		if(!$result)
+			die('Ung&uuml;ltige Abfrage: ' . mysql_error());
+		else{
+			$row = mysql_fetch_row($result);
+			$priv_arr = str_split($row[0]);
+			$priv = $priv_arr[4];
+			if($priv == 1)
+				return true;
+			else
+				return false;
+		}
+	}else
+		return false;
+}
 //...
 ?>
