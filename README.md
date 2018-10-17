@@ -12,7 +12,7 @@ Das Online-Trainingstagebuch
 ## Profile
 ![](images/presentation/pages/profile-page.jpg)
 
-## Calender
+## Calendar
 ![](images/presentation/pages/calender-overview.jpg)
 
 ## Dashboard
